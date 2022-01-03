@@ -1,24 +1,20 @@
 <template>
   <div class="h-full">
-    <h2 class="text-center font-bold">今日はどんな運動がしたいですか？</h2>
+    <h2 class="text-center font-bold">トレーニング場所はどこですか？</h2>
     <div id="question" class="h-1/2 flex flex-column justify-center mt-8">
       <ul class="question flex flex-wrap justify-around items-end" alt="">
         <li>
-          <label><input type="radio" value="One" v-model="radio" />週4日以上
+          <label><input type="radio" value="One" v-model="radio" />ジム
           <img src="~assets/fitness1.jpg" alt="" />
           </label>
         </li>
         <li>
-          <label><input type="radio" value="Two" v-model="radio" />週4日以上
+          <label><input type="radio" value="Two" v-model="radio" />自宅
           <img src="~assets/fitness2.jpg" alt="" /></label>
         </li>
         <li>
-          <label><input type="radio" value="Three" v-model="radio" />週4日以上</label>
+          <label><input type="radio" value="Three" v-model="radio" />公園</label>
           <img src="~assets/fitness1.jpg" alt="" />
-        </li>
-        <li>
-          <label><input type="radio" value="Hour" v-model="radio" />週4日以上
-          <img src="~assets/fitness2.jpg" alt="" /></label>
         </li>
       </ul>
     </div>
