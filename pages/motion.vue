@@ -2,7 +2,9 @@
   <div>
     <h2 v-for='item in content' :key='item.id' class="text-center font-bold mt-10">{{ content.title }}</h2>
     <p>{{ content }}</p>
-    <p class="movie">{{ movie.title }}</p>
+    <p></p>
+    <hr>
+    <p>{{ content.movie }}</p>
 
     <div id="light-video" class="sm:flex flex-wrap justify-center">
       <section>
@@ -46,18 +48,26 @@
 </template>
 
 <script>
+import axios from "axios";
   export default {
     async asyncData({ query, $microcms }) {
     const id = query.id;
-   /* console.log(id) */
+   console.log(id)
     const content = await $microcms.get({
       endpoint: "motion",
-      contentId: id
+      contentId: id,
     });
     return {
       content
     };
   },
+
+  data() {
+    return{}
+  },
+
+  mounted: function() {
+  }
   }
 </script>
 

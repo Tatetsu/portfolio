@@ -2,6 +2,7 @@
   <div>
     <p v-for='item in contents' :key='item.id'>{{ item.title }}</p>
     {{ contents }}
+    <p v-for='item in contents' :key='item.body'>{{ item.body }}</p>
   </div>
 </template>
 
