@@ -1,10 +1,12 @@
 <template>
   <div>
-    <h2 v-for='item in content' :key='item.id' class="text-center font-bold mt-10">{{ content.title }}</h2>
-    <p>{{ content }}</p>
-    <p></p>
-    <hr>
-    <p>{{ content.movie }}</p>
+    <h2 class="text-center font-bold mt-10">{{ content.title }}</h2>
+    <!-- v-bind:keyのv-bindは省略できる -->
+    <ul v-for="(movie, index) in content.movies" :key="index">
+      <li>
+        {{ movie.title }}
+      </li>
+    </ul>
 
     <div id="light-video" class="sm:flex flex-wrap justify-center">
       <section>
@@ -48,39 +50,42 @@
 </template>
 
 <script>
-import axios from "axios";
-  export default {
-    async asyncData({ query, $microcms }) {
+// import axios from "axios";
+export default {
+  async asyncData({ query, $microcms }) {
     const id = query.id;
-   console.log(id)
+    // 動画リストのID vrkfvn9paを取得する
+    console.log(id);
     const content = await $microcms.get({
       endpoint: "motion",
       contentId: id,
     });
+    console.log("content", content);
     return {
-      content
+      content,
     };
   },
 
   data() {
-    return{}
+    return {};
   },
 
-  mounted: function() {
-  }
-  }
+  methods: {},
+
+  mounted: function () {},
+};
 </script>
 
 <style>
 #light-video section {
-width: 30%;
+  width: 30%;
   margin: 3rem auto;
   padding: 1%;
 }
 
 @media screen and (max-width: 640px) {
-#light-video section {
-  width: 80%;
-}
+  #light-video section {
+    width: 80%;
+  }
 }
 </style>
