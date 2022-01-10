@@ -2,55 +2,28 @@
   <div>
     <h2 class="text-center font-bold mt-10">{{ content.title }}</h2>
     <!-- v-bind:keyのv-bindは省略できる -->
-    <ul v-for="(movie, index) in content.movies" :key="index">
-      <li>
-        {{ movie.title }}
-      </li>
-    </ul>
-
     <div id="light-video" class="sm:flex flex-wrap justify-center">
-      <section>
+      <div
+        class="light-video"
+        v-for="(movie, index) in content.movies"
+        :key="index"
+      >
+        <h3 class="text-center font-bold mb-5">{{ movie.title }}</h3>
         <iframe
+          :src="movie.url"
           width="100%"
           height="100%"
-          src="https://www.youtube.com/embed/nUVR-Wk9M3c"
-          title="YouTube video player"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
         ></iframe>
-        <h1>取得したタイトルをここに表示します</h1>
-      </section>
-      <section>
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/nUVR-Wk9M3c"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <h1>取得したタイトルをここに表示します</h1>
-      </section>
-      <section>
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/nUVR-Wk9M3c"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <h1>取得したタイトルをここに表示します</h1>
-      </section>
+        <p>{{ movie.url }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // import axios from "axios";
+
 export default {
   async asyncData({ query, $microcms }) {
     const id = query.id;
@@ -67,24 +40,30 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+    };
   },
 
-  methods: {},
+  methods: {
+    
+  },
+  computed: {
+
+  },
 
   mounted: function () {},
 };
 </script>
 
 <style>
-#light-video section {
+#light-video .light-video {
   width: 30%;
   margin: 3rem auto;
   padding: 1%;
 }
 
 @media screen and (max-width: 640px) {
-  #light-video section {
+  #light-video div {
     width: 80%;
   }
 }
