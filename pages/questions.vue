@@ -37,6 +37,9 @@
 <script>
 export default {
   layout: "default",
+  created: function() {
+
+  },
   data() {
     return {
       radio: "",
