@@ -160,19 +160,19 @@
         </li>
         <li class="flex justify-center text-center">
           <label
-            ><input type="radio" value="Two" v-model="radio5" />腹筋
+            ><input type="radio" value="Three" v-model="radio5" />腹筋
             <img src="~assets/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
-            ><input type="radio" value="Two" v-model="radio5" />脚
+            ><input type="radio" value="Hour" v-model="radio5" />脚
             <img src="~assets/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
-            ><input type="radio" value="Two" v-model="radio5" />全身
+            ><input type="radio" value="Five" v-model="radio5" />全身
             <img src="~assets/fitness2.jpg" alt=""
           /></label>
         </li>
@@ -204,6 +204,9 @@ export default {
     return {
       radio1: "",
       radio2: "",
+      radio3: "",
+      radio4: "",
+      radio5: "",
       questionNumber: 1,
     };
   },
