@@ -184,13 +184,13 @@
         class="w-12 h-12 bg-blue-400 text-lg text-white rounded-full hover:bg-blue-500"
         @click="back"
       >
-        <a href="#">前へ</a>
+        <a>前へ</a>
       </button>
       <button
         class="w-16 h-16 bg-blue-400 text-lg text-white rounded-full hover:bg-blue-500"
         @click="next"
       >
-        <a href="#">次へ</a>
+        <a>次へ</a>
       </button>
     </div>
   </div>
@@ -199,7 +199,6 @@
 <script>
 export default {
   layout: "default",
-  created: function () {},
   data() {
     return {
       radio1: "",
@@ -212,12 +211,15 @@ export default {
   },
   methods: {
     next() {
-      this.questionNumber += 1;
+      this.questionNumber += 1; 
     },
     back() {
       this.questionNumber -= 1;
     },
   },
+  computed: {
+
+  }
 };
 </script>
 
