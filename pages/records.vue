@@ -25,7 +25,10 @@
           </div>
           <div v-for="dayEvent in day.dayEvents" :key="dayEvent.id">
               <div class="calendar-event"
-              :style="`background-color:${dayEvent.color}`">
+              :style="`width:${dayEvent.width}%;background-color:${dayEvent.color}`"
+              draggable="true"
+              >
+              <!-- draggable="true" = ドラッグ&ドロップを行うためにイベントの要素にdraggable属性を設定します。 -->
                 {{ dayEvent.name}}
               </div>
           </div>
@@ -39,21 +42,22 @@
 import moment from "moment";
 
 export default {
-  //     async asyncData({ query, $microcms }) {
-  //     const id = query.id;
-  //     // microcmsAPIのIDを取得する
-  //     console.log(id);
-  //     const record = await $microcms.get({
-  //       endpoint: "records",
-  //       contentId: id,
-  //     });
-  //     console.log("records", menu);
-  //     return {
-  //       record,
-  //     };
-  //   },
+      async asyncData({ query, $microcms }) {
+      const id = query.id;
+      // microcmsAPIのIDを取得する
+      console.log(id);
+      const record = await $microcms.get({
+        endpoint: "records",
+        contentId: id,
+      });
+      console.log("records", record);
+      return {
+        record,
+      };
+    },
+
   data() {
-      events:[
+events:[
   { id: 1, name: "ミーティング", start: "2022-01-01", end:"2022-01-01", color:"blue"},
   { id: 2, name: "イベント", start: "2022-01-02", end:"2022-01-03", color:"limegreen"},
   { id: 3, name: "会議", start: "2022-01-06", end:"2022-01-06", color:"deepskyblue"},
@@ -74,8 +78,8 @@ export default {
   { id: 19, name: "会議", start: "2022-01-12", end:"2022-01-12", color:"deepskyblue"},
   { id: 20, name: "誕生日", start: "2022-01-30", end:"2022-01-30", color:"orange"},
 ]
-
     return {
+
       currentDate: moment(),
     };
   },
@@ -101,6 +105,10 @@ export default {
       let calendars = [];
       let calendarDate = this.getStartDate();
 
+      let dayEvents = this.getDayEvents(calendarDate, day);
+
+    //   geeDayEventsを呼び出しているgetCalendarメソッド内のgetDayEventsの引数にもdayを追加します。
+
       for (let week = 0; week < weekNumber; week++) {
         let weekRow = [];
         for (let day = 0; day < 7; day++) {
@@ -109,11 +117,9 @@ export default {
           weekRow.push({
             day: calendarDate.get("date"),
             month: calendarDate.format("YYYY-MM"),
-            // date: startDate.get("date"),
             dayEvents
           });
           calendarDate.add(1, "days");
-        //   startDate.add(1, "days");
         }
         calendars.push(weekRow);
       }
@@ -131,15 +137,43 @@ export default {
       const week = ["日", "月", "火", "水", "木", "金", "土", "日"];
       return week[dayIndex];
     },
-    getDayEvents(date) {
-        // filter関数の中では各イベントの開始日と終了日の間にイベントを取得したい日が含まれているかチェックを行っています。
-        return this.events.filter(event => {
+    getDayEvents(date, day) {
+        // filter関数の中では各イベントの開始日と終了日の間にイベントを取得したい日が含まれているかチェック
+        let stackIndex = 0;
+        // 開始日とイベントに日曜が含まれるかどうかのチェックをおこなっていましたが、それ以外にどちらにも当てはまらないイベントをstartedEventsに保存
+        let dayEvents = [];
+        this.sortedEvents.forEach(event => {
             let startDate = moment(event.start).format('YYYY-MM-DD')
             let endDate = moment(event.end).format('YYYY-MM-DD')
             let Date = date.format('YYYY-MM-DD')
-            if(startDate <= Date && endDate >= Date) return true;
+
+            if(startDate <= Date && endDate >= Date) {
+                if(startDate == Date){
+                    let width = this.getEventWidth(startDate, endDate, day)
+                    // let betweenDays = moment(endDate).diff(moment(startDate),"days")
+                    // let width = betweenDays * 100 + 95;
+    
+                    dayEvents.push({...event,width})
+                    // 日数に100をかけてwidthを設定します。複数の日数がない場合はwidthは95とします。95がwidthに設定した場合はstyle=”width:95%”を設定するので日付の枠の95%の幅でイベントの要素が表示
+                }else if(day === 0){
+                    let width = this.getEventWidth(date, endDate, day)
+                    dayEvents.push({...event.width})
+                // 開始日ではなく日曜日が含まれているイベントの場合はイベントが週をまたがっているので日曜日から残りのイベントの幅を計算してwidthを設定します。
+                }else {
+
+                }
+            }
         });
-        console.log(filter);
+        return dayEvents;
+    },
+    
+    getEventWidth(end, start, day) {
+        let betweenDays = moment(end).diff(moment(start), "days")
+        if(betweenDays > 6 - day) {
+            return(6 - day) * 100+ 95;
+        }else {
+            return betweenDays * 100 + 95;
+        }
     }
   },
   mounted() {
@@ -160,6 +194,15 @@ export default {
     currentMonth() {
         return this.currentDate.format('YYYY-MM')
     },
+    sortedEvents(){
+        return this.events.slice().sort(function(a,b) {
+            let startDate = moment(a.start).format('YYYY-MM-DD')
+            let startDate_2 = moment(b.start).format('YYYY-MM-DD')
+            if( startDate < startDate_2 )return -1;
+            if( startDate > startDate_2 )return 1;
+            return 0;
+        })
+    }
   },
 };
 </script>
