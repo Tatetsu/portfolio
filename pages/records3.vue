@@ -21,8 +21,6 @@
           :class="{ outside: currentMonth !== day.month }"
           v-for="(day, index) in week"
           :key="index"
-          @drop="dragEnd($event, day.date)"
-          @dragover.prevent
         >
           <div class="calendar-day">
             {{ day.day }}
@@ -32,8 +30,6 @@
               v-if="dayEvent.width"
               class="calendar-event"
               :style="`width:${dayEvent.width}%;background-color:${dayEvent.color}`"
-              draggable="true"
-              @dragstart="dragStart($event, dayEvent.id)"
             >
               {{ dayEvent.name }}
             </div>
@@ -50,143 +46,143 @@ export default {
   data() {
     return {
       currentDate: moment(),
-    };
 
-    events: [
-      {
-        id: 1,
-        name: "ミーティング",
-        start: "2021-01-01",
-        end: "2021-01-01",
-        color: "blue",
-      },
-      {
-        id: 2,
-        name: "イベント",
-        start: "2021-01-02",
-        end: "2021-01-03",
-        color: "limegreen",
-      },
-      {
-        id: 3,
-        name: "会議",
-        start: "2021-01-06",
-        end: "2021-01-06",
-        color: "deepskyblue",
-      },
-      {
-        id: 4,
-        name: "有給",
-        start: "2021-01-08",
-        end: "2021-01-08",
-        color: "dimgray",
-      },
-      {
-        id: 5,
-        name: "海外旅行",
-        start: "2021-01-08",
-        end: "2021-01-11",
-        color: "navy",
-      },
-      {
-        id: 6,
-        name: "誕生日",
-        start: "2021-01-16",
-        end: "2021-01-16",
-        color: "orange",
-      },
-      {
-        id: 7,
-        name: "イベント",
-        start: "2021-01-12",
-        end: "2021-01-15",
-        color: "limegreen",
-      },
-      {
-        id: 8,
-        name: "出張",
-        start: "2021-01-12",
-        end: "2021-01-13",
-        color: "teal",
-      },
-      {
-        id: 9,
-        name: "客先訪問",
-        start: "2021-01-14",
-        end: "2021-01-14",
-        color: "red",
-      },
-      {
-        id: 10,
-        name: "パーティ",
-        start: "2021-01-15",
-        end: "2021-01-15",
-        color: "royalblue",
-      },
-      {
-        id: 12,
-        name: "ミーティング",
-        start: "2021-01-18",
-        end: "2021-01-19",
-        color: "blue",
-      },
-      {
-        id: 13,
-        name: "イベント",
-        start: "2021-01-21",
-        end: "2021-01-21",
-        color: "limegreen",
-      },
-      {
-        id: 14,
-        name: "有給",
-        start: "2021-01-20",
-        end: "2021-01-20",
-        color: "dimgray",
-      },
-      {
-        id: 15,
-        name: "イベント",
-        start: "2021-01-25",
-        end: "2021-01-28",
-        color: "limegreen",
-      },
-      {
-        id: 16,
-        name: "会議",
-        start: "2021-01-21",
-        end: "2021-01-21",
-        color: "deepskyblue",
-      },
-      {
-        id: 17,
-        name: "旅行",
-        start: "2021-01-23",
-        end: "2021-01-24",
-        color: "navy",
-      },
-      {
-        id: 18,
-        name: "ミーティング",
-        start: "2021-01-28",
-        end: "2021-01-28",
-        color: "blue",
-      },
-      {
-        id: 19,
-        name: "会議",
-        start: "2021-01-12",
-        end: "2021-01-12",
-        color: "deepskyblue",
-      },
-      {
-        id: 20,
-        name: "誕生日",
-        start: "2021-01-30",
-        end: "2021-01-30",
-        color: "orange",
-      },
-    ];
+      events: [
+        {
+          id: 1,
+          name: "ミーティング",
+          start: "2022-01-01",
+          end: "2022-01-01",
+          color: "blue",
+        },
+        {
+          id: 2,
+          name: "イベント",
+          start: "2022-01-02",
+          end: "2022-01-03",
+          color: "limegreen",
+        },
+        {
+          id: 3,
+          name: "会議",
+          start: "2022-01-06",
+          end: "2022-01-06",
+          color: "deepskyblue",
+        },
+        {
+          id: 4,
+          name: "有給",
+          start: "2022-01-08",
+          end: "2022-01-08",
+          color: "dimgray",
+        },
+        {
+          id: 5,
+          name: "海外旅行",
+          start: "2022-01-08",
+          end: "2022-01-11",
+          color: "navy",
+        },
+        {
+          id: 6,
+          name: "誕生日",
+          start: "2022-01-16",
+          end: "2022-01-16",
+          color: "orange",
+        },
+        {
+          id: 7,
+          name: "イベント",
+          start: "2022-01-12",
+          end: "2022-01-15",
+          color: "limegreen",
+        },
+        {
+          id: 8,
+          name: "出張",
+          start: "2022-01-12",
+          end: "2022-01-13",
+          color: "teal",
+        },
+        {
+          id: 9,
+          name: "客先訪問",
+          start: "2022-01-14",
+          end: "2022-01-14",
+          color: "red",
+        },
+        {
+          id: 10,
+          name: "パーティ",
+          start: "2022-01-15",
+          end: "2022-01-15",
+          color: "royalblue",
+        },
+        {
+          id: 12,
+          name: "ミーティング",
+          start: "2022-01-18",
+          end: "2022-01-19",
+          color: "blue",
+        },
+        {
+          id: 13,
+          name: "イベント",
+          start: "2022-01-21",
+          end: "2022-01-21",
+          color: "limegreen",
+        },
+        {
+          id: 14,
+          name: "有給",
+          start: "2022-01-20",
+          end: "2022-01-20",
+          color: "dimgray",
+        },
+        {
+          id: 15,
+          name: "イベント",
+          start: "2022-01-25",
+          end: "2022-01-28",
+          color: "limegreen",
+        },
+        {
+          id: 16,
+          name: "会議",
+          start: "2022-01-21",
+          end: "2022-01-21",
+          color: "deepskyblue",
+        },
+        {
+          id: 17,
+          name: "旅行",
+          start: "2022-01-23",
+          end: "2022-01-24",
+          color: "navy",
+        },
+        {
+          id: 18,
+          name: "ミーティング",
+          start: "2022-01-28",
+          end: "2022-01-28",
+          color: "blue",
+        },
+        {
+          id: 19,
+          name: "会議",
+          start: "2022-01-12",
+          end: "2022-01-12",
+          color: "deepskyblue",
+        },
+        {
+          id: 20,
+          name: "誕生日",
+          start: "2022-01-30",
+          end: "2022-01-30",
+          color: "orange",
+        },
+      ],
+    };
   },
   methods: {
     getStartDate() {
@@ -253,7 +249,7 @@ export default {
             [stackIndex, dayEvents] = this.getStackEvents(
               event,
               day,
-              date,
+              // date,
               stackIndex,
               dayEvents,
               startedEvents,
@@ -263,7 +259,7 @@ export default {
             [stackIndex, dayEvents] = this.getStackEvents(
               event,
               day,
-              date,
+              // date,
               stackIndex,
               dayEvents,
               startedEvents,
@@ -288,11 +284,15 @@ export default {
     },
 
     getStackEvents(event, day, stackIndex, dayEvents, startedEvents, start) {
+      console.log("args", dayEvents);
+
       [stackIndex, dayEvents] = this.getStartedEvents(
         stackIndex,
         startedEvents,
         dayEvents
       );
+      console.log("result", dayEvents);
+
       let width = this.getEventWidth(start, event.end, day);
       Object.assign(event, {
         stackIndex,
@@ -331,23 +331,32 @@ export default {
 
   computed: {
     calendars() {
-      return this.getCalendar();
+      let calendars = this.getCalendar();
+      // console.log({ calendars });
+
+      return calendars;
     },
     displayDate() {
-      return this.currentDate.format("YYYY[年]M[月]");
+      let displayDate = this.currentDate.format("YYYY[年]M[月]");
+      // console.log({ displayDate });
+      return displayDate;
     },
 
     currentMonth() {
-      return this.currentDate.format("YYYY-MM");
+      let currentMonth = this.currentDate.format("YYYY-MM");
+      // console.log({ currentMonth });
+      return currentMonth;
     },
     sortedEvents() {
-      return this.events.slice().sort(function (a, b) {
+      const result = this.events.slice().sort(function (a, b) {
         let startDate = moment(a.start).format("YYYY-MM-DD");
         let startDate_2 = moment(b.start).format("YYYY-MM-DD");
         if (startDate < startDate_2) return -1;
         if (startDate > startDate_2) return 1;
         return 0;
       });
+      // console.log({ result });
+      return result;
     },
   },
 };
