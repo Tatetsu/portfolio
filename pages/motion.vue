@@ -15,7 +15,6 @@
           height="100%"
           frameborder="0"
         ></iframe>
-        <p>{{ movie.url }}</p>
       </div>
     </div>
   </div>
