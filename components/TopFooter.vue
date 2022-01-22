@@ -1,6 +1,6 @@
 <template>
 <section>
-    <footer class="mt-10 bg-gray-100">
+    <footer>
         <p class="text-center text-xs py-5">2022 TATETSU</p>
     </footer>
 </section>
@@ -13,5 +13,8 @@ export default {
 </script>
 
 <style>
-
+footer {
+    background-color: #333333;
+    color: #858e98;
+}
 </style>
