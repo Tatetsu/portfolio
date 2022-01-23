@@ -11,13 +11,13 @@
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="One" v-model="radio1" />引き締めたい
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Two" v-model="radio1" />減量したい
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
@@ -27,7 +27,7 @@
               value="Three"
               v-model="radio1"
             />運動不足を解消したい
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
@@ -36,7 +36,7 @@
               type="radio"
               value="Hour"
               v-model="radio1" />不調を改善したい
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
@@ -45,7 +45,7 @@
               type="radio"
               value="Five"
               v-model="radio1" />健康維持をしたい
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
       </ul>
@@ -59,13 +59,13 @@
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="One" v-model="radio2" />とてもニガテです
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Two" v-model="radio2" />少しニガテです
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
@@ -75,19 +75,19 @@
               value="Three"
               v-model="radio2"
             />どちらでもありません
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Hour" v-model="radio2" />少し得意です
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Five" v-model="radio2" />とても得意です
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
       </ul>
@@ -103,19 +103,19 @@
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="One" v-model="radio3" />30分以下
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Two" v-model="radio3" />30分以上
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Three" v-model="radio3" />1時間以上
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
       </ul>
@@ -129,13 +129,13 @@
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="One" v-model="radio4" />ジムでトレーニング
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Two" v-model="radio4" />自宅でトレーニング
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
       </ul>
@@ -149,31 +149,31 @@
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="One" v-model="radio5" />腕
-            <img src="~assets/fitness1.jpg" alt="" />
+            <img src="~assets/img/fitness1.jpg" alt="" />
           </label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Two" v-model="radio5" />胸部
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Three" v-model="radio5" />腹筋
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Hour" v-model="radio5" />脚
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
         <li class="flex justify-center text-center">
           <label
             ><input type="radio" value="Five" v-model="radio5" />全身
-            <img src="~assets/fitness2.jpg" alt=""
+            <img src="~assets/img/fitness2.jpg" alt=""
           /></label>
         </li>
       </ul>

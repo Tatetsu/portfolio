@@ -20,5 +20,6 @@
 }
 #main {
     background-color: #F2F6F7;
+    flex: 1;
 }
 </style>
