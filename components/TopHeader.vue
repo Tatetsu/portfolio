@@ -4,10 +4,10 @@
         <h1 class="w-36 pt-4"><router-link to="/"><img src="../assets/img/nuxt.png" alt=""></router-link></h1>
         <nav>
             <ul>
-                <li><router-link to="/login">ホーム</router-link></li>
+                <li><router-link to="/">ホーム</router-link></li>
                 <li><router-link to="/program">プログラム一覧</router-link></li>
-                <li><router-link to="/login">検索</router-link></li>
-                <li><router-link to="/login">マイアカウント</router-link></li>
+                <li><router-link to="/search">検索</router-link></li>
+                <li><router-link to="/mypage">マイアカウント</router-link></li>
                 <li><router-link to="/playlist">プレイリスト</router-link></li>
             </ul>
         </nav>
