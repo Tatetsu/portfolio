@@ -464,7 +464,5 @@ export default {
   max-width: 900px;
   margin: 10rem auto;
 }
-.my-data {
-  /* margin: 10rem auto 0; */
-}
+
 </style>
