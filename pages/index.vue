@@ -342,7 +342,7 @@
 <script>
 import axios from "axios";
 import firebase from "firebase"
-import "firebase/database"
+// import "firebase/database"
 
 export default {
   async asyncData({ $microcms }) {
