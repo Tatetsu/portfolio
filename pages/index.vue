@@ -342,19 +342,19 @@
 <script>
 import axios from "axios";
 import firebase from "firebase"
-// import "firebase/database"
+import "firebase/database"
 
 export default {
-  async asyncData({ $microcms }) {
-    const data = await $microcms.get({
-      endpoint: "news",
-    });
-    console.log(data);
-    const contents = data.contents;
-    return {
-      contents,
-    };
-  },
+  // async asyncData({ $microcms }) {
+  //   const data = await $microcms.get({
+  //     endpoint: "news",
+  //   });
+  //   console.log(data);
+  //   const contents = data.contents;
+  //   return {
+  //     contents,
+  //   };
+  // },
   layout: "default",
   data() {
     return {};

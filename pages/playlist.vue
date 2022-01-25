@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        おそらくMotion.vueの内容がここに入るはず
     </div>
 </template>
 

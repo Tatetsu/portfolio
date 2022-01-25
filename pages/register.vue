@@ -46,24 +46,63 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-    data() {
+    computed: {
+        user() {
+            return this.$store.getters["user"]
+        }
+    },
+    data:function() {
         return {
             email:"",
-            password:""
+            password:"",
+            emailErrorMassage:"",
+            passwordErrorMassage:"",
+            emailRegexp: /^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i,
+            passwordRegexp: /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,20}$/i
         }
     },
     methods: {
-        registerUser() {
-            // console.log(this.email, this.password);
-            firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.email,this.password)
-            .then(response => {
-                console.log(response);
+        register() {
+            if(!this.emailRegexp.test(this.email)) {
+                this.emailErrorMassage = 
+                "このメールアドレスは無効です。正しく入力してください。"
+            }
+            if (!this.passwordRegexp.test(this.password)) {
+                this.passwordErrorMassage = 
+                "このパスワードは無効です。半角英数字を含んで8〜20文字の範囲で入力してください。"
+            }
+            if(this.email === "") {
+                this.emailErrorMassage = "メールアドレスを入力してください"
+            }
+            if(this.password === "") {
+                this.passwordErrorMassage = "パスワードを入力してください"
+            }
+            if(this.emailErrorMassage !== "" || this.passwordErrorMassage !== "") {
+                return
+            }
+
+            this.$auth
+            .createUserWithEmailAndPassword(this.email, this.password)
+            .then(user => {
+                alert("登録が完了しました")
+                this.$store.dispatch("checkLogin")
+                this.$router.push("/home")
             })
-            .catch(e => {
-                console.log(e)
+            .catch(error => {
+                console.log({ code: error.code, message: error.message }
+                )
+                if (error.code === "auth/invalid-email") {
+                    this.emailErrorMassage = "このメールアドレスは無効です"
+                }else if (error.code === "auth/email-already-in-use") {
+                    this.emailErrorMassage = "このメールアドレスはすでに使用されています"
+                }else {
+                    alert("エラーにより登録ができませんでした。恐れ入りますが再度お試しください")
+                }
             })
+        },
+        isInput() {
+            this.emailErrorMassage = ""
+            this.passwordErrorMassage = ""
         }
     }
 }
