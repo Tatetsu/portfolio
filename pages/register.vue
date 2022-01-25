@@ -15,24 +15,34 @@
             <span class="font-semibold">メールアドレス</span>と
             <span class="font-semibold">パスワード</span>を入力してください。
         </p>
-        <form @submit.prevent="registerUser" action="">
+        <form @submit.prevent="registerUser" novalidate>
             <div class="mb-2">
                 <input 
                 type="mail"
+                name="mail"
+                required="required"
                 v-model="email"
+                @input="isInput"
                 placeholder="you@example.com"
                 class="text-xl w-3/5 p-3 border rounded"
+                autofocus
                 >
             </div>
             <div class="mb-2">
                 <input 
                 type="password"
+                name="password"
+                required="required"
                 v-model="password"
+                @input="isInput"
                 placeholder="パスワード"
                 class="text-xl w-3/5 p-3 border rounded"
                 >
+                <p class="text-red-400">{{ passwordErrorMassage }}</p>
             </div>
-            <button type="submit" class="text-xl w-3/5 bg-green-800 text-white py-2 rounded">ユーザーの登録</button>
+            <button type="submit" 
+            @click="register"
+            class="text-xl w-3/5 bg-green-800 text-white py-2 rounded">ユーザーの登録</button>
         </form>
           </div>
           </div>
@@ -42,9 +52,6 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/auth";
-
 export default {
     computed: {
         user() {
@@ -83,10 +90,10 @@ export default {
 
             this.$auth
             .createUserWithEmailAndPassword(this.email, this.password)
-            .then(user => {
+            .then(() => {
                 alert("登録が完了しました")
                 this.$store.dispatch("checkLogin")
-                this.$router.push("/home")
+                this.$router.push("/mypage")
             })
             .catch(error => {
                 console.log({ code: error.code, message: error.message }

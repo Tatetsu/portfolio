@@ -9,7 +9,7 @@ const config = {
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
     appId: process.env.APP_Id,
-    measurementId: process.envMEASUREMENT_ID
+    measurementId: process.env.MEASUREMENT_ID
 }
 
     firebase.initializeApp(config)

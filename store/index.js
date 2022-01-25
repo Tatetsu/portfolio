@@ -1,8 +1,4 @@
-// import { vuexfireMutations } from 'vuexfire'
-
-// export const mutations = {
-//     ...vuexfireMutations
-// }
+import { vuexfireMutations } from 'vuexfire'
 
 export const state = () => ({
     user: {

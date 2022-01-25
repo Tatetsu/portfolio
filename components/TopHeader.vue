@@ -13,8 +13,8 @@
         </nav>
         <div class="login">
             <ul>
-                <li><router-link to="/login">ログイン</router-link></li>
-                <li><router-link to="/login">新規登録</router-link></li>
+                <li><router-link to="/signin">ログイン</router-link></li>
+                <li><router-link to="/register">新規登録</router-link></li>
             </ul>
         </div>
     </aside>
