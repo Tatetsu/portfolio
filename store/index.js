@@ -1,5 +1,3 @@
-import { vuexfireMutations } from 'vuexfire'
-
 export const state = () => ({
     user: {
         uid:"",

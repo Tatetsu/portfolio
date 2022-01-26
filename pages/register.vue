@@ -15,7 +15,7 @@
             <span class="font-semibold">メールアドレス</span>と
             <span class="font-semibold">パスワード</span>を入力してください。
         </p>
-        <form @submit.prevent="registerUser" novalidate>
+        <form @submit.prevent="register" novalidate>
             <div class="mb-2">
                 <input 
                 type="mail"
@@ -27,6 +27,7 @@
                 class="text-xl w-3/5 p-3 border rounded"
                 autofocus
                 >
+                 <p class="text-red-400">{{ emailErrorMassage }}</p>
             </div>
             <div class="mb-2">
                 <input 
