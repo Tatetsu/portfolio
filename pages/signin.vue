@@ -1,11 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <header class="flex justify-between items-center p-4 border-b">
-      <h1 class="font-semibold text-xl leading-thing">Slack Clone</h1>
-      <button class="py-1 px-4 border-2 border-green-800 rounded">
-        <router-link to="/signin"> サインイン </router-link>
-      </button>
-    </header>
+  <div>
     <div class="bg-gray-100 flex-auto">
       <div class="flex justify-center mt-16">
         <div class="w-2/5 border bg-white">

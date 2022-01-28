@@ -1,52 +1,50 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <header class="flex justify-between items-center p-4 border-b">
-      <h1 class="font-semibold text-xl leading-thing">Slack Clone</h1>
-      <button class="py-1 px-4 border-2 border-green-800 rounded">
-        <router-link to="/signin"> サインイン </router-link>
-      </button>
-    </header>
+  <div>
     <div class="bg-gray-100 flex-auto">
       <div class="flex justify-center mt-16">
-          <div class="w-2/5 border bg-white">
+        <div class="w-2/5 border bg-white">
           <div class="my-12 text-center">
-        <h2 class="text-4xl font-bold">ユーザー登録画面</h2>
-        <p class="my-4">
-            <span class="font-semibold">メールアドレス</span>と
-            <span class="font-semibold">パスワード</span>を入力してください。
-        </p>
-        <form @submit.prevent="register" novalidate>
-            <div class="mb-2">
-                <input 
-                type="mail"
-                name="mail"
-                required="required"
-                v-model="email"
-                @input="isInput"
-                placeholder="you@example.com"
-                class="text-xl w-3/5 p-3 border rounded"
-                autofocus
-                >
-                 <p class="text-red-400">{{ emailErrorMassage }}</p>
-            </div>
-            <div class="mb-2">
-                <input 
-                type="password"
-                name="password"
-                required="required"
-                v-model="password"
-                @input="isInput"
-                placeholder="パスワード"
-                class="text-xl w-3/5 p-3 border rounded"
-                >
+            <h2 class="text-4xl font-bold">ユーザー登録画面</h2>
+            <p class="my-4">
+              <span class="font-semibold">メールアドレス</span>と
+              <span class="font-semibold">パスワード</span>を入力してください。
+            </p>
+            <form @submit.prevent="register" novalidate>
+              <div class="mb-2">
+                <input
+                  type="mail"
+                  name="mail"
+                  required="required"
+                  v-model="email"
+                  @input="isInput"
+                  placeholder="you@example.com"
+                  class="text-xl w-3/5 p-3 border rounded"
+                  autofocus
+                />
+                <p class="text-red-400">{{ emailErrorMassage }}</p>
+              </div>
+              <div class="mb-2">
+                <input
+                  type="password"
+                  name="password"
+                  required="required"
+                  v-model="password"
+                  @input="isInput"
+                  placeholder="パスワード"
+                  class="text-xl w-3/5 p-3 border rounded"
+                />
                 <p class="text-red-400">{{ passwordErrorMassage }}</p>
-            </div>
-            <button type="submit" 
-            @click="register"
-            class="text-xl w-3/5 bg-green-800 text-white py-2 rounded">ユーザーの登録</button>
-        </form>
+              </div>
+              <button
+                type="submit"
+                @click="register"
+                class="text-xl w-3/5 bg-green-800 text-white py-2 rounded"
+              >
+                ユーザーの登録
+              </button>
+            </form>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -72,11 +70,11 @@ export default {
     methods: {
         register() {
             if(!this.emailRegexp.test(this.email)) {
-                this.emailErrorMassage = 
+                this.emailErrorMassage =
                 "このメールアドレスは無効です。正しく入力してください。"
             }
             if (!this.passwordRegexp.test(this.password)) {
-                this.passwordErrorMassage = 
+                this.passwordErrorMassage =
                 "このパスワードは無効です。半角英数字を含んで8〜20文字の範囲で入力してください。"
             }
             if(this.email === "") {
@@ -116,6 +114,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

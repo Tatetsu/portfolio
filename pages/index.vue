@@ -1,43 +1,5 @@
 <template>
   <div>
-    <div class="swiper">
-      <swiper :options="swiperOption">
-        <swiper-slide v-for="item in 3" :key="item">
-          <div class="card w-72 mx-1">
-            <div class="thumbnail">
-              <img src="~assets/img/AdobeStock_141454513.jpeg" alt="" />
-              <!-- おそらくここにMicroCMSから取得する画像を入れる -->
-            </div>
-            <div class="card_txt bg-white py-5">
-              <h2 class="card_title text-center pt-3">
-                ブログのタイトルを入れます
-                <!-- おそらくここにMicroCMSから取得するタイトルを入れる -->
-              </h2>
-              <div class="genre mt-16">
-                <ul class="flex ml-5">
-                  <li class="mx-3">
-                    <button class="rounded-md">
-                      <router-link to="">ジャンル</router-link>
-                      <!-- ここにはジャンルを取得したコードが入る -->
-                    </button>
-                  </li>
-                  <li class="mx-3">
-                    <button class="rounded-md">
-                      <router-link to="">ジャンル2</router-link>
-                      <!-- ここにはジャンルを取得したコードが入る -->
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <p>swiper{{ item }}</p>
-        </swiper-slide>
-      </swiper>
-      <!-- <div slot="pagination" class="swiper-pagination"></div>
-      <div slot="button-prev" class="swiper-button-next"></div> -->
-    </div>
-
     <div class="new flex py-5">
       <div class="card w-72 mx-1">
         <div class="thumbnail">

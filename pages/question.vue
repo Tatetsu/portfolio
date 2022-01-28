@@ -327,25 +327,25 @@
     </div>
 
     <div class="switching_btn flex flex-col justify-center">
-      <div class="question_next test-center my-8" v-if="questionNumber <= 6">
+      <div class="question_next flex test-center my-8" v-if="questionNumber <= 6">
         <button
-          class="btn text-xl bg-white rounded-full p-3 w-3/4"
+          class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4"
           @click="next"
         >
           次へ
         </button>
       </div>
-      <div class="question_next test-center my-8" v-if="questionNumber >= 2">
+      <div class="question_prev flex test-center my-8" v-if="questionNumber >= 2">
         <button
-          class="btn text-xl bg-white rounded-full p-3 w-3/4"
+          class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4"
           @click="back"
         >
           前へ
         </button>
       </div>
     </div>
-    <div class="submit" v-if="questionNumber === 7">
-      <button type="submit" class="btn text-xl bg-white rounded-full p-3 w-3/4">
+    <div class="submit flex" v-if="questionNumber === 7">
+      <button type="submit" class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4">
         入力を完了する
       </button>
     </div>
@@ -384,8 +384,5 @@ export default {
 </script>
 
 <style scoped>
-.btn_click_color {
-  background-color: chartreuse;
-  color: #fff;
-}
+
 </style>
