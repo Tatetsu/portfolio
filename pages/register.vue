@@ -42,6 +42,13 @@
               >
                 ユーザーの登録
               </button>
+              <button
+                type="submit"
+                @click="googleLogin"
+                class="text-xl w-3/5 bg-green-800 text-white py-2 my-2 rounded"
+              >
+                Googleで登録
+              </button>
             </form>
           </div>
         </div>
@@ -68,6 +75,21 @@ export default {
         }
     },
     methods: {
+        // ここはのーどさんに確認
+            googleLogin() {
+            this.$auth
+            .signInWithPopup(new this.$firebase.auth.GoogleAuthProvider())
+            .then(() => {
+                alert("登録に成功しました")
+                this.$store.dispatch("checkLogin")
+                this.$router.push("/mypage")
+            })
+            .cath((error) => {
+                console.log(error)
+                alert("アラートが発生いたしました。間違いなどがないか確認をしサイド実施をお願いいたします")
+            })
+        },
+        
         register() {
             if(!this.emailRegexp.test(this.email)) {
                 this.emailErrorMassage =
@@ -106,7 +128,7 @@ export default {
                 }
             })
         },
-        isInput() {
+                isInput() {
             this.emailErrorMassage = ""
             this.passwordErrorMassage = ""
         }

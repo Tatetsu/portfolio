@@ -357,41 +357,9 @@ export default {
   // },
   layout: "default",
   data() {
-    return {
-      swiperOption: {
-        speed: 1000, //スライドの切り替わりスピード
-        spaceBetween: 30, //各スライドの余白
-        centeredSlides: true, //スライダーを真ん中に
-        loop: true, //無限ループ
-        autoplay: {
-          //スライドの自動切り替え
-          delay: 5000, //スライドの自動切り替えの秒数
-          disableOnInteraction: false, //何らかのアクション後の自動切り替えを再開
-        },
-      },
-
-      pagination: {
-        //ページネーション設定
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        //ナビゲーション設定
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      breakpoints: {
-          1200: {
-            slidesPerView: 3
-          },
-          600: {
-            slidesPerView: 1.2,
-            spaceBetween: 0
-          }
-        }
-    };
-  },
-};
+    return {}
+  }
+}
 </script>
 
 <style scoped>
