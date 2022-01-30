@@ -5,6 +5,20 @@
         <div class="w-2/5 border bg-white">
           <div class="my-12 text-center">
             <h2 class="text-4xl font-bold">ユーザー登録画面</h2>
+                <div class="google-login my-5 flex justify-center">
+                <button
+                    type="submit"
+                    @click="googleLogin"
+                    class="text-sm w-3/5 text-gray-300 py-2 border rounded flex justify-center items-center"
+                >
+                    <img
+                    src="https://madeby.google.com/static/images/google_g_logo.svg"
+                    class="button-logo-img mr-4"
+                    style="height: 24px"
+                    />
+                    Googleでログインする
+                </button>
+                </div>
             <p class="my-4">
               <span class="font-semibold">メールアドレス</span>と
               <span class="font-semibold">パスワード</span>を入力してください。
@@ -42,13 +56,6 @@
               >
                 ユーザーの登録
               </button>
-              <button
-                type="submit"
-                @click="googleLogin"
-                class="text-xl w-3/5 bg-green-800 text-white py-2 my-2 rounded"
-              >
-                Googleで登録
-              </button>
             </form>
           </div>
         </div>
@@ -75,7 +82,6 @@ export default {
     };
   },
   methods: {
-    // ここはのーどさんに確認
     googleLogin() {
       const provider = new this.$firebase.auth.GoogleAuthProvider();
       this.$auth

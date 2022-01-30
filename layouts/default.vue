@@ -13,8 +13,11 @@
 </template>
 
 <script>
+export default {
+  name: "default"
+}
 </script>
-<style>
+<style scoped>
 #body {
   display: flex;
 }

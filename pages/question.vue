@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="question">
+    <div id="question" class="relative">
       <div v-if="questionNumber === 1" class="text-center font-bold pt-16">
         <div class="question_number">
           <p class="underline leading-loose text-3xl">01</p>
@@ -335,12 +335,12 @@
           次へ
         </button>
       </div>
-      <div class="question_prev flex test-center my-8" v-if="questionNumber >= 2">
+      <div class="question_prev absolute top-0 left-70 test-center my-8" v-if="questionNumber >= 2">
         <button
-          class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4"
+          class="btn text-md p-3"
           @click="back"
         >
-          前へ
+          ←前へ
         </button>
       </div>
     </div>
