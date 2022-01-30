@@ -81,17 +81,19 @@ export default {
       if (this.emailErrorMassage !== "" || this.passwordErrorMassage !== "") {
         return;
       }
-      this.$auth
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then((user) => {
-          alert("ログインに成功しました");
-          this.$store.dispatch("checkLogin");
-          this.$router.push("/mypage");
-        })
-        .catch((error) => {
-          console.log({ error });
-          alert("メールアドレスもしくはパスワードが違う可能性があります");
-        });
+      else{
+        this.$auth
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then((user) => {
+            alert("ログインに成功しました");
+            this.$store.dispatch("checkLogin");
+            this.$router.push("/mypage");
+          })
+          .catch((error) => {
+            console.log({ error });
+            alert("メールアドレスもしくはパスワードが違う可能性があります");
+          });
+      }
     },
     isInput() {
       this.emailErrorMassage = ""
