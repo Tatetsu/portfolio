@@ -10,6 +10,7 @@
 
 <script>
     export default {
+  layout: "sp",
         methods: {
             signOut() {
                 this.$auth

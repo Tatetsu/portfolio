@@ -335,7 +335,7 @@
           次へ
         </button>
       </div>
-      <div class="question_prev absolute top-0 left-70 test-center my-8" v-if="questionNumber >= 2">
+      <div class="question_prev absolute top-10 left-10 test-center my-8" v-if="questionNumber >= 2">
         <button
           class="btn text-md p-3"
           @click="back"

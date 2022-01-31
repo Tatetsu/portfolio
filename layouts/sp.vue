@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="body">
-      <QuestionHeader />
+      <SpHeader />
       <div id="main">
       <nuxt />
       </div>
@@ -14,13 +14,24 @@
 
 <script>
 export default {
-  name: "question"
+  name: "sp"
 }
 </script>
 
 <style scoped>
+@media screen and (min-width: 768px) {
+#body {
+  display: flex;
+}
 #main {
     background-color: #F2F6F7;
-    height: 80vh;
+    flex: 1;
+    height: 100vh;
+}
+}
+@media screen and (max-width: 767px) {
+#main {
+    height: 100vh;
+}
 }
 </style>

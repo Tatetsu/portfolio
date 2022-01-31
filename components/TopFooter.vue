@@ -2,7 +2,7 @@
   <section>
     <footer class="py-5">
       <div class="footer_sns flex justify-center">
-        <a class="" href="#">
+        <a target="_blank" class="" href="https://twitter.com/M_Taka1108">
           <button class="btn rounded-full bg-white w-40">Twitter</button>
         </a>
       </div>
