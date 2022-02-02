@@ -13,8 +13,8 @@ export const getters = {
 }
 
 export const actions = {
-    checkLogin({ commit }) {
-        this.$auth.onAuthStateChanged(function(user) {
+    async checkLogin({ commit }) {
+        await this.$auth.onAuthStateChanged(function(user) {
             if (user) {
                 commit("getData", { uid: user.uid, email: user.email })
                 commit("switchLogin")

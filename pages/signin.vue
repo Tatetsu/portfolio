@@ -5,6 +5,19 @@
         <div class="w-2/5 border bg-white">
           <div class="my-12 text-center">
             <h2 class="text-4xl font-bold">ログイン画面</h2>
+
+            <div class="google-login my-5 flex justify-center">
+              <button
+                type="submit"
+                @click="googleLogin"
+                class="text-sm w-3/5 text-gray-300 py-2 border rounded flex justify-center items-center"
+              >
+              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="button-logo-img mr-4" style="height: 24px;">
+                Googleでログインする
+              </button>
+            </div>
+
+            <hr class="my-4" />
             <p class="my-4">
               <span class="font-semibold">メールアドレス</span>と
               <span class="font-semibold">パスワード</span>を入力してください。
@@ -71,6 +84,23 @@ export default {
     };
   },
   methods: {
+    googleLogin() {
+      const provider = new this.$firebase.auth.GoogleAuthProvider();
+      this.$auth
+        .signInWithPopup(provider)
+        .then(() => {
+          alert("ログインに成功しました");
+          this.$store.dispatch("checkLogin");
+          this.$router.push("/mypage");
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(
+            "エラーが発生いたしました。間違い等がないか確認をし再度実施をお願いします"
+          );
+        });
+    },
+
     login() {
       if (this.email === "") {
         this.emailErrorMassage = "メールアドレスを入力してください";
@@ -80,23 +110,24 @@ export default {
       }
       if (this.emailErrorMassage !== "" || this.passwordErrorMassage !== "") {
         return;
+      } else {
+        this.$auth
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then((user) => {
+            alert("ログインに成功しました");
+            this.$store.dispatch("checkLogin");
+            this.$router.push("/mypage");
+          })
+          .catch((error) => {
+            console.log({ error });
+            alert("メールアドレスもしくはパスワードが違う可能性があります");
+          });
       }
-      this.$auth
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then((user) => {
-          alert("ログインに成功しました");
-          this.$store.dispatch("checkLogin");
-          this.$router.push("/mypage");
-        })
-        .catch((error) => {
-          console.log({ error });
-          alert("メールアドレスもしくはパスワードが違う可能性があります");
-        });
     },
     isInput() {
-      this.emailErrorMassage = ""
-      this.passwordErrorMassage = ""
-    }
+      this.emailErrorMassage = "";
+      this.passwordErrorMassage = "";
+    },
   },
 };
 </script>

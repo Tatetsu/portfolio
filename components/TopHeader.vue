@@ -37,7 +37,7 @@ ul li {
 aside {
     padding-left: 1rem;
     min-width: 250px;
-        position: sticky;
+    position: sticky;
     top: 20px;
 }
 .login {

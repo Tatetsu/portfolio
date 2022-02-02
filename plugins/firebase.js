@@ -12,19 +12,21 @@ const config = {
     measurementId: process.env.MEASUREMENT_ID
 }
 
-    firebase.initializeApp(config)
-// if (!firebase.apps.length) {
-//     firebase.initializeApp(config)
-// }
-// export default firebase
+firebase.initializeApp(config)
 
 const auth = firebase.auth()
 
 export default function (context, inject) {
     inject('auth', auth)
+    inject('firebase', firebase)
+    inject('authState', () => {
+        return new Promise((resolve) => {
+            firebase.auth().onAuthStateChanged((user) => {
+                resolve(user || null)
+            })
+        })
+    })
 }
-console.log('auth', auth)
-
 
 
 

@@ -407,7 +407,6 @@ export default {
 /* カレンダーのCSS */
 .content {
   margin: 2em auto;
-  width: 900px;
 }
 .button-area {
   margin: 0.5em 0;
@@ -430,7 +429,7 @@ export default {
 }
 .calendar-daily {
   flex: 1;
-  min-height: 125px;
+  min-height: 70px;
   border-right: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
   margin-right: -1px;
