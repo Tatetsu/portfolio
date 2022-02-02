@@ -65,6 +65,7 @@
         h-full
         transition-all
         duration-300
+        px-20
         md:static
       "
     >
