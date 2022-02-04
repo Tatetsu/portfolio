@@ -1,24 +1,5 @@
 export default async function ({ store, route, redirect, app }) {
 
-    const userLogin = store.state.user.login
-    console.log(userLogin);
-
-    if (userLogin) {
-        if(route.name === "checkLogin") {
-            return redirect("/mypage")
-        }
-    }else {
-        if (route.name === "checkLogin" || 
-        route.name === "motion" || 
-        route.name === "mypage" || 
-        route.name === "playlist" || 
-        route.name === "program" || 
-        route.name === "record" || 
-        route.name === "search") {
-        return redirect("/signin")
-        }
-    }
-
     const user = await app.$authState()
     //authStateでplugins/firebase.jsファイルの処理へ非同期処理実行
     //処理が返されたら以下の処理が実行
@@ -39,4 +20,25 @@ export default async function ({ store, route, redirect, app }) {
         //storeからログイン情報を消す
         store.commit("deleteLogin")
     }
+    
+    const userLogin = store.state.user.login
+    console.log(userLogin);
+
+    if (userLogin) {
+        if(route.name === "signin") {
+            return redirect("/mypage")
+        }
+    }else {
+        if ( 
+        route.name === "motion" || 
+        route.name === "mypage" || 
+        route.name === "playlist" || 
+        route.name === "program" || 
+        route.name === "record" || 
+        route.name === "search") {
+        return redirect("/signin")
+        }
+    }
+
+    
 }
