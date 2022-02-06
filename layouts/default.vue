@@ -14,15 +14,23 @@
 
 <script>
 export default {
-  name: "default"
 }
 </script>
+
 <style scoped>
+#main {
+    background-color: #F2F6F7;
+    padding: 2%;
+}
+@media screen and (min-width: 768px) {
 #body {
   display: flex;
 }
 #main {
-    background-color: #F2F6F7;
     flex: 1;
+}
+}
+@media screen and (max-width: 767px) {
+
 }
 </style>

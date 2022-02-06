@@ -106,7 +106,7 @@
         </button>
       </div>
       <div
-        class="question_prev absolute top-10 left-10 test-center my-8"
+        class="question_prev absolute top-0 left-10 test-center my-8"
         v-if="questionNumber >= 2"
       >
         <button class="btn text-md p-3" @click="back">←前へ</button>
@@ -170,7 +170,6 @@ export default {
         {
           numbers: "05",
           questionText: "登録するニックネームを入力ください",
-          answers: ["自宅", "ジム", "公園"],
         },
       ],
       selects: [],
