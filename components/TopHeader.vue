@@ -47,83 +47,55 @@
             <li>
               <router-link
                 to="/"
-                class="block mt-6 px-4 py-2 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
+                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
                 >ホーム</router-link
               >
             </li>
             <li>
               <router-link
                 to="/"
-                class="block mt-6 px-4 py-2 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ホーム</router-link
+                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
+                >プログラム一覧</router-link
               >
             </li>
             <li>
               <router-link
                 to="/"
-                class="block mt-6 px-4 py-2 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ホーム</router-link
+                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
+                >検索</router-link
               >
             </li>
             <li>
               <router-link
                 to="/"
-                class="block mt-6 px-4 py-2 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ホーム</router-link
+                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
+                >マイアカウント</router-link
               >
             </li>
             <li>
               <router-link
                 to="/"
-                class="block mt-6 px-4 py-2 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ホーム</router-link
+                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
+                >プレイリスト</router-link
               >
             </li>
             <li>
               <router-link
                 to="/"
-                class="block mt-6 px-4 py-2 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ホーム</router-link
+                class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
+                >ログイン</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                to="/"
+                class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
+                >新規登録</router-link
               >
             </li>
           </ul>
         </div>
       </div>
-
-      <ul
-        class="hidden md:flex justify-between items-center opacity-1000 lg:text-xl"
-      >
-        <li>
-          <router-link to="/" class="pr-4 hover:opacity-50 duration-1000">
-            ホーム
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" class="pr-4 hover:opacity-50 duration-1000">
-            ホーム
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" class="pr-4 hover:opacity-50 duration-1000">
-            ホーム
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" class="pr-4 hover:opacity-50 duration-1000">
-            ホーム
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" class="pr-4 hover:opacity-50 duration-1000">
-            ホーム
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" class="pr-4 hover:opacity-50 duration-1000">
-            ホーム
-          </router-link>
-        </li>
-      </ul>
     </div>
     <aside class="pc_header hidden md:block flex flex-col">
         <h1 class="w-36 pt-4">
@@ -138,14 +110,10 @@
             <li><router-link to="/search">検索</router-link></li>
             <li><router-link to="/mypage">マイアカウント</router-link></li>
             <li><router-link to="/playlist">プレイリスト</router-link></li>
-          </ul>
-        </nav>
-        <div class="login">
-          <ul>
             <li><router-link to="/signin">ログイン</router-link></li>
             <li><router-link to="/register">新規登録</router-link></li>
           </ul>
-        </div>
+        </nav>
     </aside>
   </header>
 </template>
@@ -179,20 +147,18 @@ export default {
 ul {
   list-style: none;
 }
-ul li {
-  margin-top: 2rem;
-}
-
-.login {
-  margin-top: auto;
-  height: 300px;
-}
 
 aside {
     padding-left: 1rem;
     min-width: 250px;
     position: sticky;
     top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+ul li {
+  margin-top: 2rem;
+}
 }
 
 </style>

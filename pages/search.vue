@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5">
+  <div>
     <div id="search">
       <div class="search_box">
         <h2 class="font-bold text-2xl my-5">気になるワードで検索</h2>
@@ -8,169 +8,173 @@
           検索
         </button>
       </div>
-      <div class="search_genre my-5 flex flex-wrap justify-between w-3/4">
-        <div class="search_genre_get w-1/3 p-1">
+
+      <div
+        class="search_genre my-5 flex flex-wrap items-center sm:flex-row flex-col lg:w-3/4"
+      >
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
-        <div class="search_genre_get w-1/3 p-1">
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
-        <div class="search_genre_get w-1/3 p-1">
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
-        <div class="search_genre_get w-1/3 p-1">
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
-        <div class="search_genre_get w-1/3 p-1">
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
-        <div class="search_genre_get w-1/3 p-1">
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
-        <div class="search_genre_get w-1/3 p-1">
+        <div class="search_genre_get p-1">
           <router-link to="/">
             <img
-              class="w-80 h-28 rounded-md"
+              class="rounded-md"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
           </router-link>
         </div>
       </div>
-    </div>
-    <div class="search_genre my-5">
-      <div class="search_genre_text flex justify-between">
-        <div class="search_genre_title">
-          <h2 class="font-bold text-xl">人気のジャンル</h2>
+
+      <div class="search_popular my-5">
+        <div class="search_popular_text flex justify-between">
+          <div class="search_popular_title">
+            <h2 class="font-bold text-xl">人気のジャンル</h2>
+          </div>
+          <div class="search_popular_list">
+            <p class="font-bold text-xl">
+              <router-link to="/">一覧で見る</router-link>
+            </p>
+          </div>
         </div>
-        <div class="search_genre_list">
-          <p class="font-bold text-xl">
-            <router-link to="/">一覧で見る</router-link>
-          </p>
-        </div>
-      </div>
-      <div class="search_genre_inner py-5 flex">
-        <div class="search_genre_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-64 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-64 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-64 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-64 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <div class="search_new my-5">
-      <div class="search_new_text flex justify-between">
-        <div class="search_new_title">
-          <h2 class="font-bold text-xl">人気のジャンル</h2>
-        </div>
-        <div class="search_new_list">
-          <p class="font-bold text-xl">
-            <router-link to="/">一覧で見る</router-link>
-          </p>
+        <div class="search_popular_inner py-5 flex flex-wrap items-center sm:flex-row flex-col">
+          <div class="search_popular_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
+          <div class="search_popular_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
+          <div class="search_popular_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
+          <div class="search_popular_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
         </div>
       </div>
-      <div class="search_new_inner py-5 flex">
-        <div class="search_new_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-32 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
+      <div class="search_new my-5">
+        <div class="search_new_text flex justify-between">
+          <div class="search_new_title">
+            <h2 class="font-bold text-xl">人気のジャンル</h2>
+          </div>
+          <div class="search_new_list">
+            <p class="font-bold text-xl">
+              <router-link to="/">一覧で見る</router-link>
+            </p>
+          </div>
         </div>
-        <div class="search_new_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-32 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_new_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-32 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_new_inner_get p-1">
-          <router-link to="/">
-            <img
-              class="w-72 h-32 rounded-md"
-              src="../assets/img/AdobeStock_319973032.jpeg"
-              alt=""
-            />
-          </router-link>
+        <div class="search_new_inner py-5 flex flex-wrap items-center sm:flex-row flex-col">
+          <div class="search_new_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
+          <div class="search_new_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
+          <div class="search_new_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
+          <div class="search_new_inner_get p-1">
+            <router-link to="/">
+              <img
+                class="rounded-md"
+                src="../assets/img/AdobeStock_319973032.jpeg"
+                alt=""
+              />
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -179,4 +183,35 @@
 
 <script></script>
 
-<style scoped></style>
+<style scoped>
+.search_genre_get,
+.search_popular_inner_get {
+  width: calc(100% / 1);
+}
+.search_new_inner_get{
+  width: calc(100% / 2);
+}
+
+@media (max-width: 640px) {
+}
+@media (min-width: 640px) {
+  .search_genre_get,
+  .search_popular_inner_get {
+    width: calc(100% / 2);
+  }
+  .search_new_inner_get {
+    width: calc(100% / 3);
+  }
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
+  .search_genre_get,
+  .search_popular_inner_get {
+    width: calc(100% / 3);
+  }
+  .search_new_inner_get {
+    width: calc(100% / 4);
+  }
+}
+</style>

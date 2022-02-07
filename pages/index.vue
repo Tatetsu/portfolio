@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="new flex items-center sm:flex-row flex-col p-5">
-      <div class="card bg-white px-1">
+      <div class="card bg-white m-1">
         <div class="thumbnail">
           <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
         </div>
@@ -12,20 +12,20 @@
           <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <router-rink to="#" class="rounded-md bg-gray-100"
-                  >ジャンル</router-rink
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル</router-link
                 >
               </li>
               <li class="mx-3">
-                <router-rink to="#" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-rink
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル2</router-link
                 >
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="card bg-white px-1">
+      <div class="card bg-white m-1">
         <div class="thumbnail">
           <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
         </div>
@@ -36,20 +36,20 @@
           <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <router-rink to="#" class="rounded-md bg-gray-100"
-                  >ジャンル</router-rink
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル</router-link
                 >
               </li>
               <li class="mx-3">
-                <router-rink to="#" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-rink
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル2</router-link
                 >
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="card bg-white px-1">
+      <div class="card bg-white m-1">
         <div class="thumbnail">
           <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
         </div>
@@ -60,13 +60,13 @@
           <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <router-rink to="#" class="rounded-md bg-gray-100"
-                  >ジャンル</router-rink
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル</router-link
                 >
               </li>
               <li class="mx-3">
-                <router-rink to="#" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-rink
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル2</router-link
                 >
               </li>
             </ul>

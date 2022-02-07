@@ -15,9 +15,13 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 footer {
   background-color: #333333;
   color: #858e98;
+}
+.footer_sns button:hover {
+  background-color: #1A92E2;
+  color: #fff;
 }
 </style>

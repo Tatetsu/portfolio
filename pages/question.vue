@@ -1,6 +1,6 @@
 <template>
   <div id="question" class="relative">
-    <div id="question" class="relative">
+    <div>
       <QuestionBox
         :numbers="questionBox[0].numbers"
         :questionText="questionBox[0].questionText"
@@ -31,62 +31,66 @@
       />
       <div v-if="questionNumber === 5" class="text-center font-bold pt-16">
         <div class="question_number">
-          <p class="underline leading-loose text-3xl">05</p>
+          <p class="underline leading-loose text-xl md:text-3xl">05</p>
         </div>
-        <h2 class="question_title text-3xl">
+        <h2 class="question_title text-xl md:text-3xl">
           登録するニックネームを入力ください
         </h2>
         <div class="question_list flex flex-wrap justify-around my-8">
-          <div class="mb-2 w-1/3">
+          <div class="mb-2">
             <input
               type="text"
               name="name"
               id="name"
               placeholder="ニックネームを入力ください"
-              class="text-xl w-full p-3 border rounded"
+              class="text-md md:text-xl w-full p-3 border rounded"
             />
           </div>
         </div>
       </div>
       <div v-if="questionNumber === 6" class="text-center font-bold pt-16">
         <div class="question_number">
-          <p class="underline leading-loose text-3xl">06</p>
+          <p class="underline leading-loose text-xl md:text-3xl">06</p>
         </div>
-        <h2 class="question_title text-3xl">現在の身長と体重を入力ください</h2>
+        <h2 class="question_title text-xl md:text-3xl">
+          現在の身長と体重を入力ください
+        </h2>
         <div class="question_list flex flex-col items-center my-8">
-          <div class="mb-2 w-1/4 flex items-end">
+          <div class="mb-2 flex items-end">
             <input
               type="text"
               name="composition"
               id="composition"
               placeholder="身長を入力ください"
-              class="text-xl w-full p-3 border rounded"
+              class="text-md md:text-xl w-full p-3 border rounded"
             /><span>cm</span>
           </div>
-          <div class="mb-2 w-1/4 flex items-end">
+          <div class="mb-2 flex items-end">
             <input
               type="text"
               name="name"
               id="name"
               placeholder="体重を入力ください"
-              class="text-xl w-full p-3 border rounded"
+              class="text-md md:text-xl w-full p-3 border rounded"
             /><span>kg</span>
           </div>
         </div>
       </div>
       <div v-if="questionNumber === 7" class="text-center font-bold pt-16">
         <div class="question_number">
-          <p class="underline leading-loose text-3xl">07</p>
+          <p class="underline leading-loose text-xl md:text-3xl">07</p>
         </div>
-        <h2 class="question_title text-3xl">目標の体重を入力ください</h2>
+        <h2 class="question_title text-xl md:text-3xl">
+          目標の体重を入力ください
+        </h2>
         <div class="question_list flex flex-col items-center my-8">
-          <div class="mb-2 w-1/4 flex items-end">
+          <div class="mb-2 flex items-end">
             <input
               type="text"
               name="weight"
               id="weight"
               placeholder="目標の体重を入力ください"
-              class="text-xl w-full p-3 border rounded"
+              class="text-md md:text-xl w-full p-3 border rounded"
             /><span>kg</span>
           </div>
         </div>
@@ -99,7 +103,7 @@
         v-if="questionNumber <= 6"
       >
         <button
-          class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4"
+          class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
           @click="next"
         >
           次へ
@@ -109,13 +113,13 @@
         class="question_prev absolute top-0 left-10 test-center my-8"
         v-if="questionNumber >= 2"
       >
-        <button class="btn text-md p-3" @click="back">←前へ</button>
+        <button class="btn text-md p-3" @click="back"><span class="hover:text-red-600">←前へ</span></button>
       </div>
     </div>
     <div class="submit flex" v-if="questionNumber === 7">
       <button
         type="submit"
-        class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4"
+        class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
       >
         入力を完了する
       </button>

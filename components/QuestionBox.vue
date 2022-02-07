@@ -1,16 +1,16 @@
 <template>
   <div class="text-center font-bold pt-16">
     <div class="question_number">
-      <p class="underline leading-loose text-3xl">{{ numbers }}</p>
+      <p class="underline leading-loose text-xl md:text-3xl">{{ numbers }}</p>
     </div>
-    <h2 class="question_title text-3xl">{{ questionText }}</h2>
+    <h2 class="question_title text-xl md:text-3xl">{{ questionText }}</h2>
     <div class="question_list my-8">
       <ul
         class="question flex flex-wrap justify-around justify-center mt-8 items-end"
         alt=""
       >
         <li v-for="answer in answers" :key="answer" class="flex justify-center w-1/2 my-6">
-          <label class="text-2xl">
+          <label class="text-md md:text-2xl">
             <input
               class="mr-4"
               type="radio"
