@@ -70,6 +70,7 @@
 
 <script>
 export default {
+  layout: "login",
   computed: {
     user() {
       return this.$store.getters["user"];

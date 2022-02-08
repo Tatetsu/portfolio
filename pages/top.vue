@@ -143,7 +143,7 @@
 
 <script>
 export default {
-  layout: "",
+  layout: "login",
 };
 </script>
 

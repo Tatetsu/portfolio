@@ -96,6 +96,14 @@
 </template>
 
 <script>
+export default {
+    layout: "login",
+    data() {
+        return{
+            
+        }
+    }
+}
 
 </script>
 

@@ -8,6 +8,7 @@
     <h2 class="question_title text-3xl">
       あなたにカスタマイズされた<br />おすすめのトレーニングメニュー
     </h2>
+    <!-- <p>{{ content.title }}</p> -->
       </div>
     <div class="result border-2 bg-white py-5 px-10 flex" v-for="index in 6" :key="index">
         <div class="result_left w-1/3 p-3 relative">
@@ -33,6 +34,37 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+async asyncData({ query, $microcms }) {
+    const id = query.id;
+    // 動画リストのIDを取得する
+    console.log(id);
+    const content = await $microcms.get({
+      endpoint: "motion",
+      contentId: id,
+    });
+    // console.log("content", content);
+    return {
+      content,
+    };
+  },
+
+  data() {
+    return {
+
+    };
+  },
+
+  methods: {
+    
+  },
+  computed: {
+
+  },
+
+  mounted: function () {},
+}
+</script>
 
 <style scoped></style>

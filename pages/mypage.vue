@@ -1,10 +1,10 @@
 <template>
   <div id="my-page">
-    <div class="my-data mt-36">
+    <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
-        <div class="my-data_img h-40 relative">
+        <div class="my-data_img h-40">
           <img
-            class="rounded-full relative absolute left-1/2 -top-1/2 w-32 h-32"
+            class="rounded-full absolute w-32 h-32"
             src="../assets/img/AdobeStock_334827822.jpeg"
             alt=""
           />
@@ -84,6 +84,7 @@
 <script>
 import moment from "moment";
 export default {
+  layout: "login",
   data() {
     return {
       currentDate: moment(),
@@ -462,6 +463,11 @@ export default {
   width: 80%;
   max-width: 900px;
   margin: 10rem auto;
+}
+
+.my-data_img img {
+    top: calc(0% - calc(50% - 4rem) );
+    left: calc(0% + calc(50% - 4rem) );
 }
 
 </style>
