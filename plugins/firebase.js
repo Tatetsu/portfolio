@@ -1,5 +1,7 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
+import 'firebase/compat/functions'//お問合せフォーム
 
 const config = {
     projectId: process.env.FIREBASE_PROJECT_ID,
