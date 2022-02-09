@@ -1,113 +1,73 @@
 <template>
   <div>
-    <div class="new flex py-5">
-      <div class="card w-72 mx-1">
+    <div class="new flex items-center sm:flex-row flex-col p-5">
+      <div class="card bg-white m-1">
         <div class="thumbnail">
-          <img src="~assets/img/AdobeStock_141454513.jpeg" alt="" />
-          <!-- おそらくここにMicroCMSから取得する画像を入れる -->
+          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
         </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_title text-center pt-3">
+        <div class="card_txt py-5">
+          <h2 class="card_tittle text-center pt-3">
             ブログのタイトルを入れます
-            <!-- おそらくここにMicroCMSから取得するタイトルを入れる -->
           </h2>
-          <div class="genre mt-16">
+          <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル</router-link
+                >
               </li>
               <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル2</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル2</router-link
+                >
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="card w-72 mx-1">
+      <div class="card bg-white m-1">
         <div class="thumbnail">
-          <img src="~assets/img/AdobeStock_141454513.jpeg" alt="" />
-          <!-- おそらくここにMicroCMSから取得する画像を入れる -->
+          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
         </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_title text-center pt-3">
+        <div class="card_txt py-5">
+          <h2 class="card_tittle text-center pt-3">
             ブログのタイトルを入れます
-            <!-- おそらくここにMicroCMSから取得するタイトルを入れる -->
           </h2>
-          <div class="genre mt-16">
+          <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル</router-link
+                >
               </li>
               <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル2</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル2</router-link
+                >
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="card w-72 mx-1">
+      <div class="card bg-white m-1">
         <div class="thumbnail">
-          <img src="~assets/img/AdobeStock_141454513.jpeg" alt="" />
-          <!-- おそらくここにMicroCMSから取得する画像を入れる -->
+          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
         </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_title text-center pt-3">
+        <div class="card_txt py-5">
+          <h2 class="card_tittle text-center pt-3">
             ブログのタイトルを入れます
-            <!-- おそらくここにMicroCMSから取得するタイトルを入れる -->
           </h2>
-          <div class="genre mt-16">
+          <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル</router-link
+                >
               </li>
               <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル2</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="card w-72 mx-1">
-        <div class="thumbnail">
-          <img src="~assets/img/AdobeStock_141454513.jpeg" alt="" />
-          <!-- おそらくここにMicroCMSから取得する画像を入れる -->
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_title text-center pt-3">
-            ブログのタイトルを入れます
-            <!-- おそらくここにMicroCMSから取得するタイトルを入れる -->
-          </h2>
-          <div class="genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
-              </li>
-              <li class="mx-3">
-                <button class="rounded-md">
-                  <router-link to="">ジャンル2</router-link>
-                  <!-- ここにはジャンルを取得したコードが入る -->
-                </button>
+                <router-link to="/" class="rounded-md bg-gray-100"
+                  >ジャンル2</router-link
+                >
               </li>
             </ul>
           </div>
@@ -115,222 +75,64 @@
       </div>
     </div>
     <div class="playlist py-5">
-      <h2 class="pt-3">おすすめプレイリスト</h2>
-      <div class="list flex pt-3">
-        <div class="list_get w-56 h-56 mx-4">
+      <h2 class="pt-3">おすすめのプレイリスト</h2>
+      <div class="playlist_inner flex items-center sm:flex-row flex-col pt-3">
+        <div class="playlist_inner_get mx-4 my-5">
           <router-link to="/">
             <img
+              src="../assets/img/AdobeStock_153482564.jpeg"
+              alt=""
               class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
             />
           </router-link>
         </div>
-        <div class="list_get w-56 h-56 mx-4">
+        <div class="playlist_inner_get mx-4 my-5">
           <router-link to="/">
             <img
+              src="../assets/img/AdobeStock_153482564.jpeg"
+              alt=""
               class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
             />
           </router-link>
         </div>
-        <div class="list_get w-56 h-56 mx-4">
+        <div class="playlist_inner_get mx-4 my-5">
           <router-link to="/">
             <img
+              src="../assets/img/AdobeStock_153482564.jpeg"
+              alt=""
               class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="list_get w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
             />
           </router-link>
         </div>
       </div>
     </div>
     <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Quite）で書きます</h2>
-      <div class="blog-article flex pt-3">
-        <div class="article_list w-56 h-56 mx-4">
+      <h2 class="pt-3">搭載した機能をブログブログ（Qiita）で書きます</h2>
+      <div class="blog_article flex items-center sm:flex-row flex-col p-5">
+        <div class="article_list mx-4 py-5">
           <router-link to="/">
             <img
+              src="../assets/img/AdobeStock_153482564.jpeg"
+              alt=""
               class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
             />
           </router-link>
         </div>
-        <div class="article_list w-56 h-56 mx-4">
+        <div class="article_list mx-4 py-5">
           <router-link to="/">
             <img
+              src="../assets/img/AdobeStock_153482564.jpeg"
+              alt=""
               class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
             />
           </router-link>
         </div>
-        <div class="article_list w-56 h-56 mx-4">
+        <div class="article_list mx-4 py-5">
           <router-link to="/">
             <img
+              src="../assets/img/AdobeStock_153482564.jpeg"
+              alt=""
               class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Quite）で書きます</h2>
-      <div class="blog-article flex pt-3">
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Quite）で書きます</h2>
-      <div class="blog-article flex pt-3">
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Quite）で書きます</h2>
-      <div class="blog-article flex pt-3">
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Quite）で書きます</h2>
-      <div class="blog-article flex pt-3">
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list w-56 h-56 mx-4">
-          <router-link to="/">
-            <img
-              class="rounded-lg"
-              src="~assets/img/AdobeStock_153482564.jpeg"
             />
           </router-link>
         </div>
@@ -340,32 +142,32 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
-  // async asyncData({ $microcms }) {
-  //   const data = await $microcms.get({
-  //     endpoint: "news",
-  //   });
-  //   console.log(data);
-  //   const contents = data.contents;
-  //   return {
-  //     contents,
-  //   };
-  // },
-  layout: "default",
-  data() {
-    return {}
-  }
-}
+  layout: "",
+};
 </script>
 
 <style scoped>
 img {
   width: 100%;
-  height: 100%;
 }
-.genre button {
-  background-color: #ccc;
+.card {
+  width: calc(100% / 1);
+}
+
+@media (max-width: 640px) {
+}
+@media (min-width: 640px) {
+  .card {
+    width: calc(100% / 2);
+  }
+}
+@media (min-width: 768px) {
+
+}
+  @media (min-width: 1024px) {
+  .card {
+    width: calc(100% / 3);
+  }
 }
 </style>
