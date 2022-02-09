@@ -228,6 +228,8 @@ export default {
         },
       });
       console.log(res);
+
+      // this.$router.push("/result?id=" + "xxxxx");
     },
   },
   computed: {},
