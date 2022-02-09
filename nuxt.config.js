@@ -44,7 +44,7 @@ export default {
   ],
   microcms: {
     options: {
-      serviceDomain: "portfolio-masa",
+      serviceDomain: process.env.M_SERVICE_DOMAIN,
       apiKey: process.env.M_API_KEY,
     },
     mode: 'all',
