@@ -58,7 +58,7 @@ export default {
     const id = query.id;
     // 動画リストのIDを取得する
     console.log(id);
-    const { contents } = await $microcms.get({
+    const contents = await $microcms.get({
       endpoint: "motion",
       contentId: id,
     });
