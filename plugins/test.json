@@ -1,0 +1,208 @@
+{
+  "contents": [
+    {
+      "id": "5kt7b8c3-0",
+      "createdAt": "2022-01-31T05:02:30.858Z",
+      "updatedAt": "2022-02-07T08:01:33.355Z",
+      "publishedAt": "2022-01-31T05:02:30.858Z",
+      "revisedAt": "2022-02-07T08:01:33.355Z",
+      "title": "【BMI24以上】×【運動が得意】",
+      "image": {
+        "url": "https://images.microcms-assets.io/assets/607f3baa23d84403b81e9f43692b35ab/d384f5a0f7be49efa0175cb6a012382d/Rectangle%2020.png",
+        "height": 266,
+        "width": 265
+      },
+      "movies": [
+        { "fieldId": "movies", "title": "【BMI24以上】×【運動が得意】動画1" },
+        { "fieldId": "movies", "title": "【BMI24以上】×【運動が得意】動画2" },
+        { "fieldId": "movies", "title": "【BMI24以上】×【運動が得意】動画3" },
+        { "fieldId": "movies", "title": "【BMI24以上】×【運動が得意】動画4" },
+        { "fieldId": "movies", "title": "【BMI24以上】×【運動が得意】動画5" }
+      ],
+      "bmidown": 24,
+      "purpose": [],
+      "exercise": ["どちらでもありません", "すこし得意です", "とても得意です"],
+      "place": []
+    },
+    {
+      "id": "0_r1s-ydzwb",
+      "createdAt": "2022-01-31T04:58:03.496Z",
+      "updatedAt": "2022-01-31T05:04:12.187Z",
+      "publishedAt": "2022-01-31T04:58:03.496Z",
+      "revisedAt": "2022-01-31T05:04:12.187Z",
+      "title": "【BMI19以下】×【運動が得意】",
+      "movies": [
+        { "fieldId": "movies", "title": "【BMI19以下】×【運動が得意】動画1" },
+        { "fieldId": "movies", "title": "【BMI19以下】×【運動が得意】動画2" },
+        { "fieldId": "movies", "title": "【BMI19以下】×【運動が得意】動画3" },
+        { "fieldId": "movies", "title": "【BMI19以下】×【運動が得意】動画4" },
+        { "fieldId": "movies", "title": "【BMI19以下】×【運動が得意】動画5" }
+      ],
+      "bmiup": 19,
+      "purpose": [],
+      "exercise": ["どちらでもありません", "すこし得意です", "とても得意です"],
+      "place": []
+    },
+    {
+      "id": "ol2qw5m4t8l",
+      "createdAt": "2022-01-26T05:14:40.993Z",
+      "updatedAt": "2022-01-31T04:58:33.868Z",
+      "publishedAt": "2022-01-26T05:14:40.993Z",
+      "revisedAt": "2022-01-31T04:58:33.868Z",
+      "title": "【BMI19以下】×【運動ニガテ】",
+      "movies": [
+        {
+          "fieldId": "movies",
+          "title": "【BMI19以下】×【運動ニガテ】おすすめ動画1",
+          "url": "https://www.youtube.com/embed/9PdDriBz5GM"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI19以下】×【運動ニガテ】おすすめ動画2",
+          "url": "https://www.youtube.com/embed/9PdDriBz5GM"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI19以下】×【運動ニガテ】おすすめ動画3",
+          "url": "https://www.youtube.com/embed/9PdDriBz5GM"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI19以下】×【運動ニガテ】おすすめ動画4",
+          "url": "https://www.youtube.com/embed/9PdDriBz5GM"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI19以下】×【運動ニガテ】おすすめ動画5",
+          "url": "https://www.youtube.com/embed/9PdDriBz5GM"
+        }
+      ],
+      "bmiup": 19,
+      "purpose": [],
+      "exercise": ["とてもニガテです", "すこしニガテです"],
+      "place": []
+    },
+    {
+      "id": "a2o53tj2tzo",
+      "createdAt": "2022-01-26T05:12:39.656Z",
+      "updatedAt": "2022-01-31T04:59:37.236Z",
+      "publishedAt": "2022-01-26T05:12:39.656Z",
+      "revisedAt": "2022-01-31T04:59:37.236Z",
+      "title": "【BMI20〜23】×【運動がニガテ】",
+      "movies": [
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動がニガテ】おすすめの動画1",
+          "url": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/nUVR-Wk9M3c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動がニガテ】おすすめの動画2",
+          "url": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/nUVR-Wk9M3c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動がニガテ】おすすめの動画3",
+          "url": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/nUVR-Wk9M3c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動がニガテ】おすすめの動画4",
+          "url": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/nUVR-Wk9M3c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動がニガテ】おすすめの動画5",
+          "url": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/nUVR-Wk9M3c\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+        }
+      ],
+      "bmiup": 23,
+      "bmidown": 19,
+      "purpose": [],
+      "exercise": ["とてもニガテです", "すこしニガテです"],
+      "place": []
+    },
+    {
+      "id": "rskrnxwn9ebb",
+      "createdAt": "2022-01-26T05:10:00.134Z",
+      "updatedAt": "2022-01-31T05:01:30.565Z",
+      "publishedAt": "2022-01-26T05:10:00.134Z",
+      "revisedAt": "2022-01-31T05:01:30.565Z",
+      "title": "【BMI24以上】×【運動がニガテ】",
+      "movies": [
+        {
+          "fieldId": "movies",
+          "title": "【BMI24以上】×【運動がニガテ】おすすめの動画1",
+          "url": "https://www.youtube.com/embed/MOGQ-3pkAoY"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI24以上】×【運動がニガテ】おすすめの動画2",
+          "url": "https://www.youtube.com/embed/MOGQ-3pkAoY"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI24以上】×【運動がニガテ】おすすめの動画3",
+          "url": "https://www.youtube.com/embed/MOGQ-3pkAoY"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI24以上】×【運動がニガテ】おすすめの動画4",
+          "url": "https://www.youtube.com/embed/MOGQ-3pkAoY"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI24以上】×【運動がニガテ】おすすめの動画5",
+          "url": "https://www.youtube.com/embed/MOGQ-3pkAoY"
+        }
+      ],
+      "bmidown": 24,
+      "purpose": [],
+      "exercise": ["とてもニガテです", "すこしニガテです"],
+      "place": []
+    },
+    {
+      "id": "pea_l0bunvih",
+      "createdAt": "2022-01-26T05:08:16.495Z",
+      "updatedAt": "2022-01-31T05:00:31.838Z",
+      "publishedAt": "2022-01-26T05:08:16.495Z",
+      "revisedAt": "2022-01-31T05:00:31.838Z",
+      "title": "【BMI20〜23】×【運動が得意】",
+      "movies": [
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動が得意】おすすめの動画1",
+          "url": "https://www.youtube.com/embed/W7gkTqbXnmg"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動が得意】おすすめの動画2",
+          "url": "https://www.youtube.com/embed/W7gkTqbXnmg"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動が得意】おすすめの動画3",
+          "url": "https://www.youtube.com/embed/W7gkTqbXnmg"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動が得意】おすすめの動画4",
+          "url": "https://www.youtube.com/embed/W7gkTqbXnmg"
+        },
+        {
+          "fieldId": "movies",
+          "title": "【BMI20〜23】×【運動が得意】おすすめの動画5",
+          "url": "https://www.youtube.com/embed/W7gkTqbXnmg"
+        }
+      ],
+      "bmiup": 23,
+      "bmidown": 20,
+      "purpose": [],
+      "exercise": ["どちらでもありません", "すこし得意です", "とても得意です"],
+      "place": []
+    }
+  ],
+  "totalCount": 6,
+  "offset": 0,
+  "limit": 10
+}

@@ -26,7 +26,7 @@ export default async function ({ store, route, redirect, app }) {
 
     if (userLogin) {
         if(route.name === "signin") {
-            return redirect("/mypage")
+            return redirect("/top")
         }
     }else {
         if ( 
@@ -35,6 +35,7 @@ export default async function ({ store, route, redirect, app }) {
         route.name === "playlist" || 
         route.name === "program" || 
         route.name === "record" || 
+        route.name === "top" || 
         route.name === "search") {
         return redirect("/signin")
         }

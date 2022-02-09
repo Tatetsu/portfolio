@@ -113,7 +113,9 @@
         class="question_prev absolute top-0 left-10 test-center my-8"
         v-if="questionNumber >= 2"
       >
-        <button class="btn text-md p-3" @click="back"><span class="hover:text-red-600">←前へ</span></button>
+        <button class="btn text-md p-3" @click="back">
+          <span class="hover:text-red-600">←前へ</span>
+        </button>
       </div>
     </div>
     <div class="submit flex" v-if="questionNumber === 7">

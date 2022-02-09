@@ -9,7 +9,11 @@
         class="question flex flex-wrap justify-around justify-center mt-8 items-end"
         alt=""
       >
-        <li v-for="answer in answers" :key="answer" class="flex justify-center w-1/2 my-6">
+        <li
+          v-for="answer in answers"
+          :key="answer"
+          class="flex justify-center w-1/2 my-6"
+        >
           <label class="text-md md:text-2xl">
             <input
               class="mr-4"
