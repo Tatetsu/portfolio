@@ -181,7 +181,16 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  layout: "login",
+  data() {
+    return {
+      
+    }
+  }
+}
+</script>
 
 <style scoped>
 .search_genre_get,

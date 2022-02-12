@@ -1,7 +1,7 @@
 <template>
   <div id="media">
     <div id="body">
-      <TopHeader />
+      <LoginHeader />
       <div id="main">
       <nuxt />
       </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: ""
+  name: "login"
 }
 </script>
 

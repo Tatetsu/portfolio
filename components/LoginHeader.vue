@@ -5,7 +5,7 @@
     >
       <h1>
         <router-link
-          to="/"
+          to="/top"
           class="text-3xl hover:opacity-50 duration-1000 md:text-4xl cursor-pointer"
         >
           <img src="../assets/img/nuxt.png" class="w-36" alt="" />
@@ -46,7 +46,7 @@
           <ul class="md:hidden">
             <li>
               <router-link
-                to="/"
+                to="/top"
                 class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
                 >ホーム</router-link
               >
@@ -80,17 +80,12 @@
               >
             </li>
             <li>
-              <router-link
-                to="/signin"
+              <button
+                @click="signOut"
                 class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ログイン</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/register"
-                class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >新規登録</router-link
+                >
+                ログアウト
+                </button
               >
             </li>
           </ul>
@@ -99,19 +94,18 @@
     </div>
     <aside class="pc_header hidden md:block flex flex-col py-5">
         <h1 class="w-36 pt-4">
-          <router-link to="/"
+          <router-link to="/top"
             ><img src="../assets/img/nuxt.png" alt=""
           /></router-link>
         </h1>
         <nav>
           <ul>
-            <li class="hover:text-red-400"><router-link to="/">ホーム</router-link></li>
+            <li class="hover:text-red-400"><router-link to="/top">ホーム</router-link></li>
             <li class="hover:text-red-400"><router-link to="/program">プログラム一覧</router-link></li>
             <li class="hover:text-red-400"><router-link to="/search">検索</router-link></li>
             <li class="hover:text-red-400"><router-link to="/mypage">マイアカウント</router-link></li>
             <li class="hover:text-red-400"><router-link to="/playlist">プレイリスト</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/signin">ログイン</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/register">新規登録</router-link></li>
+            <li class="hover:text-red-400"><button @click="signOut">ログアウト</button></li>
           </ul>
         </nav>
     </aside>

@@ -5,31 +5,31 @@
         :numbers="questionBox[0].numbers"
         :questionText="questionBox[0].questionText"
         :answers="questionBox[0].answers"
-        v-if="questionNumber === 1"
+        v-if="questionNumber === 0"
         @select="selectAnswer($event, 0)"
       />
       <QuestionBox
         :numbers="questionBox[1].numbers"
         :questionText="questionBox[1].questionText"
         :answers="questionBox[1].answers"
-        v-if="questionNumber === 2"
+        v-if="questionNumber === 1"
         @select="selectAnswer($event, 1)"
       />
       <QuestionBox
         :numbers="questionBox[2].numbers"
         :questionText="questionBox[2].questionText"
         :answers="questionBox[2].answers"
-        v-if="questionNumber === 3"
+        v-if="questionNumber === 2"
         @select="selectAnswer($event, 2)"
       />
       <QuestionBox
         :numbers="questionBox[3].numbers"
         :questionText="questionBox[3].questionText"
         :answers="questionBox[3].answers"
-        v-if="questionNumber === 4"
+        v-if="questionNumber === 3"
         @select="selectAnswer($event, 3)"
       />
-      <div v-if="questionNumber === 5" class="text-center font-bold pt-16">
+      <div v-if="questionNumber === 4" class="text-center font-bold pt-16">
         <div class="question_number">
           <p class="underline leading-loose text-xl md:text-3xl">05</p>
         </div>
@@ -43,17 +43,18 @@
               name="name"
               id="name"
               placeholder="ニックネームを入力ください"
-              class="text-md md:text-xl w-full p-3 border rounded"
+              class="text-md md:text-lg w-full p-3 border rounded"
+              @change="selectAnswer($event.target.value, 4)"
             />
           </div>
         </div>
       </div>
-      <div v-if="questionNumber === 6" class="text-center font-bold pt-16">
+      <div v-if="questionNumber === 5" class="text-center font-bold pt-16">
         <div class="question_number">
           <p class="underline leading-loose text-xl md:text-3xl">06</p>
         </div>
         <h2 class="question_title text-xl md:text-3xl">
-          現在の身長と体重を入力ください
+          現在の身長を入力ください
         </h2>
         <div class="question_list flex flex-col items-center my-8">
           <div class="mb-2 flex items-end">
@@ -62,9 +63,22 @@
               name="composition"
               id="composition"
               placeholder="身長を入力ください"
-              class="text-md md:text-xl w-full p-3 border rounded"
+              class="text-md md:text-lg w-full p-3 border rounded"
+              @change="selectAnswer($event.target.value, 5)"
             /><span>cm</span>
           </div>
+        </div>
+      </div>
+      <div v-if="questionNumber === 6" class="text-center font-bold pt-16">
+        <!-- 2ページに分ける -->
+        <div class="question_number">
+          <p class="underline leading-loose text-xl md:text-3xl">07</p>
+        </div>
+        <h2 class="question_title text-lg md:text-3xl">
+          現在の体重を入力ください
+        </h2>
+        <div class="question_list flex flex-col items-center my-8">
+
           <div class="mb-2 flex items-end">
             <input
               type="text"
@@ -72,13 +86,14 @@
               id="name"
               placeholder="体重を入力ください"
               class="text-md md:text-xl w-full p-3 border rounded"
+              @change="selectAnswer($event.target.value, 6)"
             /><span>kg</span>
           </div>
         </div>
       </div>
       <div v-if="questionNumber === 7" class="text-center font-bold pt-16">
         <div class="question_number">
-          <p class="underline leading-loose text-xl md:text-3xl">07</p>
+          <p class="underline leading-loose text-xl md:text-3xl">08</p>
         </div>
         <h2 class="question_title text-xl md:text-3xl">
           目標の体重を入力ください
@@ -91,6 +106,7 @@
               id="weight"
               placeholder="目標の体重を入力ください"
               class="text-md md:text-xl w-full p-3 border rounded"
+              @change="selectAnswer($event.target.value, 7)"
             /><span>kg</span>
           </div>
         </div>
@@ -111,15 +127,17 @@
       </div>
       <div
         class="question_prev absolute top-0 left-10 test-center my-8"
-        v-if="questionNumber >= 2"
+        v-if="questionNumber >= 1"
       >
-        <button class="btn text-md p-3" @click="back"><span class="hover:text-red-600">←前へ</span></button>
+        <button class="btn text-md p-3" @click="back">
+          <span class="hover:text-red-600">←前へ</span>
+        </button>
       </div>
     </div>
     <div class="submit flex" v-if="questionNumber === 7">
       <button
-        type="submit"
         class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
+        @click="submit"
       >
         入力を完了する
       </button>
@@ -171,13 +189,9 @@ export default {
           questionText: "トレーニングをする場所はどこですか",
           answers: ["自宅", "ジム", "公園"],
         },
-        {
-          numbers: "05",
-          questionText: "登録するニックネームを入力ください",
-        },
       ],
       selects: [],
-      questionNumber: 1,
+      questionNumber: 0,
       buttonState: false,
     };
   },
@@ -196,8 +210,32 @@ export default {
     changeState: function () {
       this.buttonState = !this.buttonState;
     },
-    submit() {
+    async submit() {
       //microCMSにデータを渡す
+      this.selects = [
+        "引き締めたい",
+        "すこし得意です",
+        "週に1日くらい",
+        "自宅",
+        "のーど",
+        "170",
+        "70",
+        "58",
+      ];
+      // 仮データ. 上はあとで消してください
+      const height = this.selects[5];
+      const weight = this.selects[6];
+      const bmi = (weight / (height / 100) ** 2).toFixed(1);
+      console.log(bmi);
+      const filters = `bmidown[less_than]${bmi}`;
+      const res = await this.$microcms.get({
+        endpoint: "motion",
+        queries: {
+          filters: filters,
+        },
+      });
+      console.log(res);
+      // this.$router.push("/result?id=" + "xxxxx");
     },
   },
   computed: {},
