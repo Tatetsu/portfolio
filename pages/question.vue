@@ -78,7 +78,6 @@
           現在の体重を入力ください
         </h2>
         <div class="question_list flex flex-col items-center my-8">
-
           <div class="mb-2 flex items-end">
             <input
               type="text"
@@ -198,7 +197,7 @@ export default {
   methods: {
     selectAnswer($event, index) {
       this.selects[index] = $event;
-      console.log(this.selects);
+      console.log("this.selects", this.selects);
     },
     next() {
       // 必須入力の処理 if or returnで制限をする ボタンの上にアラートする
@@ -212,30 +211,27 @@ export default {
     },
     async submit() {
       //microCMSにデータを渡す
-      this.selects = [
-        "引き締めたい",
-        "すこし得意です",
-        "週に1日くらい",
-        "自宅",
-        "のーど",
-        "170",
-        "70",
-        "58",
-      ];
-      // 仮データ. 上はあとで消してください
       const height = this.selects[5];
       const weight = this.selects[6];
       const bmi = (weight / (height / 100) ** 2).toFixed(1);
-      console.log(bmi);
-      const filters = `bmidown[less_than]${bmi}`;
+      const exercise = this.selects[1]
+      let filters = "";
+      if (24 <= bmi) {
+        filters = `bmiup[equals]24[and]exercise[contains]${exercise}`;
+      } else if (19.1 <= bmi <= 23.9) {
+        filters = `bmidown[equals]19.1[and]bmiup[equals]23.9[and]exercise[contains]${exercise}`;
+      } else {
+        filters = `bmidown[equals]19[and]exercise[contains]${exercise}`;
+      }
       const res = await this.$microcms.get({
         endpoint: "motion",
         queries: {
           filters: filters,
         },
       });
-      console.log(res);
-      // this.$router.push("/result?id=" + "xxxxx");
+      // console.log({ res });
+      const resultId = res.contents[0].id
+      this.$router.push(`/result?id=${resultId}`);
     },
   },
   computed: {},
