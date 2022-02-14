@@ -19,10 +19,12 @@ firebase.initializeApp(config)
 const auth = firebase.auth()
 const db = firebase.firestore()
 
-export default function (context, inject) {
-    inject('auth', auth)
-    inject('db', db)
+export default function (app, inject) {
     inject('firebase', firebase)
+    inject('auth', auth)
+    inject('firestore', firebase.firestore())
+    inject('functions', firebase.functions())
+    inject('db', db)
     inject('authState', () => {
         return new Promise((resolve) => {
             firebase.auth().onAuthStateChanged((user) => {
@@ -31,6 +33,3 @@ export default function (context, inject) {
         })
     })
 }
-
-
-
