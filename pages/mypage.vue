@@ -32,7 +32,7 @@
     <div class="calender pt-10">
       <div class="calender_my-calender">
         <div class="my-calender_name">
-          <h2 class="font-bold">マサさんのカレンダー</h2>
+          <h2 class="font-bold">{{ user.name }}さんのカレンダー</h2>
         </div>
         <div class="my-calender_data bg-white">
           <div class="content">
@@ -80,33 +80,41 @@
     </div>
     <div>
       <button @click="addTask">add</button>
-      <div
-      v-for="(task, index) in tasks"
-      :key="index"
-    >
-      {{ task.title }}
-    </div>
+      <div v-for="(task, index) in tasks" :key="index">
+        {{ task.title }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
-import { getFirestore, collection, addDoc,  query, where, onSnapshot } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  where,
+  onSnapshot,
+  doc,
+  getDoc,
+} from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   layout: "login",
   data() {
     return {
       currentDate: moment(),
-      id: '3',
-      name: 'test',
+      id: "3",
+      user: {
+        name: "ゲスト",
+      },
       tasks: [
         {
           id: null,
-          title: null
-        }
+          title: null,
+        },
       ],
 
       events: [
@@ -287,12 +295,12 @@ export default {
       // カレンダーの数字を返している
     },
 
-    addTask () {
-      const db = getFirestore()
-      const docRef = addDoc(collection(db, 'tasks'), {
+    addTask() {
+      const db = getFirestore();
+      const docRef = addDoc(collection(db, "tasks"), {
         id: this.id,
-        name: this.name
-      })
+        name: this.name,
+      });
     },
 
     nextMonth() {
@@ -400,30 +408,40 @@ export default {
     },
   },
 
-  mounted () {
-    const auth = getAuth()
+  mounted() {
+    const auth = getAuth();
 
     // login状態が変更されたら
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const db = getFirestore()
         // loginしてたら
-        const q = query(collection(db, 'tasks'), where('uid', '==', `${user.uid}`))
+        const db = getFirestore();
+
+        const documentRef = await getDoc(doc(db, `users/${user.uid}`));
+        const document = documentRef.data();
+
+        this.user = document;
+        console.log("user", this.user);
+
+        /* const q = query(
+          collection(db, "tasks"),
+          where("uid", "==", `${user.uid}`)
+        );
         onSnapshot(q, (snapshot) => {
           snapshot.docChanges().forEach((change) => {
-            if (change.type === 'added') {
-              console.log('added: ', change.doc.data())
+            if (change.type === "added") {
+              console.log("added: ", change.doc.data());
               this.tasks.push({
                 id: change.doc.id,
-                title: change.doc.data().name
-              })
+                title: change.doc.data().name,
+              });
             }
-          })
-        })
+          });
+        });
 
-        this.tasks.splice(0, 1)
+        this.tasks.splice(0, 1); */
       }
-    })
+    });
   },
 
   computed: {

@@ -36,7 +36,7 @@
       <div
         class="result_video_inner px-2 my-3 sm:w-1/2 md:w-1/3"
         v-for="movie in contents.movies"
-        :key="movie"
+        :key="movie.title"
       >
         <div>
           <h3 class="text-sm md:text-md">
@@ -52,20 +52,25 @@
           </p>
         </div>
       </div>
-       <div
-    >
-      <p>{{ title }}</p>
-    </div>
+      <!-- <div>
+        <p>{{ title }}</p>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, collection, query, where, onSnapshot } from 'firebase/firestore'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 
 export default {
-    layout: "login",
+  layout: "login",
 
   async asyncData({ query, $microcms }) {
     const id = query.id;
@@ -85,49 +90,49 @@ export default {
       contents: "",
       users: [
         {
-        question1: "",
-        question2: "",
-        question3: "",
-        question4: "",
-        name: "",
-        composition: "",
-        weight: "",
-        objective: "",
-        }
+          question1: "",
+          question2: "",
+          question3: "",
+          question4: "",
+          name: "",
+          composition: "",
+          weight: "",
+          objective: "",
+        },
       ],
     };
   },
-  methods: {
-
-  },
-  computed: {
-  },
-  mounted () {
-    const auth = getAuth()
+  methods: {},
+  computed: {},
+  mounted() {
+    const auth = getAuth();
 
     // login状態が変更されたら
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const db = getFirestore()
+        const db = getFirestore();
         // loginしてたら
-        const q = query(collection(db, 'users'), where('uid', '==', `${user.uid}`))
+        const q = query(
+          collection(db, "users"),
+          where("uid", "==", `${user.uid}`)
+        );
         onSnapshot(q, (snapshot) => {
           snapshot.docChanges().forEach((change) => {
-            if (change.type === 'added') {
-              console.log('added: ', change.doc.data())
+            if (change.type === "added") {
+              console.log("added: ", change.doc.data());
               this.users.push({
                 id: change.doc.id,
-                title: change.doc.data().name
-              })
+                title: change.doc.data().name,
+              });
             }
-          })
-        })
+          });
+        });
 
-        this.users.splice(0, 1)
+        this.users.splice(0, 1);
       }
-    })
-  }
-}
+    });
+  },
+};
 </script>
 
 <style scoped></style>
