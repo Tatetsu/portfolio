@@ -78,16 +78,36 @@
         </div>
       </div>
     </div>
+    <div>
+      <button @click="addTask">add</button>
+      <div
+      v-for="(task, index) in tasks"
+      :key="index"
+    >
+      {{ task.title }}
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import { getFirestore, collection, addDoc,  query, where, onSnapshot } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
 export default {
   layout: "login",
   data() {
     return {
       currentDate: moment(),
+      id: '3',
+      name: 'test',
+      tasks: [
+        {
+          id: null,
+          title: null
+        }
+      ],
 
       events: [
         {
@@ -266,6 +286,15 @@ export default {
       return calendars;
       // カレンダーの数字を返している
     },
+
+    addTask () {
+      const db = getFirestore()
+      const docRef = addDoc(collection(db, 'tasks'), {
+        id: this.id,
+        name: this.name
+      })
+    },
+
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month");
     },
@@ -371,6 +400,32 @@ export default {
     },
   },
 
+  mounted () {
+    const auth = getAuth()
+
+    // login状態が変更されたら
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const db = getFirestore()
+        // loginしてたら
+        const q = query(collection(db, 'tasks'), where('uid', '==', `${user.uid}`))
+        onSnapshot(q, (snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === 'added') {
+              console.log('added: ', change.doc.data())
+              this.tasks.push({
+                id: change.doc.id,
+                title: change.doc.data().name
+              })
+            }
+          })
+        })
+
+        this.tasks.splice(0, 1)
+      }
+    })
+  },
+
   computed: {
     calendars() {
       let calendars = this.getCalendar();
@@ -466,8 +521,7 @@ export default {
 }
 
 .my-data_img img {
-    top: calc(0% - calc(50% - 4rem) );
-    left: calc(0% + calc(50% - 4rem) );
+  top: calc(0% - calc(50% - 4rem));
+  left: calc(0% + calc(50% - 4rem));
 }
-
 </style>

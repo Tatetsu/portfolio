@@ -26,7 +26,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/firebase.js'
+    '~/plugins/firebase.js',
+    { src: '~/plugins/vue-full-calendar', ssr: false }
   ],
   router: {
     middleware: ['authenticated']
@@ -44,7 +45,7 @@ export default {
   ],
   microcms: {
     options: {
-      serviceDomain: "portfolio-masa",
+      serviceDomain: process.env.M_SERVICE_DOMAIN,
       apiKey: process.env.M_API_KEY,
     },
     mode: 'all',

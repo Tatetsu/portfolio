@@ -73,13 +73,6 @@
               >
             </li>
             <li>
-              <router-link
-                to="/playlist"
-                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
-                >プレイリスト</router-link
-              >
-            </li>
-            <li>
               <button
                 @click="signOut"
                 class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
@@ -104,7 +97,6 @@
             <li class="hover:text-red-400"><router-link to="/program">プログラム一覧</router-link></li>
             <li class="hover:text-red-400"><router-link to="/search">検索</router-link></li>
             <li class="hover:text-red-400"><router-link to="/mypage">マイアカウント</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/playlist">プレイリスト</router-link></li>
             <li class="hover:text-red-400"><button @click="signOut">ログアウト</button></li>
           </ul>
         </nav>
