@@ -25,7 +25,7 @@ export default async function ({ store, route, redirect, app }) {
     console.log(userLogin);
 
     if (userLogin) {
-        if(route.name === "signin") {
+        if(route.name === "signin" || route.name === "register") {
             return redirect("/top")
         }
     }else {

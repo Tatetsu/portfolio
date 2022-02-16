@@ -151,7 +151,7 @@
 </template>
 
 <script>
-import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 export default {
   layout: "question",
   data() {
@@ -200,6 +200,7 @@ export default {
       selects: [],
       questionNumber: 0,
       buttonState: false,
+      selectsErrorMassage: "",
     };
   },
   methods: {
@@ -252,11 +253,8 @@ export default {
         weight: this.selects[6],
         objective: this.selects[7],
       });
-      console.log("Document written with ID: ", docRef.id);
     },
-    addTask() {
-      
-    },
+    addTask() {},
   },
   mounted: function () {},
   computed: {},

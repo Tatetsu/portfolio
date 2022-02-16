@@ -53,34 +53,6 @@
             </li>
             <li>
               <router-link
-                to="/program"
-                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
-                >プログラム一覧</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/search"
-                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
-                >検索</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/mypage"
-                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
-                >マイアカウント</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/playlist"
-                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
-                >プレイリスト</router-link
-              >
-            </li>
-            <li>
-              <router-link
                 to="/signin"
                 class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
                 >ログイン</router-link
@@ -106,10 +78,6 @@
         <nav>
           <ul>
             <li class="hover:text-red-400"><router-link to="/">ホーム</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/program">プログラム一覧</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/search">検索</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/mypage">マイアカウント</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/playlist">プレイリスト</router-link></li>
             <li class="hover:text-red-400"><router-link to="/signin">ログイン</router-link></li>
             <li class="hover:text-red-400"><router-link to="/register">新規登録</router-link></li>
           </ul>
