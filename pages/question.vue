@@ -1,5 +1,8 @@
 <template>
   <div id="question" class="relative">
+    <li v-for="(item, index) in data" :key="index">
+      {{ item }}
+    </li>
     <div>
       <QuestionBox
         :numbers="questionBox[0].numbers"
@@ -59,7 +62,7 @@
         <div class="question_list flex flex-col items-center my-8">
           <div class="mb-2 flex items-end">
             <input
-              type="text"
+              type="composition"
               name="composition"
               id="composition"
               placeholder="身長を入力ください"
@@ -78,12 +81,11 @@
           現在の体重を入力ください
         </h2>
         <div class="question_list flex flex-col items-center my-8">
-
           <div class="mb-2 flex items-end">
             <input
-              type="text"
-              name="name"
-              id="name"
+              type="weight"
+              name="weight"
+              id="weight"
               placeholder="体重を入力ください"
               class="text-md md:text-xl w-full p-3 border rounded"
               @change="selectAnswer($event.target.value, 6)"
@@ -101,9 +103,9 @@
         <div class="question_list flex flex-col items-center my-8">
           <div class="mb-2 flex items-end">
             <input
-              type="text"
-              name="weight"
-              id="weight"
+              type="objective"
+              name="objective"
+              id="objective"
               placeholder="目標の体重を入力ください"
               class="text-md md:text-xl w-full p-3 border rounded"
               @change="selectAnswer($event.target.value, 7)"
@@ -142,14 +144,19 @@
         入力を完了する
       </button>
     </div>
+    <div>
+      <button @click="addTask">add</button>
+    </div>
   </div>
 </template>
 
 <script>
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 export default {
   layout: "question",
   data() {
     return {
+      data: [],
       questionBox: [
         {
           numbers: "01",
@@ -193,12 +200,13 @@ export default {
       selects: [],
       questionNumber: 0,
       buttonState: false,
+      selectsErrorMassage: "",
     };
   },
   methods: {
     selectAnswer($event, index) {
       this.selects[index] = $event;
-      console.log(this.selects);
+      console.log("this.selects", this.selects);
     },
     next() {
       // 必須入力の処理 if or returnで制限をする ボタンの上にアラートする
@@ -212,32 +220,43 @@ export default {
     },
     async submit() {
       //microCMSにデータを渡す
-      this.selects = [
-        "引き締めたい",
-        "すこし得意です",
-        "週に1日くらい",
-        "自宅",
-        "のーど",
-        "170",
-        "70",
-        "58",
-      ];
-      // 仮データ. 上はあとで消してください
       const height = this.selects[5];
       const weight = this.selects[6];
       const bmi = (weight / (height / 100) ** 2).toFixed(1);
-      console.log(bmi);
-      const filters = `bmidown[less_than]${bmi}`;
+      const exercise = this.selects[1];
+      let filters = "";
+      if (24 <= bmi) {
+        filters = `bmiup[equals]24[and]exercise[contains]${exercise}`;
+      } else if (19.1 <= bmi <= 23.9) {
+        filters = `bmidown[equals]19.1[and]bmiup[equals]23.9[and]exercise[contains]${exercise}`;
+      } else {
+        filters = `bmidown[equals]19[and]exercise[contains]${exercise}`;
+      }
       const res = await this.$microcms.get({
         endpoint: "motion",
         queries: {
           filters: filters,
         },
       });
-      console.log(res);
-      // this.$router.push("/result?id=" + "xxxxx");
+      // console.log({ res });
+      const resultId = res.contents[0].id;
+      this.$router.push(`/result?id=${resultId}`);
+
+      const db = getFirestore();
+      const docRef = addDoc(collection(db, "users"), {
+        question1: this.selects[0],
+        question2: this.selects[1],
+        question3: this.selects[2],
+        question4: this.selects[3],
+        name: this.selects[4],
+        composition: this.selects[5],
+        weight: this.selects[6],
+        objective: this.selects[7],
+      });
     },
+    addTask() {},
   },
+  mounted: function () {},
   computed: {},
 };
 </script>

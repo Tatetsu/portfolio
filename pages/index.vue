@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <p>{{ contents[0].image.url }}</p>
-    <div v-for="content in contents" :key="content">
-      <p>{{ content.id }}</p>
-      <p><img :src="content.img.url" alt=""> </p>
-    </div> -->
     <div class="new flex flex-wrap items-center sm:flex-row flex-col p-5">
       <div class="card my-5 px-3">
         <div class="thumbnail">
@@ -81,23 +76,6 @@
     </div>
     <div class="playlist py-5">
       <h2 class="pt-3">おすすめのプレイリスト</h2>
-      
-      <!-- <div
-        class="playlist_inner flex items-center sm:flex-row flex-col pt-3"
-        v-for="content in contents"
-        :key="content"
-      >
-        <div v-for="image in content.image" :key="image">
-          <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/">
-              <img 
-              :src="image.url" 
-              alt="" 
-              class="rounded-lg" />
-            </router-link>
-          </div>
-        </div>
-      </div> -->
       <div
         class="playlist_inner flex items-center sm:flex-row flex-col pt-3"
       >
@@ -183,9 +161,6 @@ export default {
 </script>
 
 <style scoped>
-img {
-  /* width: 100%; */
-}
 .card {
   width: calc(100% / 1);
 }
