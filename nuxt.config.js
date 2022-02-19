@@ -26,8 +26,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/firebase.js',
-    { src: '~/plugins/vue-full-calendar', ssr: false }
+    '~/plugins/firebase.js'
   ],
   router: {
     middleware: ['authenticated']

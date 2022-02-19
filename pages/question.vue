@@ -47,7 +47,8 @@
               id="name"
               placeholder="ニックネームを入力ください"
               class="text-md md:text-lg w-full p-3 border rounded"
-              @change="selectAnswer($event.target.value, 4)"
+              v-model="textField"
+              @change="selectAnswer(textField, 4)"
             />
           </div>
         </div>
@@ -62,12 +63,13 @@
         <div class="question_list flex flex-col items-center my-8">
           <div class="mb-2 flex items-end">
             <input
-              type="composition"
+              type="text"
               name="composition"
               id="composition"
               placeholder="身長を入力ください"
               class="text-md md:text-lg w-full p-3 border rounded"
-              @change="selectAnswer($event.target.value, 5)"
+              v-model="textField"
+              @change="selectAnswer(textField, 5)"
             /><span>cm</span>
           </div>
         </div>
@@ -83,12 +85,13 @@
         <div class="question_list flex flex-col items-center my-8">
           <div class="mb-2 flex items-end">
             <input
-              type="weight"
+              type="text"
               name="weight"
               id="weight"
               placeholder="体重を入力ください"
               class="text-md md:text-xl w-full p-3 border rounded"
-              @change="selectAnswer($event.target.value, 6)"
+              v-model="textField"
+              @change="selectAnswer(textField, 6)"
             /><span>kg</span>
           </div>
         </div>
@@ -103,12 +106,13 @@
         <div class="question_list flex flex-col items-center my-8">
           <div class="mb-2 flex items-end">
             <input
-              type="objective"
+              type="text"
               name="objective"
               id="objective"
               placeholder="目標の体重を入力ください"
               class="text-md md:text-xl w-full p-3 border rounded"
-              @change="selectAnswer($event.target.value, 7)"
+              v-model="textField"
+              @change="selectAnswer(textField, 7)"
             /><span>kg</span>
           </div>
         </div>
@@ -144,14 +148,11 @@
         入力を完了する
       </button>
     </div>
-    <div>
-      <button @click="addTask">add</button>
-    </div>
   </div>
 </template>
 
 <script>
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, setDoc, doc } from "firebase/firestore";
 export default {
   layout: "question",
   data() {
@@ -199,6 +200,7 @@ export default {
       ],
       selects: [],
       questionNumber: 0,
+      textField: "",
       buttonState: false,
       selectsErrorMassage: "",
     };
@@ -209,10 +211,18 @@ export default {
       console.log("this.selects", this.selects);
     },
     next() {
-      // 必須入力の処理 if or returnで制限をする ボタンの上にアラートする
-      this.questionNumber += 1;
+      // 今の質問が埋まっているかどうがを確認する
+      if (this.selects[this.questionNumber]) {
+        this.textField = "";
+        this.questionNumber += 1;
+      } else {
+        alert("質問に回答してください。");
+      }
     },
     back() {
+      this.textField = this.selects[this.questionNumber - 1];
+      /* this.radio = this.selects[this.questionNumber - 1];
+      本来はここでthis.radioの前の回答の状態を維持したい */
       this.questionNumber -= 1;
     },
     changeState: function () {
@@ -222,7 +232,12 @@ export default {
       //microCMSにデータを渡す
       const height = this.selects[5];
       const weight = this.selects[6];
+      const objective = this.selects[7];
       const bmi = (weight / (height / 100) ** 2).toFixed(1);
+
+      const objectiveWeight = weight - objective;
+      console.log(objectiveWeight);
+
       const exercise = this.selects[1];
       let filters = "";
       if (24 <= bmi) {
@@ -240,10 +255,9 @@ export default {
       });
       // console.log({ res });
       const resultId = res.contents[0].id;
-      this.$router.push(`/result?id=${resultId}`);
-
+      const uid = this.$store.state.user.uid;
       const db = getFirestore();
-      const docRef = addDoc(collection(db, "users"), {
+      const docRef = await setDoc(doc(db, `users/${uid}`), {
         question1: this.selects[0],
         question2: this.selects[1],
         question3: this.selects[2],
@@ -252,9 +266,11 @@ export default {
         composition: this.selects[5],
         weight: this.selects[6],
         objective: this.selects[7],
+        objectiveWeight: objectiveWeight,
+        bmi: bmi,
       });
+      this.$router.push(`/result?id=${resultId}`);
     },
-    addTask() {},
   },
   mounted: function () {},
   computed: {},

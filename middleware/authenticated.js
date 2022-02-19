@@ -25,16 +25,13 @@ export default async function ({ store, route, redirect, app }) {
     console.log(userLogin);
 
     if (userLogin) {
-        if(route.name === "signin" || route.name === "register") {
+        if(route.name === "signin" || route.name === "register" || route.name === "question") {
             return redirect("/top")
         }
     }else {
-        if ( 
-        route.name === "motion" || 
+        if (  
         route.name === "mypage" || 
-        route.name === "playlist" || 
         route.name === "program" || 
-        route.name === "record" || 
         route.name === "top" || 
         route.name === "search") {
         return redirect("/signin")

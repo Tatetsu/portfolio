@@ -13,16 +13,16 @@
         <div class="my-data_txt py-5">
           <ul class="text-center flex justify-around">
             <li>
-              <h3>レッスン数</h3>
-              <p>0本</p>
-            </li>
-            <li>
               <h3>身長</h3>
-              <p>0本</p>
+              <p>{{ user.composition }}<span>cm</span></p>
             </li>
             <li>
               <h3>体重</h3>
-              <p>0本</p>
+              <p>{{ user.weight }}<span>kg</span></p>
+            </li>
+            <li>
+              <h3>目標体重まで</h3>
+              <p>残り{{ user.objectiveWeight }}<span>kg</span></p>
             </li>
           </ul>
         </div>
@@ -32,7 +32,7 @@
     <div class="calender pt-10">
       <div class="calender_my-calender">
         <div class="my-calender_name">
-          <h2 class="font-bold">マサさんのカレンダー</h2>
+          <h2 class="font-bold">{{ user.name }}さんのカレンダー</h2>
         </div>
         <div class="my-calender_data bg-white">
           <div class="content">
@@ -79,35 +79,43 @@
       </div>
     </div>
     <div>
-      <button @click="addTask">add</button>
-      <div
-      v-for="(task, index) in tasks"
-      :key="index"
-    >
-      {{ task.title }}
-    </div>
+      <button @click="addTask, selectAnswer">筋トレしました</button>
+      <div v-for="task in tasks.tasks" :key="task">
+        <p>{{ task }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
-import { getFirestore, collection, addDoc,  query, where, onSnapshot } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  setDoc,
+  query,
+  where,
+  onSnapshot,
+  doc,
+  getDoc,
+  Timestamp,
+} from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   layout: "login",
   data() {
     return {
       currentDate: moment(),
-      id: '3',
-      name: 'test',
-      tasks: [
-        {
-          id: null,
-          title: null
-        }
-      ],
+      user: {
+        name: "ゲスト",
+        weight: "◯◯",
+        composition: "◯◯",
+        objectiveWeight: "◯◯",
+      },
+      objectiveWeight: "",
+      tasks: [],
 
       events: [
         {
@@ -286,15 +294,6 @@ export default {
       return calendars;
       // カレンダーの数字を返している
     },
-
-    addTask () {
-      const db = getFirestore()
-      const docRef = addDoc(collection(db, 'tasks'), {
-        id: this.id,
-        name: this.name
-      })
-    },
-
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month");
     },
@@ -343,7 +342,6 @@ export default {
       });
       return dayEvents;
     },
-    // getDayEventsがエラーの原因らしい
 
     getEventWidth(end, start, day) {
       let betweenDays = moment(end).diff(moment(start), "days");
@@ -355,14 +353,12 @@ export default {
     },
 
     getStackEvents(event, day, stackIndex, dayEvents, startedEvents, start) {
-      console.log("args", dayEvents);
 
       [stackIndex, dayEvents] = this.getStartedEvents(
         stackIndex,
         startedEvents,
         dayEvents
       );
-      console.log("result", dayEvents);
 
       let width = this.getEventWidth(start, event.end, day);
       Object.assign(event, {
@@ -398,32 +394,37 @@ export default {
         .add(betweenDays, "days")
         .format("YYYY-MM-DD");
     },
+
+    tasks($event, index) {
+      this.tasks[index] = $event;
+      console.log("this.tasks", this.tasks);
+    },
+    addTask() {
+      const uid = this.$store.state.user.uid;
+      const db = getFirestore();
+      const docRef = setDoc(doc(db, `tasks/${uid}`), {
+        tasks: this.tasks
+      });
+      alert("今日の筋トレを記録しました");
+    },
   },
 
-  mounted () {
-    const auth = getAuth()
+  mounted() {
+    const auth = getAuth();
 
     // login状態が変更されたら
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const db = getFirestore()
         // loginしてたら
-        const q = query(collection(db, 'tasks'), where('uid', '==', `${user.uid}`))
-        onSnapshot(q, (snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            if (change.type === 'added') {
-              console.log('added: ', change.doc.data())
-              this.tasks.push({
-                id: change.doc.id,
-                title: change.doc.data().name
-              })
-            }
-          })
-        })
+        const db = getFirestore();
 
-        this.tasks.splice(0, 1)
+        const documentRef = await getDoc(doc(db, `users/${user.uid}`));
+        const document = documentRef.data();
+
+        this.user = document;
+        console.log("user", this.user);
       }
-    })
+    });
   },
 
   computed: {
