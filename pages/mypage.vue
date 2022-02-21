@@ -1,5 +1,6 @@
 <template>
   <div id="my-page">
+    {{ new Date() }}
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -79,10 +80,12 @@
       </div>
     </div>
     <div>
-      <button @click="addTask, selectAnswer">筋トレしました</button>
-      <div v-for="task in tasks.tasks" :key="task">
-        <p>{{ task }}</p>
-      </div>
+      <button
+        class="rounded-md bg-blue-200 text-white mx-5 w-40 px-10 py-2"
+        @click="addTask"
+      >
+        筋トレ
+      </button>
     </div>
   </div>
 </template>
@@ -99,7 +102,10 @@ import {
   onSnapshot,
   doc,
   getDoc,
-  Timestamp,
+  arrayUnion,
+  serverTimestamp,
+  updateDoc,
+  Firestore,
 } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -114,144 +120,16 @@ export default {
         composition: "◯◯",
         objectiveWeight: "◯◯",
       },
-      objectiveWeight: "",
-      tasks: [],
-
-      events: [
+      // objectiveWeight: "",
+      tasks: [
         {
-          id: 1,
-          name: "ミーティング",
-          start: "2022-01-01",
-          end: "2022-01-01",
-          color: "blue",
-        },
-        {
-          id: 2,
-          name: "イベント",
-          start: "2022-01-02",
-          end: "2022-01-03",
-          color: "limegreen",
-        },
-        {
-          id: 3,
-          name: "会議",
-          start: "2022-01-06",
-          end: "2022-01-06",
-          color: "deepskyblue",
-        },
-        {
-          id: 4,
-          name: "有給",
-          start: "2022-01-08",
-          end: "2022-01-08",
-          color: "dimgray",
-        },
-        {
-          id: 5,
-          name: "海外旅行",
-          start: "2022-01-08",
-          end: "2022-01-11",
-          color: "navy",
-        },
-        {
-          id: 6,
-          name: "誕生日",
-          start: "2022-01-16",
-          end: "2022-01-16",
-          color: "orange",
-        },
-        {
-          id: 7,
-          name: "イベント",
-          start: "2022-01-12",
-          end: "2022-01-15",
-          color: "limegreen",
-        },
-        {
-          id: 8,
-          name: "出張",
-          start: "2022-01-12",
-          end: "2022-01-13",
-          color: "teal",
-        },
-        {
-          id: 9,
-          name: "客先訪問",
-          start: "2022-01-14",
-          end: "2022-01-14",
-          color: "red",
-        },
-        {
-          id: 10,
-          name: "パーティ",
-          start: "2022-01-15",
-          end: "2022-01-15",
-          color: "royalblue",
-        },
-        {
-          id: 12,
-          name: "ミーティング",
-          start: "2022-01-18",
-          end: "2022-01-19",
-          color: "blue",
-        },
-        {
-          id: 13,
-          name: "イベント",
-          start: "2022-01-21",
-          end: "2022-01-21",
-          color: "limegreen",
-        },
-        {
-          id: 14,
-          name: "有給",
-          start: "2022-01-20",
-          end: "2022-01-20",
-          color: "dimgray",
-        },
-        {
-          id: 15,
-          name: "イベント",
-          start: "2022-01-25",
-          end: "2022-01-28",
-          color: "limegreen",
-        },
-        {
-          id: 16,
-          name: "会議",
-          start: "2022-01-21",
-          end: "2022-01-21",
-          color: "deepskyblue",
-        },
-        {
-          id: 17,
-          name: "旅行",
-          start: "2022-01-23",
-          end: "2022-01-24",
-          color: "navy",
-        },
-        {
-          id: 18,
-          name: "ミーティング",
-          start: "2022-01-28",
-          end: "2022-01-28",
-          color: "blue",
-        },
-        {
-          id: 19,
-          name: "会議",
-          start: "2022-01-12",
-          end: "2022-01-12",
-          color: "deepskyblue",
-        },
-        {
-          id: 20,
-          name: "誕生日",
-          start: "2022-01-30",
-          end: "2022-01-30",
-          color: "orange",
+          name: "",
+          startDayAt: "",
+          endDayAt: "",
+          color: "",
         },
       ],
+      events: [{}],
     };
   },
   methods: {
@@ -289,7 +167,6 @@ export default {
         }
         calendars.push(weekRow);
       }
-      // getDayEventsがエラーの原因になっている
 
       return calendars;
       // カレンダーの数字を返している
@@ -353,7 +230,6 @@ export default {
     },
 
     getStackEvents(event, day, stackIndex, dayEvents, startedEvents, start) {
-
       [stackIndex, dayEvents] = this.getStartedEvents(
         stackIndex,
         startedEvents,
@@ -395,17 +271,38 @@ export default {
         .format("YYYY-MM-DD");
     },
 
-    tasks($event, index) {
-      this.tasks[index] = $event;
-      console.log("this.tasks", this.tasks);
-    },
-    addTask() {
+    async addTask() {
       const uid = this.$store.state.user.uid;
       const db = getFirestore();
-      const docRef = setDoc(doc(db, `tasks/${uid}`), {
-        tasks: this.tasks
-      });
+      const docRef = doc(db, "exerciseLogs", uid);
+      const docSnap = await getDoc(docRef);
+      if (this.tasks.length === 0) {
+        await setDoc(docRef, {
+          tasks: arrayUnion({
+            name: "筋トレ",
+            startDayAt: new Date(),
+            endDayAt: new Date(),
+            color: "red",
+          }),
+        });
+      } else {
+        await updateDoc(docRef, {
+          tasks: arrayUnion({
+            name: "筋トレしました",
+            startDayAt: new Date(),
+            endDayAt: new Date(),
+            color: "yellow",
+          }),
+        });
+      }
       alert("今日の筋トレを記録しました");
+      const exercise = await getDoc(doc(db, "exerciseLogs", uid));
+      if (docSnap.exists()) {
+        console.log(docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
     },
   },
 

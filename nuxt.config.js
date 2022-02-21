@@ -26,8 +26,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/firebase.js'
-  ],
+    '~/plugins/firebase.js',
+    ],
   router: {
     middleware: ['authenticated']
     // 複数ファイル指定の場合は配列で
@@ -53,7 +53,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    // ['@nuxtjs/moment', ['ja']],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
