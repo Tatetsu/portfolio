@@ -1,23 +1,19 @@
 <template>
   <div>
     <div
-      class="program_list flex flex-wrap p-5"
-      v-for="(content, index) in contents"
-      :key="index"
+      class="program_list p-5 flex flex-wrap"
+      v-for="content in contents.contents"
+      :key="content.index"
     >
-      <div
-        class="program_list_get w-1/4 p-3 flex justify-center"
-        v-for="(image, index) in content.image"
-        :key="index"
-      >
-        <router-link to="/top">
-          <img class="w-36 h-36 rounded-md"
-          :src="content.image.url" />
-        </router-link>
-      </div>
-    </div>
-    <div>
-      <div></div>
+      <ul class="flex flex-wrap">
+        <li>
+          <img
+            :src="content.image.url"
+            alt=""
+            class="program_list_get p-3 w-full h-full"
+          />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -29,7 +25,7 @@ export default {
     const id = query.id;
     // 動画リストのIDを取得する
     console.log(id);
-    const { contents } = await $microcms.get({
+    const contents = await $microcms.get({
       endpoint: "motion",
       contentId: id,
     });
@@ -52,9 +48,9 @@ export default {
 @media (max-width: 640px) {
 }
 @media (min-width: 640px) {
-    .program_list_get {
-      width: calc(100% / 3);
-    }
+  .program_list_get {
+    width: calc(100% / 3);
+  }
 }
 @media (min-width: 768px) {
 }

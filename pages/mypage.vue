@@ -1,6 +1,7 @@
 <template>
   <div id="my-page">
     {{ new Date() }}
+    {{ user }}
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -129,7 +130,22 @@ export default {
           color: "",
         },
       ],
-      events: [{}],
+      events: [
+        {
+          id: 1,
+          name: "イベント",
+          start: "2022-02-13",
+          end: "2022-02-13",
+          color: "limegreen",
+        },
+        {
+          id: 2,
+          name: "イベント",
+          start: "2022-02-23",
+          end: "2022-02-23",
+          color: "limegreen",
+        },
+      ],
     };
   },
   methods: {
@@ -188,8 +204,8 @@ export default {
       let dayEvents = [];
       let startedEvents = [];
       this.sortedEvents.forEach((event) => {
-        let startDate = moment(event.start).format("YYYY-MM-DD");
-        let endDate = moment(event.end).format("YYYY-MM-DD");
+        let startDate = moment(event.startDayAt).format("YYYY-MM-DD");
+        let endDate = moment(event.endDayAt).format("YYYY-MM-DD");
         let Date = date.format("YYYY-MM-DD");
         if (startDate <= Date && endDate >= Date) {
           if (startDate === Date) {
@@ -277,6 +293,7 @@ export default {
       const docRef = doc(db, "exerciseLogs", uid);
       const docSnap = await getDoc(docRef);
       if (this.tasks.length === 0) {
+        // console.log("tasks",this.tasks);
         await setDoc(docRef, {
           tasks: arrayUnion({
             name: "筋トレ",
