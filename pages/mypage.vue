@@ -1,6 +1,6 @@
 <template>
   <div id="my-page">
-    {{ new Date() }}
+    <!-- {{ new Date() }} -->
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -121,15 +121,9 @@ export default {
         objectiveWeight: "◯◯",
       },
       // objectiveWeight: "",
-      tasks: [
-        {
-          name: "",
-          startDayAt: "",
-          endDayAt: "",
-          color: "",
-        },
-      ],
-      events: [{}],
+      tasks: [],
+      events: [],
+      todaysLog: false,
     };
   },
   methods: {
@@ -272,6 +266,10 @@ export default {
     },
 
     async addTask() {
+      if (this.todaysLog) {
+        alert("今日の筋トレは記録済みです");
+        return;
+      }
       const uid = this.$store.state.user.uid;
       const db = getFirestore();
       const docRef = doc(db, "exerciseLogs", uid);
@@ -303,6 +301,7 @@ export default {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
+      location.reload();
     },
   },
 
@@ -318,8 +317,36 @@ export default {
         const documentRef = await getDoc(doc(db, `users/${user.uid}`));
         const document = documentRef.data();
 
-        this.user = document;
+        this.user = document || {
+          name: "ゲスト",
+          weight: "◯◯",
+          composition: "◯◯",
+          objectiveWeight: "◯◯",
+        };
         console.log("user", this.user);
+
+        // Firestoreから自分の筋トレのログを取得
+        const exerciseLogsRef = await getDoc(
+          doc(db, `exerciseLogs/${user.uid}`)
+        );
+        const exerciseLogs = exerciseLogsRef.data();
+        console.log({ exerciseLogs });
+        if (exerciseLogs) {
+          // カレンダーに過去の筋トレ情報を貼る　this.events = [....]
+          this.events = exerciseLogs.tasks;
+        }
+
+        // 今日の記録があるかどうかを探す
+        // 今の日付を取得
+        const now = new Date();
+        const dateToday = moment(now).format("YYYYMMDD");
+        console.log({ dateToday });
+
+        this.todaysLog = this.events.find(
+          (item) =>
+            dateToday === moment(item.startDayAt.toDate()).format("YYYYMMDD")
+        );
+        console.log(this.todaysLog);
       }
     });
   },
