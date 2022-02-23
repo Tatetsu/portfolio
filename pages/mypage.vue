@@ -1,5 +1,6 @@
 <template>
   <div id="my-page">
+    {{ new Date() }}
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -13,16 +14,16 @@
         <div class="my-data_txt py-5">
           <ul class="text-center flex justify-around">
             <li>
-              <h3>レッスン数</h3>
-              <p>0本</p>
-            </li>
-            <li>
               <h3>身長</h3>
-              <p>0本</p>
+              <p>{{ user.composition }}<span>cm</span></p>
             </li>
             <li>
               <h3>体重</h3>
-              <p>0本</p>
+              <p>{{ user.weight }}<span>kg</span></p>
+            </li>
+            <li>
+              <h3>目標体重まで</h3>
+              <p>残り{{ user.objectiveWeight }}<span>kg</span></p>
             </li>
           </ul>
         </div>
@@ -32,7 +33,7 @@
     <div class="calender pt-10">
       <div class="calender_my-calender">
         <div class="my-calender_name">
-          <h2 class="font-bold">マサさんのカレンダー</h2>
+          <h2 class="font-bold">{{ user.name }}さんのカレンダー</h2>
         </div>
         <div class="my-calender_data bg-white">
           <div class="content">
@@ -79,171 +80,56 @@
       </div>
     </div>
     <div>
-      <button @click="addTask">add</button>
-      <div
-      v-for="(task, index) in tasks"
-      :key="index"
-    >
-      {{ task.title }}
-    </div>
+      <button
+        class="rounded-md bg-blue-200 text-white mx-5 w-40 px-10 py-2"
+        @click="addTask"
+      >
+        筋トレ
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
-import { getFirestore, collection, addDoc,  query, where, onSnapshot } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  setDoc,
+  query,
+  where,
+  onSnapshot,
+  doc,
+  getDoc,
+  arrayUnion,
+  serverTimestamp,
+  updateDoc,
+  Firestore,
+} from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   layout: "login",
   data() {
     return {
       currentDate: moment(),
-      id: '3',
-      name: 'test',
+      user: {
+        name: "ゲスト",
+        weight: "◯◯",
+        composition: "◯◯",
+        objectiveWeight: "◯◯",
+      },
+      // objectiveWeight: "",
       tasks: [
         {
-          id: null,
-          title: null
-        }
-      ],
-
-      events: [
-        {
-          id: 1,
-          name: "ミーティング",
-          start: "2022-01-01",
-          end: "2022-01-01",
-          color: "blue",
-        },
-        {
-          id: 2,
-          name: "イベント",
-          start: "2022-01-02",
-          end: "2022-01-03",
-          color: "limegreen",
-        },
-        {
-          id: 3,
-          name: "会議",
-          start: "2022-01-06",
-          end: "2022-01-06",
-          color: "deepskyblue",
-        },
-        {
-          id: 4,
-          name: "有給",
-          start: "2022-01-08",
-          end: "2022-01-08",
-          color: "dimgray",
-        },
-        {
-          id: 5,
-          name: "海外旅行",
-          start: "2022-01-08",
-          end: "2022-01-11",
-          color: "navy",
-        },
-        {
-          id: 6,
-          name: "誕生日",
-          start: "2022-01-16",
-          end: "2022-01-16",
-          color: "orange",
-        },
-        {
-          id: 7,
-          name: "イベント",
-          start: "2022-01-12",
-          end: "2022-01-15",
-          color: "limegreen",
-        },
-        {
-          id: 8,
-          name: "出張",
-          start: "2022-01-12",
-          end: "2022-01-13",
-          color: "teal",
-        },
-        {
-          id: 9,
-          name: "客先訪問",
-          start: "2022-01-14",
-          end: "2022-01-14",
-          color: "red",
-        },
-        {
-          id: 10,
-          name: "パーティ",
-          start: "2022-01-15",
-          end: "2022-01-15",
-          color: "royalblue",
-        },
-        {
-          id: 12,
-          name: "ミーティング",
-          start: "2022-01-18",
-          end: "2022-01-19",
-          color: "blue",
-        },
-        {
-          id: 13,
-          name: "イベント",
-          start: "2022-01-21",
-          end: "2022-01-21",
-          color: "limegreen",
-        },
-        {
-          id: 14,
-          name: "有給",
-          start: "2022-01-20",
-          end: "2022-01-20",
-          color: "dimgray",
-        },
-        {
-          id: 15,
-          name: "イベント",
-          start: "2022-01-25",
-          end: "2022-01-28",
-          color: "limegreen",
-        },
-        {
-          id: 16,
-          name: "会議",
-          start: "2022-01-21",
-          end: "2022-01-21",
-          color: "deepskyblue",
-        },
-        {
-          id: 17,
-          name: "旅行",
-          start: "2022-01-23",
-          end: "2022-01-24",
-          color: "navy",
-        },
-        {
-          id: 18,
-          name: "ミーティング",
-          start: "2022-01-28",
-          end: "2022-01-28",
-          color: "blue",
-        },
-        {
-          id: 19,
-          name: "会議",
-          start: "2022-01-12",
-          end: "2022-01-12",
-          color: "deepskyblue",
-        },
-        {
-          id: 20,
-          name: "誕生日",
-          start: "2022-01-30",
-          end: "2022-01-30",
-          color: "orange",
+          name: "",
+          startDayAt: "",
+          endDayAt: "",
+          color: "",
         },
       ],
+      events: [{}],
     };
   },
   methods: {
@@ -281,20 +167,10 @@ export default {
         }
         calendars.push(weekRow);
       }
-      // getDayEventsがエラーの原因になっている
 
       return calendars;
       // カレンダーの数字を返している
     },
-
-    addTask () {
-      const db = getFirestore()
-      const docRef = addDoc(collection(db, 'tasks'), {
-        id: this.id,
-        name: this.name
-      })
-    },
-
     nextMonth() {
       this.currentDate = moment(this.currentDate).add(1, "month");
     },
@@ -343,7 +219,6 @@ export default {
       });
       return dayEvents;
     },
-    // getDayEventsがエラーの原因らしい
 
     getEventWidth(end, start, day) {
       let betweenDays = moment(end).diff(moment(start), "days");
@@ -355,14 +230,11 @@ export default {
     },
 
     getStackEvents(event, day, stackIndex, dayEvents, startedEvents, start) {
-      console.log("args", dayEvents);
-
       [stackIndex, dayEvents] = this.getStartedEvents(
         stackIndex,
         startedEvents,
         dayEvents
       );
-      console.log("result", dayEvents);
 
       let width = this.getEventWidth(start, event.end, day);
       Object.assign(event, {
@@ -398,32 +270,58 @@ export default {
         .add(betweenDays, "days")
         .format("YYYY-MM-DD");
     },
+
+    async addTask() {
+      const uid = this.$store.state.user.uid;
+      const db = getFirestore();
+      const docRef = doc(db, "exerciseLogs", uid);
+      const docSnap = await getDoc(docRef);
+      if (this.tasks.length === 0) {
+        await setDoc(docRef, {
+          tasks: arrayUnion({
+            name: "筋トレ",
+            startDayAt: new Date(),
+            endDayAt: new Date(),
+            color: "red",
+          }),
+        });
+      } else {
+        await updateDoc(docRef, {
+          tasks: arrayUnion({
+            name: "筋トレしました",
+            startDayAt: new Date(),
+            endDayAt: new Date(),
+            color: "yellow",
+          }),
+        });
+      }
+      alert("今日の筋トレを記録しました");
+      const exercise = await getDoc(doc(db, "exerciseLogs", uid));
+      if (docSnap.exists()) {
+        console.log(docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    },
   },
 
-  mounted () {
-    const auth = getAuth()
+  mounted() {
+    const auth = getAuth();
 
     // login状態が変更されたら
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const db = getFirestore()
         // loginしてたら
-        const q = query(collection(db, 'tasks'), where('uid', '==', `${user.uid}`))
-        onSnapshot(q, (snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            if (change.type === 'added') {
-              console.log('added: ', change.doc.data())
-              this.tasks.push({
-                id: change.doc.id,
-                title: change.doc.data().name
-              })
-            }
-          })
-        })
+        const db = getFirestore();
 
-        this.tasks.splice(0, 1)
+        const documentRef = await getDoc(doc(db, `users/${user.uid}`));
+        const document = documentRef.data();
+
+        this.user = document;
+        console.log("user", this.user);
       }
-    })
+    });
   },
 
   computed: {

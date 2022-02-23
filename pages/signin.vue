@@ -1,28 +1,28 @@
 <template>
   <div>
     <div class="bg-gray-100 flex-auto">
-      <div class="flex justify-center mt-16">
-        <div class="w-2/5 border bg-white">
+      <div class="flex justify-center my-16">
+        <div class="border bg-white">
           <div class="my-12 text-center">
-            <h2 class="text-4xl font-bold">ログイン画面</h2>
+            <h2 class="text-2xl md:text-3xl font-bold">ログイン画面</h2>
 
             <div class="google-login my-5 flex justify-center">
               <button
                 type="submit"
                 @click="googleLogin"
-                class="text-sm w-3/5 text-gray-300 py-2 border rounded flex justify-center items-center"
+                class="text-xs sm:text-sm w-3/5 text-gray-300 py-2 border rounded flex justify-center items-center"
               >
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="button-logo-img mr-4" style="height: 24px;">
+              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="button-logo-img sm:mr-4 h-5">
                 Googleでログインする
               </button>
             </div>
 
             <hr class="my-4" />
-            <p class="my-4">
+            <p class="my-4 text-sm md:text-lg">
               <span class="font-semibold">メールアドレス</span>と
               <span class="font-semibold">パスワード</span>を入力してください。
             </p>
-            <form @submit.prevent novalidate>
+            <form @submit.prevent="login" novalidate>
               <div class="mb-2">
                 <input
                   type="mail"
@@ -31,7 +31,7 @@
                   v-model="email"
                   @input="isInput"
                   placeholder="you@example.com"
-                  class="text-xl w-3/5 p-3 border rounded"
+                  class="text-lg md:text-xl w-3/5 p-3 border rounded"
                   autofocus
                 />
                 <p class="text-red-400">{{ emailErrorMassage }}</p>
@@ -44,7 +44,7 @@
                   v-model="password"
                   @input="isInput"
                   placeholder="パスワード"
-                  class="text-xl w-3/5 p-3 border rounded"
+                  class="text-lg md:text-xl w-3/5 p-3 border rounded"
                 />
                 <p class="text-red-400">{{ passwordErrorMassage }}</p>
               </div>
@@ -70,7 +70,6 @@
 
 <script>
 export default {
-  layout: "login",
   computed: {
     user() {
       return this.$store.getters["user"];
