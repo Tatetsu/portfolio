@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div
-      class="program_list p-5 flex flex-wrap"
-      v-for="content in contents.contents"
-      :key="content.index"
-    >
-      <ul class="flex flex-wrap">
-        <li>
+    <div class="program_list p-5 flex flex-wrap">
+      <ul
+        class="flex flex-wrap justify-center"
+        v-for="content in contents.contents"
+        :key="content.index"
+      >
+        <li class="program_list_get p-3">
           <img
             :src="content.image.url"
             alt=""
-            class="program_list_get p-3 w-full h-full"
+            class="w-full h-full"
           />
         </li>
       </ul>

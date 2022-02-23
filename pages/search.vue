@@ -12,64 +12,10 @@
       <div
         class="search_genre my-5 flex flex-wrap items-center sm:flex-row flex-col lg:w-3/4"
       >
-        <div class="search_genre_get p-1">
+        <div class="search_genre_get p-1 w-48 h-12">
           <router-link to="/">
             <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
+              class="rounded-md w-full h-full"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
@@ -88,7 +34,9 @@
             </p>
           </div>
         </div>
-        <div class="search_popular_inner py-5 flex flex-wrap items-center sm:flex-row flex-col">
+        <div
+          class="search_popular_inner py-5 flex flex-wrap items-center sm:flex-row flex-col"
+        >
           <div class="search_popular_inner_get p-1">
             <router-link to="/">
               <img
@@ -138,7 +86,9 @@
             </p>
           </div>
         </div>
-        <div class="search_new_inner py-5 flex flex-wrap items-center sm:flex-row flex-col">
+        <div
+          class="search_new_inner py-5 flex flex-wrap items-center sm:flex-row flex-col"
+        >
           <div class="search_new_inner_get p-1">
             <router-link to="/">
               <img
@@ -185,11 +135,9 @@
 export default {
   layout: "login",
   data() {
-    return {
-      
-    }
-  }
-}
+    return {};
+  },
+};
 </script>
 
 <style scoped>
@@ -197,7 +145,7 @@ export default {
 .search_popular_inner_get {
   width: calc(100% / 1);
 }
-.search_new_inner_get{
+.search_new_inner_get {
   width: calc(100% / 2);
 }
 

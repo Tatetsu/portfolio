@@ -117,12 +117,15 @@
           </div>
         </div>
       </div>
+      <div v-if="questionNumber === 8">
+        <SignIn />
+      </div>
     </div>
 
     <div class="switching_btn flex flex-col justify-center">
       <div
         class="question_next flex test-center my-8"
-        v-if="questionNumber <= 6"
+        v-if="questionNumber <= 7"
       >
         <button
           class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
@@ -140,12 +143,12 @@
         </button>
       </div>
     </div>
-    <div class="submit flex" v-if="questionNumber === 7">
+    <div class="submit flex" v-if="questionNumber === 8">
       <button
         class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
         @click="submit"
       >
-        入力を完了する
+        登録して診断結果をみる
       </button>
     </div>
   </div>
@@ -270,6 +273,46 @@ export default {
         bmi: bmi,
       });
       this.$router.push(`/result?id=${resultId}`);
+    },    
+    register() {
+      if (!this.emailRegexp.test(this.email)) {
+        this.emailErrorMassage =
+          "このメールアドレスは無効です。正しく入力してください。";
+      }
+      if (!this.passwordRegexp.test(this.password)) {
+        this.passwordErrorMassage =
+          "このパスワードは無効です。半角英数字を含んで8〜20文字の範囲で入力してください。";
+      }
+      if (this.email === "") {
+        this.emailErrorMassage = "メールアドレスを入力してください";
+      }
+      if (this.password === "") {
+        this.passwordErrorMassage = "パスワードを入力してください";
+      }
+      if (this.emailErrorMassage !== "" || this.passwordErrorMassage !== "") {
+        return;
+      }
+
+      this.$auth
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          alert("登録が完了しました");
+          this.$store.dispatch("checkLogin");
+          this.$router.push("/mypage");
+        })
+        .catch((error) => {
+          console.log({ code: error.code, message: error.message });
+          if (error.code === "auth/invalid-email") {
+            this.emailErrorMassage = "このメールアドレスは無効です";
+          } else if (error.code === "auth/email-already-in-use") {
+            this.emailErrorMassage =
+              "このメールアドレスはすでに使用されています";
+          } else {
+            alert(
+              "エラーにより登録ができませんでした。恐れ入りますが再度お試しください"
+            );
+          }
+        });
     },
   },
   mounted: function () {},

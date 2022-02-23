@@ -1,7 +1,6 @@
 <template>
   <div id="my-page">
-    {{ new Date() }}
-    {{ user }}
+    <!-- {{ new Date() }} -->
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -121,31 +120,9 @@ export default {
         composition: "◯◯",
         objectiveWeight: "◯◯",
       },
-      // objectiveWeight: "",
-      tasks: [
-        {
-          name: "",
-          startDayAt: "",
-          endDayAt: "",
-          color: "",
-        },
-      ],
-      events: [
-        {
-          id: 1,
-          name: "イベント",
-          start: "2022-02-13",
-          end: "2022-02-13",
-          color: "limegreen",
-        },
-        {
-          id: 2,
-          name: "イベント",
-          start: "2022-02-23",
-          end: "2022-02-23",
-          color: "limegreen",
-        },
-      ],
+      tasks: [],
+      events: [],
+      todaysLog: false,
     };
   },
   methods: {
@@ -204,8 +181,8 @@ export default {
       let dayEvents = [];
       let startedEvents = [];
       this.sortedEvents.forEach((event) => {
-        let startDate = moment(event.startDayAt).format("YYYY-MM-DD");
-        let endDate = moment(event.endDayAt).format("YYYY-MM-DD");
+        let startDate = moment(event.start).format("YYYY-MM-DD");
+        let endDate = moment(event.end).format("YYYY-MM-DD");
         let Date = date.format("YYYY-MM-DD");
         if (startDate <= Date && endDate >= Date) {
           if (startDate === Date) {
@@ -288,12 +265,15 @@ export default {
     },
 
     async addTask() {
+      if (this.todaysLog) {
+        alert("今日の筋トレは記録済みです");
+        return;
+      }
       const uid = this.$store.state.user.uid;
       const db = getFirestore();
       const docRef = doc(db, "exerciseLogs", uid);
       const docSnap = await getDoc(docRef);
       if (this.tasks.length === 0) {
-        // console.log("tasks",this.tasks);
         await setDoc(docRef, {
           tasks: arrayUnion({
             name: "筋トレ",
@@ -320,6 +300,7 @@ export default {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
+      location.reload();
     },
   },
 
@@ -335,8 +316,36 @@ export default {
         const documentRef = await getDoc(doc(db, `users/${user.uid}`));
         const document = documentRef.data();
 
-        this.user = document;
+        this.user = document || {
+          name: "ゲスト",
+          weight: "◯◯",
+          composition: "◯◯",
+          objectiveWeight: "◯◯",
+        };
         console.log("user", this.user);
+
+        // Firestoreから自分の筋トレのログを取得
+        const exerciseLogsRef = await getDoc(
+          doc(db, `exerciseLogs/${user.uid}`)
+        );
+        const exerciseLogs = exerciseLogsRef.data();
+        console.log({ exerciseLogs });
+        if (exerciseLogs) {
+          // カレンダーに過去の筋トレ情報を貼る　this.events = [....]
+          this.events = exerciseLogs.tasks;
+        }
+
+        // 今日の記録があるかどうかを探す
+        // 今の日付を取得
+        const now = new Date();
+        const dateToday = moment(now).format("YYYYMMDD");
+        console.log({ dateToday });
+
+        this.todaysLog = this.events.find(
+          (item) =>
+            dateToday === moment(item.startDayAt.toDate()).format("YYYYMMDD")
+        );
+        console.log(this.todaysLog);
       }
     });
   },

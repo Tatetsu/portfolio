@@ -10,7 +10,7 @@
             </div>
             <div class="login mr-5">
                 <button>
-                    <router-link to="/login">
+                    <router-link to="/signin">
                         ログインする
                     </router-link>
                 </button>
