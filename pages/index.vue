@@ -12,12 +12,12 @@
           <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <router-link to="/" class="rounded-md bg-gray-100"
+                <router-link to="/top" class="rounded-md bg-gray-100"
                   >ジャンル</router-link
                 >
               </li>
               <li class="mx-3">
-                <router-link to="/" class="rounded-md bg-gray-100"
+                <router-link to="/top" class="rounded-md bg-gray-100"
                   >ジャンル2</router-link
                 >
               </li>
@@ -36,12 +36,12 @@
           <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <router-link to="/" class="rounded-md bg-gray-100"
+                <router-link to="/top" class="rounded-md bg-gray-100"
                   >ジャンル</router-link
                 >
               </li>
               <li class="mx-3">
-                <router-link to="/" class="rounded-md bg-gray-100"
+                <router-link to="/top" class="rounded-md bg-gray-100"
                   >ジャンル2</router-link
                 >
               </li>
@@ -60,12 +60,12 @@
           <div class="blog_genre mt-16">
             <ul class="flex ml-5">
               <li class="mx-3">
-                <router-link to="/" class="rounded-md bg-gray-100"
+                <router-link to="/top" class="rounded-md bg-gray-100"
                   >ジャンル</router-link
                 >
               </li>
               <li class="mx-3">
-                <router-link to="/" class="rounded-md bg-gray-100"
+                <router-link to="/top" class="rounded-md bg-gray-100"
                   >ジャンル2</router-link
                 >
               </li>
@@ -81,7 +81,7 @@
       >
 
           <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/">
+            <router-link to="/top">
               <img 
               :src="contents[0].image.url" 
               alt="" 
@@ -89,7 +89,7 @@
             </router-link>
           </div>
           <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/">
+            <router-link to="/top">
               <img 
               :src="contents[0].image.url" 
               alt="" 
@@ -97,7 +97,7 @@
             </router-link>
           </div>
           <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/">
+            <router-link to="/top">
               <img 
               :src="contents[0].image.url" 
               alt="" 
@@ -111,7 +111,7 @@
       <h2 class="pt-3">搭載した機能をブログブログ（Qiita）で書きます</h2>
       <div class="blog_article flex items-center sm:flex-row flex-col p-5">
         <div class="article_list mx-4 py-5">
-          <router-link to="/">
+          <router-link to="/top">
             <img
               src="../assets/img/AdobeStock_153482564.jpeg"
               alt=""
@@ -120,7 +120,7 @@
           </router-link>
         </div>
         <div class="article_list mx-4 py-5">
-          <router-link to="/">
+          <router-link to="/top">
             <img
               src="../assets/img/AdobeStock_153482564.jpeg"
               alt=""
@@ -129,7 +129,7 @@
           </router-link>
         </div>
         <div class="article_list mx-4 py-5">
-          <router-link to="/">
+          <router-link to="/top">
             <img
               src="../assets/img/AdobeStock_153482564.jpeg"
               alt=""

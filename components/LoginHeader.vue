@@ -8,7 +8,7 @@
           to="/top"
           class="text-3xl hover:opacity-50 duration-1000 md:text-4xl cursor-pointer"
         >
-          <img src="../assets/img/nuxt.png" class="w-36" alt="" />
+          <img src="../assets/img/logo/linkedin_banner_image_1.png" class="w-36" alt="" />
         </router-link>
       </h1>
 
@@ -88,7 +88,7 @@
     <aside class="pc_header hidden md:block flex flex-col py-5">
         <h1 class="w-36 pt-4">
           <router-link to="/top"
-            ><img src="../assets/img/nuxt.png" alt=""
+            ><img src="../assets/img/logo/linkedin_banner_image_1.png" alt=""
           /></router-link>
         </h1>
         <nav>
