@@ -1,77 +1,33 @@
 <template>
   <div>
     <div class="new flex flex-wrap items-center sm:flex-row flex-col p-5">
-      <div class="card my-5 px-3">
-        <div class="thumbnail">
-          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_tittle text-center pt-3">
-            ブログのタイトルを入れます
-          </h2>
-          <div class="blog_genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル</router-link
-                >
-              </li>
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-link
-                >
-              </li>
-            </ul>
+      <div
+        class="card my-5 px-3 drop-shadow-lg"
+        v-for="(blog, index) in blogs.contents"
+        :key="index"
+      >
+        <router-link to="/">
+          <div class="thumbnail">
+            <img class="duration-300 object-cover" :src="blog.image.url" />
           </div>
-        </div>
-      </div>
-      <div class="card my-5 px-3">
-        <div class="thumbnail">
-          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_tittle text-center pt-3">
-            ブログのタイトルを入れます
-          </h2>
-          <div class="blog_genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル</router-link
-                >
-              </li>
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-link
-                >
-              </li>
-            </ul>
+          <div class="card_txt bg-white py-5">
+            <h2 class="card_tittle text-center pt-3">
+              {{ blog.title }}
+            </h2>
+            <div class="blog_genre flex text-sm mt-16">
+              <ul class="ml-5"
+              v-for="genre in blog.genre" :key="genre">
+                <router-link to="/question">
+                <li class="mx-3">
+                  <button class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500">
+                  {{ genre }}
+                  </button>
+                </li>
+                </router-link>
+              </ul>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="card my-5 px-3">
-        <div class="thumbnail">
-          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_tittle text-center pt-3">
-            ブログのタイトルを入れます
-          </h2>
-          <div class="blog_genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル</router-link
-                >
-              </li>
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        </router-link>
       </div>
     </div>
     <div class="playlist py-5">
@@ -140,9 +96,17 @@ export default {
       endpoint: "motion",
       contentId: id,
     });
+    const blogs = await $microcms.get({
+      endpoint: "blog",
+      contentId: id,
+      queries: { limit: 3 },
+    });
     console.log(contents);
+    console.log("blogs", { blogs });
+
     return {
       contents,
+      blogs,
     };
   },
 };

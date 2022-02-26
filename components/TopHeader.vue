@@ -39,7 +39,7 @@
 
       <!--サイドバー-->
       <div
-        :class="isOpen ? 'top-12 right-0' : 'top-12 -right-60'"
+        :class="isOpen ? 'top-24 right-0' : 'top-24 -right-60'"
         class="fixed items-center h-full transition-all duration-300 bg-white px-20 md:static"
       >
         <div v-show="isOpen">

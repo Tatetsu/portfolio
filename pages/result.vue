@@ -19,19 +19,16 @@
         <h2 class="title">
           {{ contents.title }}
         </h2>
-        <!-- ここにはMicroCMSから取得したタイトルを入れます -->
         <p>{{ contents.english }}</p>
-        <!-- 英語タイトルの取得 -->
         <div class="result_right_inner p-5">
           <p>
             {{ contents.explanation }}
           </p>
-          <!-- 説明の取得する -->
         </div>
       </div>
     </div>
     <div
-      class="result_video border-2 bg-white py-5 px-10 flex justify-center flex-wrap flex-row"
+      class="result_video border-2 bg-white py-5 px-10 flex justify-center items-end flex-wrap flex-row"
     >
       <div
         class="result_video_inner px-2 my-3 sm:w-1/2 md:w-1/3"
@@ -52,6 +49,7 @@
           </p>
         </div>
       </div>
+      <button class="rounded-full bg-blue-400 border-black border-solid text-white py-4 px-8"><router-link to="/program">More</router-link></button>
     </div>
   </div>
 </template>
