@@ -1,6 +1,5 @@
 <template>
   <div id="my-page">
-    <!-- {{ new Date() }} -->
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -331,7 +330,7 @@ export default {
         const exerciseLogs = exerciseLogsRef.data();
         console.log({ exerciseLogs });
         if (exerciseLogs) {
-          // カレンダーに過去の筋トレ情報を貼る　this.events = [....]
+          // カレンダーに過去の筋トレ情報を貼る this.events = [....]
           this.events = exerciseLogs.tasks;
         }
 

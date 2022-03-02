@@ -21,9 +21,27 @@
 <script>
 export default {
   layout: "fv",
-  data() {
-    return {};
+  async asyncData({ query, $microcms }) {
+    const id = query.id;
+    // 動画リストのIDを取得する
+    console.log(id);
+    const { contents } = await $microcms.get({
+      endpoint: "motion",
+      contentId: id,
+    });
+    console.log({ contents });
+    return {
+      contents,
+    };
   },
+  data() {
+    return {
+      contents: "",
+    };
+  },
+  methods: {},
+  computed: {},
+  mounted() {},
 };
 </script>
 
