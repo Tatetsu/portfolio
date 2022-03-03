@@ -1,7 +1,7 @@
 <template>
   <div>
-      <div class="flex justify-center my-16">
-        <div class="border bg-white">
+      <div class="flex justify-center">
+        <div class="border" style="background-color: #F2F6F7;">
           <div class="my-12 text-center">
             <h2 class="text-2xl md:text-3xl font-bold">ログイン画面</h2>
 
@@ -134,6 +134,47 @@ export default {
         .catch((error) => {
           console.log({ error });
           alert("メールアドレスもしくはパスワードが違う可能性があります");
+        });
+    },
+
+    register() {
+      if (!this.emailRegexp.test(this.email)) {
+        this.emailErrorMassage =
+          "このメールアドレスは無効です。正しく入力してください。";
+      }
+      if (!this.passwordRegexp.test(this.password)) {
+        this.passwordErrorMassage =
+          "このパスワードは無効です。半角英数字を含んで8〜20文字の範囲で入力してください。";
+      }
+      if (this.email === "") {
+        this.emailErrorMassage = "メールアドレスを入力してください";
+      }
+      if (this.password === "") {
+        this.passwordErrorMassage = "パスワードを入力してください";
+      }
+      if (this.emailErrorMassage !== "" || this.passwordErrorMassage !== "") {
+        return;
+      }
+
+      this.$auth
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          alert("登録が完了しました");
+          this.$store.dispatch("checkLogin");
+          this.$router.push("/question");
+        })
+        .catch((error) => {
+          console.log({ code: error.code, message: error.message });
+          if (error.code === "auth/invalid-email") {
+            this.emailErrorMassage = "このメールアドレスは無効です";
+          } else if (error.code === "auth/email-already-in-use") {
+            this.emailErrorMassage =
+              "このメールアドレスはすでに使用されています";
+          } else {
+            alert(
+              "エラーにより登録ができませんでした。恐れ入りますが再度お試しください"
+            );
+          }
         });
     },
     isInput() {

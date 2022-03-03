@@ -117,9 +117,9 @@
           </div>
         </div>
       </div>
-      <div v-if="questionNumber === 8">
+      <!-- <div class="my-12" v-if="questionNumber === 8">
         <SignIn />
-      </div>
+      </div> -->
     </div>
 
     <div class="switching_btn flex flex-col justify-center">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="question_header flex">
+        <div class="question_header flex bg-white">
             <div class="logo">
                 <h1 class="w-36 p-4">
                     <router-link to="/">

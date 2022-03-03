@@ -3,8 +3,12 @@
     <div id="search">
       <div class="search_box">
         <h2 class="font-bold text-2xl my-5">気になるワードで検索</h2>
-        <input type="text" placeholder="ヒップアップ" />
-        <button class="border bg-blend-darken font-white" type="submit">
+        <input type="text" placeholder="ヒップアップ" v-model="searchText" />
+        <button
+          class="border bg-blend-darken font-white"
+          type="submit"
+          @click="search"
+        >
           検索
         </button>
       </div>
@@ -78,7 +82,7 @@
       <div class="search_new my-5">
         <div class="search_new_text flex justify-between">
           <div class="search_new_title">
-            <h2 class="font-bold text-xl">人気のジャンル</h2>
+            <h2 class="font-bold text-xl">新着レッスン</h2>
           </div>
           <div class="search_new_list">
             <p class="font-bold text-xl">
@@ -135,7 +139,28 @@
 export default {
   layout: "login",
   data() {
-    return {};
+    return {
+      searchText: "",
+      searchResult: [],
+    };
+  },
+  methods: {
+    async search() {
+      if (this.searchText === "") {
+        alert("質問に回答してください。");
+        return
+      }
+      console.log(this.searchText);
+      const res = await this.$microcms.get({
+        endpoint: "blog",
+        queries: {
+          q: this.searchText,
+        },
+      });
+      console.log(res);
+      // res.contents
+      // 0の場合はアラートを出す
+    },
   },
 };
 </script>

@@ -1,17 +1,17 @@
 <template>
     <div>
         <div class="blog_fv flex justify-center items-center">
-        <img :src="contents[0].image.url" alt="" class="w-40 h-30">
+        <img :src="contents.image.url" alt="" class="w-40 h-30">
         </div>
         <h2 class="blog_title text-center">
-            {{ contents[0].title }}
+            {{ contents.title }}
         </h2>
         <div>
             <ul class="flex">
-                <li class="genre mx-2">{{ contents[0].genre }}</li>
+                <li class="genre mx-2">{{ contents.genre }}</li>
             </ul>
         </div>
-        <div class="blog_txt" v-html="contents[0].text">
+        <div class="blog_txt" v-html="contents.text">
         </div>
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
     const id = query.id;
     // 動画リストのIDを取得する
     console.log(id);
-    const { contents } = await $microcms.get({
+    const contents = await $microcms.get({
       endpoint: "blog",
       contentId: id,
     });
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      contents: "",
+      contents: {},
     };
   },
   methods: {},
