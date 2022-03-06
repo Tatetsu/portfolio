@@ -46,7 +46,7 @@
               name="name"
               id="name"
               placeholder="ニックネームを入力ください"
-              class="text-md md:text-lg w-full p-3 border rounded"
+              class="text-sm md:text-md w-48 p-3 border rounded"
               v-model="textField"
               @change="selectAnswer(textField, 4)"
             />
@@ -67,7 +67,7 @@
               name="composition"
               id="composition"
               placeholder="身長を入力ください"
-              class="text-md md:text-lg w-full p-3 border rounded"
+              class="text-sm md:text-md w-48 p-3 border rounded"
               v-model="textField"
               @change="selectAnswer(textField, 5)"
             /><span>cm</span>
@@ -89,7 +89,7 @@
               name="weight"
               id="weight"
               placeholder="体重を入力ください"
-              class="text-md md:text-xl w-full p-3 border rounded"
+              class="text-sm md:text-md w-48 p-3 border rounded"
               v-model="textField"
               @change="selectAnswer(textField, 6)"
             /><span>kg</span>
@@ -110,22 +110,19 @@
               name="objective"
               id="objective"
               placeholder="目標の体重を入力ください"
-              class="text-md md:text-xl w-full p-3 border rounded"
+              class="text-sm md:text-md w-48 p-3 border rounded"
               v-model="textField"
               @change="selectAnswer(textField, 7)"
             /><span>kg</span>
           </div>
         </div>
       </div>
-      <!-- <div class="my-12" v-if="questionNumber === 8">
-        <SignIn />
-      </div> -->
     </div>
 
     <div class="switching_btn flex flex-col justify-center">
       <div
         class="question_next flex test-center my-8"
-        v-if="questionNumber <= 7"
+        v-if="questionNumber <= 6"
       >
         <button
           class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
@@ -143,7 +140,7 @@
         </button>
       </div>
     </div>
-    <div class="submit flex" v-if="questionNumber === 8">
+    <div class="submit flex items-center" v-if="questionNumber === 7">
       <button
         class="btn m-auto text-xl bg-white rounded-full p-3 w-3/4 hover:bg-red-400 hover:text-white"
         @click="submit"

@@ -54,7 +54,7 @@
       <button
         class="rounded-full bg-blue-400 border-black border-solid text-white py-4 px-8 my-6"
       >
-        <router-link to="/program">More</router-link>
+        <nuxt-link to="/program">More</nuxt-link>
       </button>
     </div>
   </div>

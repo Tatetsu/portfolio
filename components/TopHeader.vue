@@ -4,12 +4,12 @@
       class="sp_header md:hidden py-3 px-6 w-full flex justify-between font-serif md:px-8 md:py-4"
     >
       <h1>
-        <router-link
+        <nuxt-link
           to="/"
           class="text-3xl hover:opacity-50 duration-1000 md:text-4xl cursor-pointer"
         >
           <img src="../assets/img/logo/linkedin_banner_image_1.png" class="w-36" alt="" />
-        </router-link>
+        </nuxt-link>
       </h1>
 
       <div class="visible md:invisible flex justify-end items-center">
@@ -45,24 +45,24 @@
         <div v-show="isOpen">
           <ul class="md:hidden">
             <li>
-              <router-link
+              <nuxt-link
                 to="/"
                 class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
-                >ホーム</router-link
+                >ホーム</nuxt-link
               >
             </li>
             <li>
-              <router-link
+              <nuxt-link
                 to="/signin"
                 class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >ログイン</router-link
+                >ログイン</nuxt-link
               >
             </li>
             <li>
-              <router-link
+              <nuxt-link
                 to="/register"
                 class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
-                >新規登録</router-link
+                >新規登録</nuxt-link
               >
             </li>
           </ul>
@@ -71,15 +71,15 @@
     </div>
     <aside class="pc_header hidden md:block flex flex-col py-5">
         <h1 class="w-36 pt-4">
-          <router-link to="/"
+          <nuxt-link to="/"
             ><img src="../assets/img/logo/linkedin_banner_image_1.png" alt=""
-          /></router-link>
+          /></nuxt-link>
         </h1>
         <nav>
           <ul>
-            <li class="hover:text-red-400"><router-link to="/">ホーム</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/signin">ログイン</router-link></li>
-            <li class="hover:text-red-400"><router-link to="/register">新規登録</router-link></li>
+            <li class="hover:text-red-400"><nuxt-link to="/">ホーム</nuxt-link></li>
+            <li class="hover:text-red-400"><nuxt-link to="/signin">ログイン</nuxt-link></li>
+            <li class="hover:text-red-400"><nuxt-link to="/register">新規登録</nuxt-link></li>
           </ul>
         </nav>
     </aside>

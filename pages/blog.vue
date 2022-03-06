@@ -1,19 +1,25 @@
 <template>
-    <div>
-        <div class="blog_fv flex justify-center items-center">
-        <img :src="contents.image.url" alt="" class="w-40 h-30">
-        </div>
-        <h2 class="blog_title text-center">
-            {{ contents.title }}
-        </h2>
-        <div>
-            <ul class="flex">
-                <li class="genre mx-2">{{ contents.genre }}</li>
-            </ul>
-        </div>
-        <div class="blog_txt" v-html="contents.text">
-        </div>
+  <div>
+    <div class="blog_fv flex justify-center items-center">
+      <img :src="contents.image.url" alt="" class="w-40 h-30" />
     </div>
+    <h2 class="blog_title text-xl font-bold text-center">
+      {{ contents.title }}
+    </h2>
+    <div>
+      <ul class="flex my-5">
+        <li class="genre mx-2" v-for="genre in contents.genre" :key="genre">
+          <button>
+            <nuxt-link to="genre">
+              「<span class="hover:text-red-600"> {{ genre }}</span
+              >」
+            </nuxt-link>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="blog_txt" v-html="contents.text"></div>
+  </div>
 </template>
 
 <script>
@@ -28,7 +34,7 @@ export default {
       endpoint: "blog",
       contentId: id,
     });
-    console.log({ contents });
+    console.log(contents);
     return {
       contents,
     };
@@ -42,7 +48,6 @@ export default {
   computed: {},
   mounted() {},
 };
-
 </script>
 
 <style scoped>
@@ -55,5 +60,4 @@ p {
     font-size: 3rem;
     line-height: 1.5rem;
 } */
-
 </style>

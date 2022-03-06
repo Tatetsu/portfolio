@@ -10,7 +10,7 @@
         <h2 class="mt-10 text-2xl md:text-4xl">Fit Support</h2>
         <p class="text-xl md:text-2xl">［フィットサポート］</p>
         <button class="rounded-full px-8 py-6 my-6 bg-blue-400 text-white">
-          <router-link to="/question"> 無料で始める </router-link>
+          <nuxt-link to="/register">無料で始める </nuxt-link>
         </button>
       </div>
     </div>

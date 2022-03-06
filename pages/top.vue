@@ -15,14 +15,15 @@
               {{ blog.title }}
             </h2>
             <div class="blog_genre flex text-sm mt-16">
-              <ul class="ml-5"
-              v-for="genre in blog.genre" :key="genre">
+              <ul class="ml-5" v-for="genre in blog.genre" :key="genre">
                 <nuxt-link to="/top">
-                <li class="mx-3">
-                  <button class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500">
-                  {{ genre }}
-                  </button>
-                </li>
+                  <li class="mx-3">
+                    <button
+                      class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
+                    >
+                      {{ genre }}
+                    </button>
+                  </li>
                 </nuxt-link>
               </ul>
             </div>
@@ -32,23 +33,20 @@
     </div>
     <div class="playlist py-5">
       <h2 class="pt-3">おすすめのプレイリスト</h2>
-      <div class="playlist_inner flex items-center sm:flex-row flex-col pt-3">
-        <div class="playlist_inner_get mx-4 my-5">
-          <nuxt-link to="/top">
-            <img :src="contents[0].image.url" alt="" class="rounded-lg" />
-          </nuxt-link>
-        </div>
-        <div class="playlist_inner_get mx-4 my-5">
-          <nuxt-link to="/top">
-            <img :src="contents[1].image.url" alt="" class="rounded-lg" />
-          </nuxt-link>
-        </div>
-        <div class="playlist_inner_get mx-4 my-5">
-          <nuxt-link to="/top">
-            <img :src="contents[2].image.url" alt="" class="rounded-lg" />
-          </nuxt-link>
-        </div>
-      </div>
+      <ul
+        class="playlist_inner flex items-center sm:flex-row flex-col flex-wrap pt-3"
+      >
+      <li class="sm:w-1/3" v-for="(contents, index) in contents"
+        :key="index">
+        <nuxt-link :to="`/playlist?id=${contents.id}`">
+          <img
+            :src="contents.image.url"
+            alt=""
+            class="playlist_inner_get rounded-lg p-2"
+          />
+        </nuxt-link>
+      </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -62,6 +60,7 @@ export default {
     const { contents } = await $microcms.get({
       endpoint: "motion",
       contentId: id,
+      queries: { limit: 3 },
     });
     const blogs = await $microcms.get({
       endpoint: "blog",

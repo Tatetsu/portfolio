@@ -80,10 +80,10 @@
     </div>
     <div>
       <button
-        class="rounded-md bg-blue-200 text-white w-full px-10 py-2"
+        class="rounded-md bg-blue-400 hover:bg-red-600 text-white w-full px-10 py-2"
         @click="addTask"
       >
-        今日も筋トレしました
+        筋トレしました
       </button>
       <p class="text-sm mt-5">＊筋トレの記録をカレンダーに残しましょう！！</p>
     </div>
@@ -345,7 +345,7 @@ export default {
         const dateToday = moment(now).format("YYYYMMDD");
         console.log({ dateToday });
 
-        this.todaysLog = this.tasks.find(
+        this.todaysLog = this.events.find(
           (item) =>
             dateToday === moment(item.startDayAt.toDate()).format("YYYYMMDD")
         );

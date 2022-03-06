@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <nuxt-link to="/">Home</nuxt-link> |
+      <nuxt-link to="/about">About</nuxt-link>
     </div>
     <router-view/>
   </div>
@@ -26,7 +26,7 @@
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+#nav a.nuxt-link-exact-active {
   color: #42b983;
 }
 </style>
