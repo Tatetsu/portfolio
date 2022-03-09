@@ -1,182 +1,56 @@
 <template>
   <div>
-    <div class="new flex flex-wrap items-center sm:flex-row flex-col p-5">
-      <div class="card my-5 px-3">
-        <div class="thumbnail">
-          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_tittle text-center pt-3">
-            ブログのタイトルを入れます
-          </h2>
-          <div class="blog_genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル</router-link
-                >
-              </li>
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="card my-5 px-3">
-        <div class="thumbnail">
-          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_tittle text-center pt-3">
-            ブログのタイトルを入れます
-          </h2>
-          <div class="blog_genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル</router-link
-                >
-              </li>
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="card my-5 px-3">
-        <div class="thumbnail">
-          <img src="../assets/img/AdobeStock_141454513.jpeg" alt="" />
-        </div>
-        <div class="card_txt bg-white py-5">
-          <h2 class="card_tittle text-center pt-3">
-            ブログのタイトルを入れます
-          </h2>
-          <div class="blog_genre mt-16">
-            <ul class="flex ml-5">
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル</router-link
-                >
-              </li>
-              <li class="mx-3">
-                <router-link to="/top" class="rounded-md bg-gray-100"
-                  >ジャンル2</router-link
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+    <div class="fv flex justify-center items-center">
+      <div class="fv_txt text-center">
+        <h3
+          class="inline bg-white text-primary text-md md:text-xl lg:text-2xl px-4 md:px-8 py-4 my-5"
+        >
+          あなたのフィットネスをサポートします
+        </h3>
+        <h2 class="mt-10 text-2xl md:text-4xl">Fit Support</h2>
+        <p class="text-xl md:text-2xl">［フィットサポート］</p>
+        <button class="rounded-full px-8 py-6 my-6 bg-blue-400 text-white">
+          <nuxt-link to="/register">無料で始める </nuxt-link>
+        </button>
       </div>
     </div>
-    <div class="playlist py-5">
-      <h2 class="pt-3">おすすめのプレイリスト</h2>
-      <div
-        class="playlist_inner flex items-center sm:flex-row flex-col pt-3"
-      >
-
-          <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/top">
-              <img 
-              :src="contents[0].image.url" 
-              alt="" 
-              class="rounded-lg" />
-            </router-link>
-          </div>
-          <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/top">
-              <img 
-              :src="contents[0].image.url" 
-              alt="" 
-              class="rounded-lg" />
-            </router-link>
-          </div>
-          <div class="playlist_inner_get mx-4 my-5">
-            <router-link to="/top">
-              <img 
-              :src="contents[0].image.url" 
-              alt="" 
-              class="rounded-lg" />
-            </router-link>
-          </div>
-          <!-- ここはv-forで回す -->
-        </div>
-    </div>
-    <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Qiita）で書きます</h2>
-      <div class="blog_article flex items-center sm:flex-row flex-col p-5">
-        <div class="article_list mx-4 py-5">
-          <router-link to="/top">
-            <img
-              src="../assets/img/AdobeStock_153482564.jpeg"
-              alt=""
-              class="rounded-lg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list mx-4 py-5">
-          <router-link to="/top">
-            <img
-              src="../assets/img/AdobeStock_153482564.jpeg"
-              alt=""
-              class="rounded-lg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list mx-4 py-5">
-          <router-link to="/top">
-            <img
-              src="../assets/img/AdobeStock_153482564.jpeg"
-              alt=""
-              class="rounded-lg"
-            />
-          </router-link>
-        </div>
-      </div>
-    </div>
+    <div></div>
   </div>
 </template>
 
 <script>
 export default {
-  layout: "",
+  layout: "fv",
   async asyncData({ query, $microcms }) {
     const id = query.id;
+    // 動画リストのIDを取得する
     console.log(id);
     const { contents } = await $microcms.get({
       endpoint: "motion",
       contentId: id,
     });
-    console.log(contents);
+    console.log({ contents });
     return {
       contents,
     };
   },
+  data() {
+    return {
+      contents: "",
+    };
+  },
+  methods: {},
+  computed: {},
+  mounted() {},
 };
 </script>
 
 <style scoped>
-.card {
-  width: calc(100% / 1);
-}
-
-@media (max-width: 640px) {
-}
-@media (min-width: 640px) {
-  .card {
-    width: calc(100% / 2);
-  }
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 1024px) {
-  .card {
-    width: calc(100% / 3);
-  }
+.fv {
+  background-image: url(../assets/img/AdobeStock_319973032.jpeg);
+  background-size: cover;
+  background-position: right;
+  height: 80vh;
+  min-height: 560px;
 }
 </style>

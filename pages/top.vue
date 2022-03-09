@@ -6,7 +6,7 @@
         v-for="(blog, index) in blogs.contents"
         :key="index"
       >
-        <router-link to="/">
+        <nuxt-link :to="`/blog?id=${blog.id}`">
           <div class="thumbnail">
             <img class="duration-300 object-cover" :src="blog.image.url" />
           </div>
@@ -15,73 +15,38 @@
               {{ blog.title }}
             </h2>
             <div class="blog_genre flex text-sm mt-16">
-              <ul class="ml-5"
-              v-for="genre in blog.genre" :key="genre">
-                <router-link to="/question">
-                <li class="mx-3">
-                  <button class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500">
-                  {{ genre }}
-                  </button>
-                </li>
-                </router-link>
+              <ul class="ml-5" v-for="genre in blog.genre" :key="genre">
+                <nuxt-link to="/top">
+                  <li class="mx-3">
+                    <button
+                      class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
+                    >
+                      {{ genre }}
+                    </button>
+                  </li>
+                </nuxt-link>
               </ul>
             </div>
           </div>
-        </router-link>
+        </nuxt-link>
       </div>
     </div>
     <div class="playlist py-5">
       <h2 class="pt-3">おすすめのプレイリスト</h2>
-      <div class="playlist_inner flex items-center sm:flex-row flex-col pt-3">
-        <div class="playlist_inner_get mx-4 my-5">
-          <router-link to="/top">
-            <img :src="contents[0].image.url" alt="" class="rounded-lg" />
-          </router-link>
-        </div>
-        <div class="playlist_inner_get mx-4 my-5">
-          <router-link to="/top">
-            <img :src="contents[1].image.url" alt="" class="rounded-lg" />
-          </router-link>
-        </div>
-        <div class="playlist_inner_get mx-4 my-5">
-          <router-link to="/top">
-            <img :src="contents[2].image.url" alt="" class="rounded-lg" />
-          </router-link>
-        </div>
-        <!-- ここはv-forで回す -->
-      </div>
-    </div>
-    <div class="blog py-5">
-      <h2 class="pt-3">搭載した機能をブログブログ（Qiita）で書きます</h2>
-      <div class="blog_article flex items-center sm:flex-row flex-col p-5">
-        <div class="article_list mx-4 py-5">
-          <router-link to="/top">
-            <img
-              src="../assets/img/AdobeStock_153482564.jpeg"
-              alt=""
-              class="rounded-lg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list mx-4 py-5">
-          <router-link to="/top">
-            <img
-              src="../assets/img/AdobeStock_153482564.jpeg"
-              alt=""
-              class="rounded-lg"
-            />
-          </router-link>
-        </div>
-        <div class="article_list mx-4 py-5">
-          <router-link to="/top">
-            <img
-              src="../assets/img/AdobeStock_153482564.jpeg"
-              alt=""
-              class="rounded-lg"
-            />
-          </router-link>
-        </div>
-      </div>
+      <ul
+        class="playlist_inner flex items-center sm:flex-row flex-col flex-wrap pt-3"
+      >
+      <li class="sm:w-1/3" v-for="(contents, index) in contents"
+        :key="index">
+        <nuxt-link :to="`/playlist?id=${contents.id}`">
+          <img
+            :src="contents.image.url"
+            alt=""
+            class="playlist_inner_get rounded-lg p-2"
+          />
+        </nuxt-link>
+      </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -95,6 +60,7 @@ export default {
     const { contents } = await $microcms.get({
       endpoint: "motion",
       contentId: id,
+      queries: { limit: 3 },
     });
     const blogs = await $microcms.get({
       endpoint: "blog",

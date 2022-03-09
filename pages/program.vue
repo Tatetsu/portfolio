@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div
-      class="program_list p-5 flex flex-wrap"
-      v-for="content in contents.contents"
-      :key="content.index"
-    >
-      <ul class="flex flex-wrap">
-        <li>
-          <img
-            :src="content.image.url"
-            alt=""
-            class="program_list_get p-3 w-full h-full"
-          />
+    <div class="playlist py-5">
+      <h2 class="text-center text-xl font-bold pt-3">プログラム一覧</h2>
+      <ul
+        class="playlist_inner flex justify-center items-center sm:flex-row flex-col flex-wrap pt-3"
+      >
+        <li class="flex justify-center items-center sm:w-1/2 sm:px-2 md:w-1/3 md:px-2 my-3"
+        v-for="(contents, index) in contents"
+        :key="index">
+          <nuxt-link :to="`/playlist?id=${contents.id}`">
+            <img :src="contents.image.url" alt="" class="rounded-lg" />
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -23,34 +22,24 @@ export default {
   layout: "login",
   async asyncData({ query, $microcms }) {
     const id = query.id;
-    // 動画リストのIDを取得する
     console.log(id);
-    const contents = await $microcms.get({
+    const { contents } = await $microcms.get({
       endpoint: "motion",
       contentId: id,
     });
     console.log(contents);
+
     return {
       contents,
     };
-  },
-  data() {
-    return {};
   },
 };
 </script>
 
 <style scoped>
-.program_list_get {
-  width: calc(100% / 2);
-}
-
 @media (max-width: 640px) {
 }
 @media (min-width: 640px) {
-  .program_list_get {
-    width: calc(100% / 3);
-  }
 }
 @media (min-width: 768px) {
 }

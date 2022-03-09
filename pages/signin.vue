@@ -60,12 +60,12 @@
               </button>
             </form>
             <div class="py-8 text-center text-base">
-              <p class="text-blue-500">
+              <p class="text-blue-500 hover:text-red-400">
                 <nuxt-link to="/register">初めての方はこちら</nuxt-link>
               </p>
             </div>
             <div class="py-4 text-center text-base">
-              <p class="text-blue-500">
+              <p class="text-blue-500 hover:text-red-400">
                 <button
                 @click="gestLogin"
                 >
@@ -142,7 +142,7 @@ export default {
         .then(() => {
           alert("ログインに成功しました");
           this.$store.dispatch("checkLogin");
-          this.$router.push("/mypage");
+          this.$router.push("/question");
         })
         .catch((error) => {
           console.log({ error });
