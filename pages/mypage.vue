@@ -5,8 +5,16 @@
         <div class="my-data_img h-40">
           <img
             class="rounded-full absolute w-32 h-32"
-            src="../assets/img/AdobeStock_334827822.jpeg"
+            :src="profileImageUrl"
             alt=""
+            @click="clickImage"
+          />
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            @change="uploadImage($event)"
+            ref="profileImage"
+            style="display: none"
           />
         </div>
         <hr class="w-3/4 m-auto" />
@@ -107,7 +115,7 @@ import {
   updateDoc,
   Firestore,
 } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 
 export default {
   layout: "login",
@@ -123,6 +131,7 @@ export default {
       tasks: [],
       events: [],
       todaysLog: false,
+      profileImageUrl: "",
     };
   },
   methods: {
@@ -302,6 +311,33 @@ export default {
       }
       location.reload();
     },
+    clickImage() {
+      this.$refs.profileImage.click();
+    },
+    async uploadImage($event) {
+      console.log($event.target.files);
+
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        //画像URLを取得している
+        // ↓これは、画像を画面に表示する用のURL、実際にstoragemじゃなくてfileなので、$event.target.fils[0]を使う
+        this.profileImageUrl = e.target.result;
+
+        // ここでストレージにアップする処理
+        // this.$storageを使う
+        // getDownloadURL()
+
+        // 以下は、ユーザーのアップデート処理。
+        const uid = this.$store.state.user.uid;
+        const db = getFirestore();
+        const docRef = doc(db, "users", uid);
+        await updateDoc(docRef, {
+          profileImageUrl: "xxxxxxxxxx", //ストレージから取得したURL
+        });
+      };
+
+      reader.readAsDataURL($event.target.files[0]);
+    },
   },
 
   mounted() {
@@ -332,11 +368,11 @@ export default {
         console.log({ exerciseLogs });
         if (exerciseLogs) {
           // カレンダーに過去の筋トレ情報を貼る this.events = [....]
-          this.events = exerciseLogs.tasks.map(task => {
-            task.start = moment(task.startDayAt.toDate()).format("YYYY-MM-DD")
-            task.end = moment(task.endDayAt.toDate()).format("YYYY-MM-DD")
-            return task
-          })
+          this.events = exerciseLogs.tasks.map((task) => {
+            task.start = moment(task.startDayAt.toDate()).format("YYYY-MM-DD");
+            task.end = moment(task.endDayAt.toDate()).format("YYYY-MM-DD");
+            return task;
+          });
         }
 
         // 今日の記録があるかどうかを探す

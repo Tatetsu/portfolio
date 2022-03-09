@@ -24,6 +24,7 @@ export default function (app, inject) {
     inject('auth', auth)
     inject('firestore', firebase.firestore())
     inject('functions', firebase.functions())
+    inject('storage', firebase.storage())
     inject('db', db)
     inject('authState', () => {
         return new Promise((resolve) => {
