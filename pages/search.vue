@@ -3,79 +3,29 @@
     <div id="search">
       <div class="search_box">
         <h2 class="font-bold text-2xl my-5">気になるワードで検索</h2>
-        <input type="text" placeholder="ヒップアップ" />
-        <button class="border bg-blend-darken font-white" type="submit">
+        <input class="pl-3 py-1 w-48" type="text" placeholder="ヒップアップ" v-model="searchText" />
+        <button
+          class="border bg-blend-darken font-white hover:bg-white"
+          type="submit"
+          @click="search"
+        >
           検索
         </button>
       </div>
 
-      <div
+      <!-- <div
         class="search_genre my-5 flex flex-wrap items-center sm:flex-row flex-col lg:w-3/4"
       >
-        <div class="search_genre_get p-1">
-          <router-link to="/">
+        <div class="search_genre_get p-1 w-48 h-12">
+          <nuxt-link to="/">
             <img
-              class="rounded-md"
+              class="rounded-md w-full h-full"
               src="../assets/img/AdobeStock_61023133.jpeg"
               alt=""
             />
-          </router-link>
+          </nuxt-link>
         </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-        <div class="search_genre_get p-1">
-          <router-link to="/">
-            <img
-              class="rounded-md"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </router-link>
-        </div>
-      </div>
+      </div> -->
 
       <div class="search_popular my-5">
         <div class="search_popular_text flex justify-between">
@@ -83,98 +33,56 @@
             <h2 class="font-bold text-xl">人気のジャンル</h2>
           </div>
           <div class="search_popular_list">
-            <p class="font-bold text-xl">
-              <router-link to="/">一覧で見る</router-link>
+            <p class="font-bold text-xl hover:text-red-400">
+              <nuxt-link to="/playlist">一覧で見る</nuxt-link>
             </p>
           </div>
         </div>
-        <div class="search_popular_inner py-5 flex flex-wrap items-center sm:flex-row flex-col">
-          <div class="search_popular_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <div class="search_popular_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <div class="search_popular_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <div class="search_popular_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
+        <div
+          class="py-5 flex flex-wrap items-center sm:flex-row flex-col"
+        >
+          <ul
+            class="search_popular_inner flex justify-center items-center sm:flex-row flex-col flex-wrap pt-3"
+          >
+            <li
+              class="search_popular_inner_get flex justify-center items-center sm:w-1/2 sm:px-2 md:w-1/3 md:px-2 my-3"
+              v-for="(contents, index) in contents"
+              :key="index"
+            >
+              <nuxt-link :to="`/playlist?id=${contents.id}`">
+                <img :src="contents.image.url" alt="" class="rounded-lg" />
+              </nuxt-link>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="search_new my-5">
         <div class="search_new_text flex justify-between">
           <div class="search_new_title">
-            <h2 class="font-bold text-xl">人気のジャンル</h2>
+            <h2 class="font-bold text-xl">新着レッスン</h2>
           </div>
           <div class="search_new_list">
-            <p class="font-bold text-xl">
-              <router-link to="/">一覧で見る</router-link>
+            <p class="font-bold text-xl hover:text-red-400">
+              <nuxt-link to="/playlist">一覧で見る</nuxt-link>
             </p>
           </div>
         </div>
-        <div class="search_new_inner py-5 flex flex-wrap items-center sm:flex-row flex-col">
-          <div class="search_new_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <div class="search_new_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <div class="search_new_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
-          <div class="search_new_inner_get p-1">
-            <router-link to="/">
-              <img
-                class="rounded-md"
-                src="../assets/img/AdobeStock_319973032.jpeg"
-                alt=""
-              />
-            </router-link>
-          </div>
+        <div
+          class="search_new_inner py-5 flex flex-wrap items-center sm:flex-row flex-col"
+        >
+          <ul
+            class="playlist_inner flex items-center sm:flex-row flex-col flex-wrap pt-3 py-1"
+          >
+            <li
+              class="search_new_inner_get flex justify-center items-center sm:w-1/2 sm:px-2 md:w-1/3 md:px-2 my-3"
+              v-for="(contents, index) in contents"
+              :key="index"
+            >
+              <nuxt-link :to="`/playlist?id=${contents.id}`">
+                <img :src="contents.image.url" alt="" class="rounded-lg" />
+              </nuxt-link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -184,12 +92,45 @@
 <script>
 export default {
   layout: "login",
+  async asyncData({ query, $microcms }) {
+    const id = query.id;
+    console.log(id);
+    const { contents } = await $microcms.get({
+      endpoint: "motion",
+      contentId: id,
+      queries: { limit: 3 },
+    });
+    console.log(contents);
+
+    return {
+      contents,
+    };
+  },
   data() {
     return {
-      
-    }
-  }
-}
+      searchText: "",
+      searchResult: [],
+    };
+  },
+  methods: {
+    async search() {
+      if (this.searchText === "") {
+        alert("質問に回答してください。");
+        return;
+      }
+      console.log(this.searchText);
+      const res = await this.$microcms.get({
+        endpoint: "blog",
+        queries: {
+          q: this.searchText,
+        },
+      });
+      console.log(res);
+      // res.contents
+      // 0の場合はアラートを出す
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -197,7 +138,7 @@ export default {
 .search_popular_inner_get {
   width: calc(100% / 1);
 }
-.search_new_inner_get{
+.search_new_inner_get {
   width: calc(100% / 2);
 }
 

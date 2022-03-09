@@ -19,39 +19,43 @@
         <h2 class="title">
           {{ contents.title }}
         </h2>
-        <!-- ここにはMicroCMSから取得したタイトルを入れます -->
         <p>{{ contents.english }}</p>
-        <!-- 英語タイトルの取得 -->
         <div class="result_right_inner p-5">
           <p>
             {{ contents.explanation }}
           </p>
-          <!-- 説明の取得する -->
         </div>
       </div>
     </div>
-    <div
-      class="result_video border-2 bg-white py-5 px-10 flex justify-center flex-wrap flex-row"
-    >
+    <div id="result_video" class="border-2 bg-white py-5 px-10 flex flex-col justify-center items-center">
       <div
-        class="result_video_inner px-2 my-3 sm:w-1/2 md:w-1/3"
-        v-for="movie in contents.movies"
-        :key="movie.title"
+        class="flex justify-center items-end flex-wrap flex-row"
       >
-        <div>
-          <h3 class="text-sm md:text-md">
-            {{ movie.title }}
-          </h3>
-          <p>
-            <iframe
-              :src="movie.url"
-              width="100%"
-              height="100%"
-              frameborder="0"
-            ></iframe>
-          </p>
+        <div
+          class="result_video_inner px-2 my-3 sm:w-1/2 md:w-1/3"
+          v-for="movie in contents.movies"
+          :key="movie.title"
+        >
+          <div>
+            <h3 class="text-sm md:text-md">
+              {{ movie.title }}
+            </h3>
+            <p>
+              <iframe
+                :src="movie.url"
+                width="100%"
+                height="100%"
+                frameborder="0"
+              ></iframe>
+            </p>
+          </div>
         </div>
       </div>
+      <button
+        class="rounded-full bg-blue-400 border-black border-solid text-white py-4 px-8 my-6"
+      >
+        <nuxt-link to="/program">More</nuxt-link>
+      </button>
     </div>
   </div>
 </template>

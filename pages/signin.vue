@@ -12,7 +12,10 @@
                 @click="googleLogin"
                 class="text-xs sm:text-sm w-3/5 text-gray-300 py-2 border rounded flex justify-center items-center"
               >
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="button-logo-img sm:mr-4 h-5">
+                <img
+                  src="https://madeby.google.com/static/images/google_g_logo.svg"
+                  class="button-logo-img sm:mr-4 h-5"
+                />
                 Googleでログインする
               </button>
             </div>
@@ -57,8 +60,17 @@
               </button>
             </form>
             <div class="py-8 text-center text-base">
-              <p class="text-blue-500">
+              <p class="text-blue-500 hover:text-red-400">
                 <nuxt-link to="/register">初めての方はこちら</nuxt-link>
+              </p>
+            </div>
+            <div class="py-4 text-center text-base">
+              <p class="text-blue-500 hover:text-red-400">
+                <button
+                @click="gestLogin"
+                >
+              ゲストログインで試してみる
+                </button>
               </p>
             </div>
           </div>
@@ -123,6 +135,19 @@ export default {
             alert("メールアドレスもしくはパスワードが違う可能性があります");
           });
       }
+    },
+    gestLogin() {
+      this.$auth
+        .signInAnonymously()
+        .then(() => {
+          alert("ログインに成功しました");
+          this.$store.dispatch("checkLogin");
+          this.$router.push("/question");
+        })
+        .catch((error) => {
+          console.log({ error });
+          alert("メールアドレスもしくはパスワードが違う可能性があります");
+        });
     },
     isInput() {
       this.emailErrorMassage = "";

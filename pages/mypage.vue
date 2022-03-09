@@ -1,6 +1,5 @@
 <template>
   <div id="my-page">
-    {{ new Date() }}
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
         <div class="my-data_img h-40">
@@ -81,11 +80,12 @@
     </div>
     <div>
       <button
-        class="rounded-md bg-blue-200 text-white mx-5 w-40 px-10 py-2"
+        class="rounded-md bg-blue-400 hover:bg-red-600 text-white w-full px-10 py-2"
         @click="addTask"
       >
-        筋トレ
+        筋トレしました
       </button>
+      <p class="text-sm mt-5">＊筋トレの記録をカレンダーに残しましょう！！</p>
     </div>
   </div>
 </template>
@@ -120,16 +120,9 @@ export default {
         composition: "◯◯",
         objectiveWeight: "◯◯",
       },
-      // objectiveWeight: "",
-      tasks: [
-        {
-          name: "",
-          startDayAt: "",
-          endDayAt: "",
-          color: "",
-        },
-      ],
-      events: [{}],
+      tasks: [],
+      events: [],
+      todaysLog: false,
     };
   },
   methods: {
@@ -272,14 +265,18 @@ export default {
     },
 
     async addTask() {
+      if (this.todaysLog) {
+        alert("今日の筋トレは記録済みです");
+        return;
+      }
       const uid = this.$store.state.user.uid;
       const db = getFirestore();
       const docRef = doc(db, "exerciseLogs", uid);
       const docSnap = await getDoc(docRef);
-      if (this.tasks.length === 0) {
+      if (this.events.length === 0) {
         await setDoc(docRef, {
           tasks: arrayUnion({
-            name: "筋トレ",
+            name: "筋トレはじめました",
             startDayAt: new Date(),
             endDayAt: new Date(),
             color: "red",
@@ -288,10 +285,10 @@ export default {
       } else {
         await updateDoc(docRef, {
           tasks: arrayUnion({
-            name: "筋トレしました",
+            name: "筋トレ継続しました",
             startDayAt: new Date(),
             endDayAt: new Date(),
-            color: "yellow",
+            color: "red",
           }),
         });
       }
@@ -303,6 +300,7 @@ export default {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
+      location.reload();
     },
   },
 
@@ -318,8 +316,40 @@ export default {
         const documentRef = await getDoc(doc(db, `users/${user.uid}`));
         const document = documentRef.data();
 
-        this.user = document;
+        this.user = document || {
+          name: "ゲスト",
+          weight: "◯◯",
+          composition: "◯◯",
+          objectiveWeight: "◯◯",
+        };
         console.log("user", this.user);
+
+        // Firestoreから自分の筋トレのログを取得
+        const exerciseLogsRef = await getDoc(
+          doc(db, `exerciseLogs/${user.uid}`)
+        );
+        const exerciseLogs = exerciseLogsRef.data();
+        console.log({ exerciseLogs });
+        if (exerciseLogs) {
+          // カレンダーに過去の筋トレ情報を貼る this.events = [....]
+          this.events = exerciseLogs.tasks.map(task => {
+            task.start = moment(task.startDayAt.toDate()).format("YYYY-MM-DD")
+            task.end = moment(task.endDayAt.toDate()).format("YYYY-MM-DD")
+            return task
+          })
+        }
+
+        // 今日の記録があるかどうかを探す
+        // 今の日付を取得
+        const now = new Date();
+        const dateToday = moment(now).format("YYYYMMDD");
+        console.log({ dateToday });
+
+        this.todaysLog = this.events.find(
+          (item) =>
+            dateToday === moment(item.startDayAt.toDate()).format("YYYYMMDD")
+        );
+        console.log(this.todaysLog);
       }
     });
   },

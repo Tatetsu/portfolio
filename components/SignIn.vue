@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div class="bg-gray-100 flex-auto">
-      <div class="flex justify-center my-16">
-        <div class="border bg-white">
+      <div class="flex justify-center">
+        <div class="border" style="background-color: #F2F6F7;">
           <div class="my-12 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold">新規登録</h2>
+            <h2 class="text-2xl md:text-3xl font-bold">ログイン画面</h2>
 
             <div class="google-login my-5 flex justify-center">
               <button
@@ -25,7 +24,7 @@
               <span class="font-semibold">メールアドレス</span>と
               <span class="font-semibold">パスワード</span>を入力してください。
             </p>
-            <form @submit.prevent="register" novalidate>
+            <form @submit.prevent="login" novalidate>
               <div class="mb-2">
                 <input
                   type="mail"
@@ -51,28 +50,20 @@
                 />
                 <p class="text-red-400">{{ passwordErrorMassage }}</p>
               </div>
-              <button
-                type="submit"
-                @click="register"
-                class="text-xl w-3/5 bg-green-800 text-white py-2 rounded"
-              >
-                新規登録
-              </button>
             </form>
-            <div class="py-8 text-center text-base">
-              <p class="text-blue-500 hover:text-red-400">
-                <nuxt-link to="/signin">登録済みの方はこちら</nuxt-link>
-              </p>
-            </div>
             <div class="py-4 text-center text-base">
-              <p class="text-blue-500 hover:text-red-400">
-                <button @click="gestLogin">ゲストログインで試してみる</button>
+              <p class="text-blue-500">
+                <button
+                @click="gestLogin"
+                >
+              ゲストログインで試してみる
+                </button>
               </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
   </div>
 </template>
 
@@ -89,8 +80,6 @@ export default {
       password: "",
       emailErrorMassage: "",
       passwordErrorMassage: "",
-      emailRegexp: /^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i,
-      passwordRegexp: /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,20}$/i,
     };
   },
   methods: {
@@ -101,13 +90,50 @@ export default {
         .then(() => {
           alert("ログインに成功しました");
           this.$store.dispatch("checkLogin");
-          this.$router.push("/question");
+          this.$router.push("/mypage");
         })
         .catch((error) => {
           console.log(error);
           alert(
             "エラーが発生いたしました。間違い等がないか確認をし再度実施をお願いします"
           );
+        });
+    },
+
+    login() {
+      if (this.email === "") {
+        this.emailErrorMassage = "メールアドレスを入力してください";
+      }
+      if (this.password === "") {
+        this.passwordErrorMassage = "パスワードを入力してください";
+      }
+      if (this.emailErrorMassage !== "" || this.passwordErrorMassage !== "") {
+        return;
+      } else {
+        this.$auth
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then((user) => {
+            alert("ログインに成功しました");
+            this.$store.dispatch("checkLogin");
+            this.$router.push("/mypage");
+          })
+          .catch((error) => {
+            console.log({ error });
+            alert("メールアドレスもしくはパスワードが違う可能性があります");
+          });
+      }
+    },
+    gestLogin() {
+      this.$auth
+        .signInAnonymously()
+        .then(() => {
+          alert("ログインに成功しました");
+          this.$store.dispatch("checkLogin");
+          this.$router.push("/mypage");
+        })
+        .catch((error) => {
+          console.log({ error });
+          alert("メールアドレスもしくはパスワードが違う可能性があります");
         });
     },
 
@@ -149,19 +175,6 @@ export default {
               "エラーにより登録ができませんでした。恐れ入りますが再度お試しください"
             );
           }
-        });
-    },
-    gestLogin() {
-      this.$auth
-        .signInAnonymously()
-        .then(() => {
-          alert("ログインに成功しました");
-          this.$store.dispatch("checkLogin");
-          this.$router.push("/question");
-        })
-        .catch((error) => {
-          console.log({ error });
-          alert("メールアドレスもしくはパスワードが違う可能性があります");
         });
     },
     isInput() {
