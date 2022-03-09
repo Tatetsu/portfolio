@@ -34,7 +34,7 @@
           </div>
           <div class="search_popular_list">
             <p class="font-bold text-xl hover:text-red-400">
-              <nuxt-link to="/playlist">一覧で見る</nuxt-link>
+              <nuxt-link to="/program">一覧で見る</nuxt-link>
             </p>
           </div>
         </div>
@@ -63,7 +63,7 @@
           </div>
           <div class="search_new_list">
             <p class="font-bold text-xl hover:text-red-400">
-              <nuxt-link to="/playlist">一覧で見る</nuxt-link>
+              <nuxt-link to="/program">一覧で見る</nuxt-link>
             </p>
           </div>
         </div>
@@ -125,8 +125,10 @@ export default {
           q: this.searchText,
         },
       });
-      console.log(res);
-      // res.contents
+      const blogs = res
+      console.log(blogs);
+      this.$router.push(`/search-result?q=${this.searchText}}}`);
+
       // 0の場合はアラートを出す
     },
   },

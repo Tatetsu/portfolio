@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="blog_fv flex justify-center items-center">
-      <img :src="contents.image.url" alt="" class="w-40 h-30" />
+      <img :src="contents.image.url" alt="" class="w-4/5" />
     </div>
     <h2 class="blog_title text-xl font-bold text-center">
       {{ contents.title }}
@@ -51,13 +51,5 @@ export default {
 </script>
 
 <style scoped>
-/* h2 {
-    font-size: 2rem;
-    line-height: 2rem;
-    font-weight: bold;
-}
-p {
-    font-size: 3rem;
-    line-height: 1.5rem;
-} */
+
 </style>

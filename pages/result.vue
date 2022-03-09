@@ -88,7 +88,7 @@ export default {
   },
   data() {
     return {
-      contents: "",
+      contents: [],
       users: [
         {
           question1: "",

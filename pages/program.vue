@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="playlist py-5">
-      <h2 class="text-center text-xl font-bold pt-3">プログラム一覧</h2>
+    <div class="playlist py-5 max-w-4xl m-auto">
+      <h2 class="text-xl font-bold pt-3">プログラム一覧</h2>
       <ul
         class="playlist_inner flex justify-center items-center sm:flex-row flex-col flex-wrap pt-3"
       >
