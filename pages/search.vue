@@ -12,20 +12,31 @@
           検索
         </button>
       </div>
-
-      <!-- <div
-        class="search_genre my-5 flex flex-wrap items-center sm:flex-row flex-col lg:w-3/4"
-      >
-        <div class="search_genre_get p-1 w-48 h-12">
-          <nuxt-link to="/">
-            <img
-              class="rounded-md w-full h-full"
-              src="../assets/img/AdobeStock_61023133.jpeg"
-              alt=""
-            />
-          </nuxt-link>
-        </div>
-      </div> -->
+      <div class="card my-5 px-3 drop-shadow-lg" v-for="blog in searchResult" :key="blog.id">
+        <nuxt-link :to="`/blog?id=${blog.id}`">
+          <div class="thumbnail">
+            <img class="duration-300 object-cover" :src="blog.image.url" />
+          </div>
+          <div class="card_txt bg-white py-5">
+            <h2 class="card_tittle text-center pt-3">
+              {{ blog.title }}
+            </h2>
+            <div class="blog_genre flex text-sm mt-16">
+              <ul class="ml-5" v-for="genre in blog.genre" :key="genre">
+                <nuxt-link to="/top">
+                  <li class="mx-3">
+                    <button
+                      class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
+                    >
+                      {{ genre }}
+                    </button>
+                  </li>
+                </nuxt-link>
+              </ul>
+            </div>
+          </div>
+        </nuxt-link>
+      </div>
 
       <div class="search_popular my-5">
         <div class="search_popular_text flex justify-between">
@@ -125,11 +136,10 @@ export default {
           q: this.searchText,
         },
       });
-      const blogs = res
-      console.log(blogs);
-      this.$router.push(`/search-result?q=${this.searchText}}}`);
-
-      // 0の場合はアラートを出す
+      console.log(res);
+      // if
+      // 0の場合はアラートを出す else
+      this.searchResult = res.contents
     },
   },
 };

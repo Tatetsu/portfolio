@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
-import 'firebase/compat/functions'//お問合せフォーム
+/* import 'firebase/compat/functions' *///お問合せフォーム
 
 const config = {
     projectId: process.env.FIREBASE_PROJECT_ID,
@@ -24,6 +24,7 @@ export default function (app, inject) {
     inject('auth', auth)
     inject('firestore', firebase.firestore())
     inject('functions', firebase.functions())
+    inject('storage', firebase.storage())
     inject('db', db)
     inject('authState', () => {
         return new Promise((resolve) => {
