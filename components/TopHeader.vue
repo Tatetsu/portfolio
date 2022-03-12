@@ -8,7 +8,7 @@
           to="/"
           class="text-3xl hover:opacity-50 duration-1000 md:text-4xl cursor-pointer"
         >
-          <img src="../assets/img/logo/linkedin_banner_image_1.png" class="w-36" alt="" />
+          <img src="../assets/img/logo/linkedin_banner_image_1.png" class="w-48" alt="" />
         </nuxt-link>
       </h1>
 
@@ -70,7 +70,7 @@
       </div>
     </div>
     <aside class="pc_header hidden md:block flex flex-col py-5">
-        <h1 class="w-36 pt-4">
+        <h1 class="w-48 pt-4">
           <nuxt-link to="/"
             ><img src="../assets/img/logo/linkedin_banner_image_1.png" alt=""
           /></nuxt-link>

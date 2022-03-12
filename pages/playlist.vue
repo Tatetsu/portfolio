@@ -8,7 +8,7 @@
       <div
         class="result border-2 bg-white py-5 px-10 mt-5 flex flex-col xl:flex-row items-center"
       >
-        <div class="result_left flex justify-center lg:w-2/3 xl:w-1/3 p-3">
+        <div class="result_left flex justify-center lg:w-2/3 xl:w-full p-3">
           <div class="result_img">
             <img :src="contents.image.url" alt="" />
           </div>

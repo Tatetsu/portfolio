@@ -2,9 +2,9 @@
   <div id="my-page">
     <div class="my-data relative mt-36">
       <div class="my-data_box border-2 shadow-lg bg-white">
-        <div class="my-data_img h-40">
+        <div class="my-data_img h-40 rounded-full">
           <img
-            class="rounded-full absolute w-32 h-32"
+            class="rounded-full bg-gray-500 absolute w-32 h-32"
             :src="profileImageUrl"
             alt=""
             @click="clickImage"
@@ -33,6 +33,9 @@
               <p>残り{{ user.objectiveWeight }}<span>kg</span></p>
             </li>
           </ul>
+        </div>
+        <div class="text-center">
+        <p>*診断をするとここに情報が表示されます</p>
         </div>
       </div>
     </div>
@@ -89,9 +92,16 @@
     <div>
       <button
         class="rounded-md bg-blue-400 hover:bg-red-600 text-white w-full px-10 py-2"
+        v-show="isActive"
         @click="addTask"
       >
         筋トレしました
+      </button>
+      <button
+        class="rounded-md bg-blue-400 hover:bg-red-600 text-white w-full bg-opacity-70 px-10 py-2"
+        v-show="notActive"
+      >
+        今日は記録済みです
       </button>
       <p class="text-sm mt-5">＊筋トレの記録をカレンダーに残しましょう！！</p>
     </div>
@@ -132,6 +142,8 @@ export default {
       events: [],
       todaysLog: false,
       profileImageUrl: "",
+      isActive: true,
+      notActive: false,
     };
   },
   methods: {
@@ -272,8 +284,11 @@ export default {
         .add(betweenDays, "days")
         .format("YYYY-MM-DD");
     },
+    changeShow() {},
 
     async addTask() {
+            this.isActive = !this.isActive;
+      this.notActive = !this.notActive;
       if (this.todaysLog) {
         alert("今日の筋トレは記録済みです");
         return;
@@ -285,7 +300,7 @@ export default {
       if (this.events.length === 0) {
         await setDoc(docRef, {
           tasks: arrayUnion({
-            name: "筋トレはじめました",
+            name: "筋トレしました",
             startDayAt: new Date(),
             endDayAt: new Date(),
             color: "red",
@@ -294,7 +309,7 @@ export default {
       } else {
         await updateDoc(docRef, {
           tasks: arrayUnion({
-            name: "筋トレ継続しました",
+            name: "筋トレしました",
             startDayAt: new Date(),
             endDayAt: new Date(),
             color: "red",

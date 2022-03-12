@@ -3,39 +3,51 @@
     <div id="search">
       <div class="search_box">
         <h2 class="font-bold text-2xl my-5">気になるワードで検索</h2>
-        <input class="pl-3 py-1 w-48" type="text" placeholder="ヒップアップ" v-model="searchText" />
-        <button
-          class="border bg-blend-darken font-white hover:bg-white"
-          type="submit"
-          @click="search"
-        >
+        <form method="post">
+          <input
+            class="pl-3 py-1 w-48"
+            type="text"
+            placeholder="ヒップアップ"
+            v-model="searchText"
+          />
+          <input
+            class="border bg-blend-darken font-white hover:bg-white"
+            type="submit"
+            @click="search"
+          />
           検索
-        </button>
+        </form>
       </div>
-      <div class="card my-5 px-3 drop-shadow-lg" v-for="blog in searchResult" :key="blog.id">
-        <nuxt-link :to="`/blog?id=${blog.id}`">
-          <div class="thumbnail">
-            <img class="duration-300 object-cover" :src="blog.image.url" />
-          </div>
-          <div class="card_txt bg-white py-5">
-            <h2 class="card_tittle text-center pt-3">
-              {{ blog.title }}
-            </h2>
-            <div class="blog_genre flex text-sm mt-16">
-              <ul class="ml-5" v-for="genre in blog.genre" :key="genre">
-                <nuxt-link to="/top">
-                  <li class="mx-3">
-                    <button
-                      class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
-                    >
-                      {{ genre }}
-                    </button>
-                  </li>
-                </nuxt-link>
-              </ul>
+      <div class="new flex flex-wrap items-center sm:flex-row flex-col p-5">
+        <div
+          class="card my-5 px-3 drop-shadow-lg"
+          v-for="blog in searchResult"
+          :key="blog.id"
+        >
+          <nuxt-link :to="`/blog?id=${blog.id}`">
+            <div class="thumbnail">
+              <img class="duration-300 object-cover" :src="blog.image.url" />
             </div>
-          </div>
-        </nuxt-link>
+            <div class="card_txt bg-white py-5">
+              <h2 class="card_tittle text-center pt-3">
+                {{ blog.title }}
+              </h2>
+              <div class="blog_genre flex text-sm mt-16">
+                <ul class="ml-5" v-for="genre in blog.genre" :key="genre">
+                  <nuxt-link to="/top">
+                    <li class="mx-3">
+                      <button
+                        class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
+                      >
+                        {{ genre }}
+                      </button>
+                    </li>
+                  </nuxt-link>
+                </ul>
+              </div>
+            </div>
+          </nuxt-link>
+        </div>
       </div>
 
       <div class="search_popular my-5">
@@ -49,9 +61,7 @@
             </p>
           </div>
         </div>
-        <div
-          class="py-5 flex flex-wrap items-center sm:flex-row flex-col"
-        >
+        <div class="py-5 flex flex-wrap items-center sm:flex-row flex-col">
           <ul
             class="search_popular_inner flex justify-center items-center sm:flex-row flex-col flex-wrap pt-3"
           >
@@ -139,7 +149,7 @@ export default {
       console.log(res);
       // if
       // 0の場合はアラートを出す else
-      this.searchResult = res.contents
+      this.searchResult = res.contents;
     },
   },
 };
@@ -153,6 +163,9 @@ export default {
 .search_new_inner_get {
   width: calc(100% / 2);
 }
+.card {
+  width: calc(100% / 1);
+}
 
 @media (max-width: 640px) {
 }
@@ -164,6 +177,9 @@ export default {
   .search_new_inner_get {
     width: calc(100% / 3);
   }
+  .card {
+    width: calc(100% / 2);
+  }
 }
 @media (min-width: 768px) {
 }
@@ -174,6 +190,9 @@ export default {
   }
   .search_new_inner_get {
     width: calc(100% / 4);
+  }
+  .card {
+    width: calc(100% / 3);
   }
 }
 </style>
