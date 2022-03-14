@@ -30,7 +30,7 @@ export default {
     background-color: #F2F6F7;
     background-image: url(../assets/img/AdobeStock_319973032.jpeg);
     background-size: cover;
-    background-position: center center;
+      background-position: right;
     position: relative;
 }
 #main:before {

@@ -336,7 +336,9 @@ export default {
       reader.onload = async (e) => {
         //画像URLを取得している
         // ↓これは、画像を画面に表示する用のURL、実際にstorageじゃなくてfileなので、$event.target.fils[0]を使う
-        this.profileImageUrl = e.target.result;
+        this.profileImage =  $event.target.files[0]
+        console.log(this.profileImage);
+        // this.profileImageUrl = e.target.result;
 
         // ここでストレージにアップする処理
         // this.$storageを使う

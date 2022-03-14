@@ -3,20 +3,19 @@
     <div id="search">
       <div class="search_box">
         <h2 class="font-bold text-2xl my-5">気になるワードで検索</h2>
-        <form method="post">
-          <input
-            class="pl-3 py-1 w-48"
-            type="text"
-            placeholder="ヒップアップ"
-            v-model="searchText"
-          />
-          <input
-            class="border bg-blend-darken font-white hover:bg-white"
-            type="submit"
-            @click="search"
-          />
+        <input
+          class="pl-3 py-1 w-48"
+          type="text"
+          placeholder="ヒップアップ"
+          v-model="searchText"
+        />
+        <button
+          class="border bg-blend-darken font-white hover:bg-white"
+          type="submit"
+          @click="search"
+        >
           検索
-        </form>
+        </button>
       </div>
       <div class="new flex flex-wrap items-center sm:flex-row flex-col p-5">
         <div
@@ -35,12 +34,10 @@
               <div class="blog_genre flex text-sm mt-16">
                 <ul class="ml-5" v-for="genre in blog.genre" :key="genre">
                   <nuxt-link to="/top">
-                    <li class="mx-3">
-                      <button
-                        class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
-                      >
-                        {{ genre }}
-                      </button>
+                    <li
+                      class="mx-3 p-3 rounded-full bg-gray-100"
+                    >
+                      {{ genre }}
                     </li>
                   </nuxt-link>
                 </ul>
