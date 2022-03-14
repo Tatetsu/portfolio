@@ -2,7 +2,7 @@
     <div>
         <div class="main_header flex justify-between items-center">
             <div class="logo">
-                <h1 class="w-36 p-4">
+                <h1 class="w-48 p-4">
                     <nuxt-link to="/">
                         <img src="../assets/img/logo/linkedin_banner_image_1.png" alt="">
                     </nuxt-link>

@@ -19,12 +19,22 @@
                 <nuxt-link to="/top">
                   <li class="mx-3">
                     <button
-                      class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
+                      class="p-3 rounded-full bg-gray-100"
                     >
                       {{ genre }}
                     </button>
                   </li>
                 </nuxt-link>
+                <!-- <nuxt-link to="/top">
+                  <li class="mx-3">
+                    {{ genre }}
+                    <button
+                      class="p-3 rounded-full bg-gray-100 hover:bg-red-400 hover:text-white hover:scale-125 hover:duration-500"
+                    >
+                      {{ genre }}
+                    </button>
+                  </li>
+                </nuxt-link> -->
               </ul>
             </div>
           </div>

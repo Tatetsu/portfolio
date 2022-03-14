@@ -101,7 +101,7 @@ export default {
         .then(() => {
           alert("ログインに成功しました");
           this.$store.dispatch("checkLogin");
-          this.$router.push("/question");
+          this.$router.push("/signin");
         })
         .catch((error) => {
           console.log(error);
@@ -135,7 +135,7 @@ export default {
         .then(() => {
           alert("登録が完了しました");
           this.$store.dispatch("checkLogin");
-          this.$router.push("/question");
+          this.$router.push("/signin");
         })
         .catch((error) => {
           console.log({ code: error.code, message: error.message });
@@ -157,7 +157,7 @@ export default {
         .then(() => {
           alert("ログインに成功しました");
           this.$store.dispatch("checkLogin");
-          this.$router.push("/question");
+          this.$router.push("/signin");
         })
         .catch((error) => {
           console.log({ error });

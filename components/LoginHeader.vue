@@ -8,7 +8,7 @@
           to="/top"
           class="text-3xl hover:opacity-50 duration-1000 md:text-4xl cursor-pointer"
         >
-          <img src="../assets/img/logo/linkedin_banner_image_1.png" class="w-36" alt="" />
+          <img src="../assets/img/logo/linkedin_banner_image_1.png" class="w-48" alt="" />
         </nuxt-link>
       </h1>
 
@@ -73,6 +73,13 @@
               >
             </li>
             <li>
+              <nuxt-link
+                to="/question"
+                class="block mt-6 px-2 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-3 md:py-2"
+                >診断</nuxt-link
+              >
+            </li>
+            <li>
               <button
                 @click="signOut"
                 class="block mt-6 px-4 py-1 text-center hover:bg-gray-100 transition duration-300 md:px-4 md:py-4"
@@ -86,7 +93,7 @@
       </div>
     </div>
     <aside class="pc_header hidden md:block flex flex-col py-5">
-        <h1 class="w-36 pt-4">
+        <h1 class="w-48 pt-4">
           <nuxt-link to="/top"
             ><img src="../assets/img/logo/linkedin_banner_image_1.png" alt=""
           /></nuxt-link>
@@ -97,6 +104,7 @@
             <li class="hover:text-red-400"><nuxt-link to="/program">プログラム一覧</nuxt-link></li>
             <li class="hover:text-red-400"><nuxt-link to="/search">検索</nuxt-link></li>
             <li class="hover:text-red-400"><nuxt-link to="/mypage">マイアカウント</nuxt-link></li>
+            <li class="hover:text-red-400"><nuxt-link to="/question">診断</nuxt-link></li>
             <li class="hover:text-red-400"><button @click="signOut">ログアウト</button></li>
           </ul>
         </nav>
