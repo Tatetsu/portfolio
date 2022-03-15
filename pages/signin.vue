@@ -142,7 +142,7 @@ export default {
         .then(() => {
           alert("ログインに成功しました");
           this.$store.dispatch("checkLogin");
-          this.$router.push("/question");
+          this.$router.push("/top");
         })
         .catch((error) => {
           console.log({ error });

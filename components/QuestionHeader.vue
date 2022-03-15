@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="question_header flex bg-white">
+        <div class="main_header">
             <div class="logo">
                 <h1 class="w-48 p-4">
                     <nuxt-link to="/top">
@@ -17,5 +17,7 @@
 </script>
 
 <style scoped>
-
+.main_header {
+    background-color: rgba(255, 255, 255, 0.6);
+}
 </style>

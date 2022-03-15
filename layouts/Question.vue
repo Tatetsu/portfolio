@@ -1,7 +1,7 @@
 <template>
   <div id="media">
     <div id="body">
-      <Main />
+      <QuestionHeader />
       <div id="main">
       <nuxt />
       </div>
