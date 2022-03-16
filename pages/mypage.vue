@@ -5,7 +5,7 @@
         <div class="my-data_img h-40 rounded-full">
           <img
             class="rounded-full bg-gray-500 absolute w-32 h-32"
-            :src="profileImageUrl"
+            :src="user.profileImageUrl"
             alt=""
             @click="clickImage"
           />
@@ -35,7 +35,7 @@
           </ul>
         </div>
         <div class="text-center">
-        <p>*診断をするとここに情報が表示されます</p>
+          <p>*診断をするとここに情報が表示されます</p>
         </div>
       </div>
     </div>
@@ -137,11 +137,12 @@ export default {
         weight: "◯◯",
         composition: "◯◯",
         objectiveWeight: "◯◯",
+        profileImageUrl:
+          "https://placehold.jp/20/cccccc/ffffff/150x150.png?text=%20",
       },
       tasks: [],
       events: [],
       todaysLog: false,
-      profileImageUrl: "",
       isActive: true,
       notActive: false,
     };
@@ -287,7 +288,7 @@ export default {
     changeShow() {},
 
     async addTask() {
-            this.isActive = !this.isActive;
+      this.isActive = !this.isActive;
       this.notActive = !this.notActive;
       if (this.todaysLog) {
         alert("今日の筋トレは記録済みです");
@@ -336,21 +337,24 @@ export default {
       reader.onload = async (e) => {
         //画像URLを取得している
         // ↓これは、画像を画面に表示する用のURL、実際にstorageじゃなくてfileなので、$event.target.fils[0]を使う
-        this.profileImage =  $event.target.files[0]
-        console.log(this.profileImage);
-        // this.profileImageUrl = e.target.result;
+        this.profileImage = $event.target.files[0];
+        const storageRef = this.$storage
+          .ref()
+          .child(`profileImage/${this.$store.state.user.uid}`);
+        const snapshot = await storageRef.put(this.profileImage);
+        const imageUrl = await snapshot.ref.getDownloadURL();
 
-        // ここでストレージにアップする処理
-        // this.$storageを使う
-        // getDownloadURL()
+        // this.profileImageUrl = e.target.result;
 
         // 以下は、ユーザーのアップデート処理。
         const uid = this.$store.state.user.uid;
         const db = getFirestore();
         const docRef = doc(db, "users", uid);
         await updateDoc(docRef, {
-          profileImageUrl: "xxxxxxxxxx", //ストレージから取得したURL
+          profileImageUrl: imageUrl, //ストレージから取得したURL
         });
+        alert("プロフィール画像を更新しました");
+        location.reload();
       };
 
       reader.readAsDataURL($event.target.files[0]);
@@ -374,6 +378,8 @@ export default {
           weight: "◯◯",
           composition: "◯◯",
           objectiveWeight: "◯◯",
+          profileImageUrl:
+            "https://placehold.jp/20/cccccc/ffffff/150x150.png?text=%20",
         };
         console.log("user", this.user);
 
